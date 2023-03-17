@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = Html.DisplayName(CollTex.Resources.Resource.morestylish);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<<div class="card card-custom">
+    <div class="card-header">
+        <h3 class="card-title">
+            @Html.DisplayName(CollTex.Resources.Resource.morestylish)
+        </h3>
+    </div>
+    <!--begin::Form-->
+    <div class="card-body">
+        <div class="form-group mb-8">
+            <div class="alert alert-custom alert-default" role="alert">
+                <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+                <div class="alert-text">
+                    @Html.DisplayName(CollTex.Resources.Resource.pleaseenteralldatacorrectlytoensuresystem)
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.id)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="text" placeholder="@Html.DisplayName(CollTex.Resources.Resource.id)" id="id" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.name)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="text" placeholder="@Html.DisplayName(CollTex.Resources.Resource.name)" id="name" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <button type="submit" class="btn btn-primary mr-2" onclick="Add()">@Html.DisplayName(CollTex.Resources.Resource.save)</button>
+                <a href="/Style/Index" type="reset" class="btn btn-secondary">@Html.DisplayName(CollTex.Resources.Resource.cancel)</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script>
+      //----------------Add::Unit---------------------
+      function Add() {
+          try {
+              var name = $('#name').val().trim();
+              var id = $('#id').val().trim();
+              if (name.length <= 0) {
+                 toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.nonamesentered) !!!"); $('#name').css('border-color', "red"); return;
+                  return;
+              } else { $('#name').css('border-color', "green") }
+              if (id.length == 0) {
+                   toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.havenotenteredthecode) !!!"); $('#id').css('border-color', "red"); return;
+              } else { $('#id').css('border-color', "green") }
+              $.ajax({
+                  url: '/style/Add',
+                  type: 'post',
+                  data: {
+                      name, id
+                  },
+                  success: function (data) {
+                      if (data.code == 200) {
+                          Swal.fire({
+                              title: data.msg,
+                              icon: "success",
+                              buttonsStyling: false,
+                              confirmButtonText: `<a style="color:white" href="/Style/Index">@Html.DisplayName(CollTex.Resources.Resource.confirm)</a>`,
+                              customClass: {
+                                  confirmButton: "btn btn-primary"
+                              }
+                          });
+                      } else if (data.code == 300) {
+                        Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                      }
+                      else {
+                       Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                      }
+                  }
+              })
+          } catch (error) {
+              Swal.fire(error.message, "", "error")
+          }
+
+      }
+
+    </script>
+}
+
+
+

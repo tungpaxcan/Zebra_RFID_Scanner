@@ -1,0 +1,639 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="accountcreationfailed" xml:space="preserve">
+    <value>Tạo Tài Khoản Không Thành Công</value>
+  </data>
+  <data name="accountdeletedsuccessfully" xml:space="preserve">
+    <value>Xóa Tài Khoản Thành Công</value>
+  </data>
+  <data name="accountinformation" xml:space="preserve">
+    <value>Thông Tin Tài Khoản</value>
+  </data>
+  <data name="accountmanagement" xml:space="preserve">
+    <value>Quản Lý Tài Khoản</value>
+  </data>
+  <data name="accountname" xml:space="preserve">
+    <value>Tên Tài Khoản</value>
+  </data>
+  <data name="accountnamemustbelongerthan6characters" xml:space="preserve">
+    <value>Tên Tài Khoản Phải Dài Hơn 6 Kí Tự</value>
+  </data>
+  <data name="accounts" xml:space="preserve">
+    <value>Tài Khoản</value>
+  </data>
+  <data name="accountsettingsandmore" xml:space="preserve">
+    <value>Cài Đặt Tài Khoản Và Cài Đặt Khác</value>
+  </data>
+  <data name="accountsuccessfullycreated" xml:space="preserve">
+    <value>Tạo Tài Khoản Thành Công</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Hoạt Động</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Thêm</value>
+  </data>
+  <data name="addcolor" xml:space="preserve">
+    <value>Thêm Màu Sắc</value>
+  </data>
+  <data name="addsizefail" xml:space="preserve">
+    <value>Thêm Kích Thước Thất Bại</value>
+  </data>
+  <data name="addsizesuccessfully" xml:space="preserve">
+    <value>Thêm Kích Thước Thành Công</value>
+  </data>
+  <data name="alreadyhavecode" xml:space="preserve">
+    <value>Đã Có Mã</value>
+  </data>
+  <data name="alreadyhaveEPC" xml:space="preserve">
+    <value>Đã Có EPC</value>
+  </data>
+  <data name="amountnotentered" xml:space="preserve">
+    <value>Số Lượng Chưa Nhập</value>
+  </data>
+  <data name="anewpassword" xml:space="preserve">
+    <value>Mật Khẩu Mới</value>
+  </data>
+  <data name="atline" xml:space="preserve">
+    <value>Tại Dòng</value>
+  </data>
+  <data name="barcode" xml:space="preserve">
+    <value>Mã Vạch</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="canopenthisfile" xml:space="preserve">
+    <value>Không Thể Mở Tệp Này</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Danh Mục</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>Thay Đổi</value>
+  </data>
+  <data name="changepasswordsuccessfully" xml:space="preserve">
+    <value>Đổi Mật Khẩu Thành Công</value>
+  </data>
+  <data name="checked" xml:space="preserve">
+    <value>Đã Kiểm Tra</value>
+  </data>
+  <data name="checkthegoods" xml:space="preserve">
+    <value>Kiểm Tra Hàng Hóa</value>
+  </data>
+  <data name="chooseanoption" xml:space="preserve">
+    <value>Chọn Một Sự Lựa Chọn</value>
+  </data>
+  <data name="choosecolor" xml:space="preserve">
+    <value>Chọn Màu Sắc</value>
+  </data>
+  <data name="choosefile" xml:space="preserve">
+    <value>Chọn File</value>
+  </data>
+  <data name="choosesize" xml:space="preserve">
+    <value>Chọn Kích Thước</value>
+  </data>
+  <data name="choosestyle" xml:space="preserve">
+    <value>Chọn Phong Cách</value>
+  </data>
+  <data name="clearthestyleofsuccess" xml:space="preserve">
+    <value>Xóa Phong Cách Thành Công</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="coincide" xml:space="preserve">
+    <value>Trùng</value>
+  </data>
+  <data name="color" xml:space="preserve">
+    <value>Màu Sắc</value>
+  </data>
+  <data name="colorcorrectionfailed" xml:space="preserve">
+    <value>Sửa Màu Không Thành Công</value>
+  </data>
+  <data name="colorcorrectionsuccessful" xml:space="preserve">
+    <value>Sửa Màu Thành Công</value>
+  </data>
+  <data name="colorgenerationfailed" xml:space="preserve">
+    <value>Tạo Màu Không Thành Công</value>
+  </data>
+  <data name="colorlist" xml:space="preserve">
+    <value>Danh Sách Màu</value>
+  </data>
+  <data name="colornotselected" xml:space="preserve">
+    <value>Màu Không Được Chọn</value>
+  </data>
+  <data name="colorremovalfailed" xml:space="preserve">
+    <value>Xóa Màu Không Thành Công</value>
+  </data>
+  <data name="colorsarenotimported" xml:space="preserve">
+    <value>Màu Sắc Không Được Nhập</value>
+  </data>
+  <data name="complete" xml:space="preserve">
+    <value>Hoàn Thành</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>Xác Nhận</value>
+  </data>
+  <data name="createasuccessfulstyle" xml:space="preserve">
+    <value>Tạo Phong Cách Thành Công</value>
+  </data>
+  <data name="createdefectiveproducts" xml:space="preserve">
+    <value>Tạo Sản Phẩm Lỗi</value>
+  </data>
+  <data name="createsuccessfulproducts" xml:space="preserve">
+    <value>Tạo Sản Phẩm Thành Công</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Ngày</value>
+  </data>
+  <data name="defaultSKUstylecolorsize" xml:space="preserve">
+    <value>SKU Mặc Định Kiểu Dáng-Màu sắc-Kích thước</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="deletedefectiveproduct" xml:space="preserve">
+    <value>Xóa Sản Phẩm Bị Lỗi</value>
+  </data>
+  <data name="deleteproductsuccessfully" xml:space="preserve">
+    <value>Xóa Sản Phẩm Thành Công</value>
+  </data>
+  <data name="deletesizefailed" xml:space="preserve">
+    <value>Xóa Thích Thước Thất Bại</value>
+  </data>
+  <data name="deletestylefailed" xml:space="preserve">
+    <value>Xóa Phong Cách Không Thành Công</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Mô Tả</value>
+  </data>
+  <data name="detail" xml:space="preserve">
+    <value>Chi Tiết</value>
+  </data>
+  <data name="detailsofgoods" xml:space="preserve">
+    <value>Chi Tiết Hàng Hóa</value>
+  </data>
+  <data name="doestheaccounthavemanagementrights" xml:space="preserve">
+    <value>Tài Khoản Có Quyền Quản Lý Không</value>
+  </data>
+  <data name="donimportepc" xml:space="preserve">
+    <value>Không Nhập EPC</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Chỉnh Sửa</value>
+  </data>
+  <data name="editaccountsuccessfully" xml:space="preserve">
+    <value>Chỉnh Sửa Tài Khoản Thành Công</value>
+  </data>
+  <data name="editcolor" xml:space="preserve">
+    <value>Sửa Màu</value>
+  </data>
+  <data name="editsize" xml:space="preserve">
+    <value>Chỉnh Sửa Kích Thước</value>
+  </data>
+  <data name="editstylefailed" xml:space="preserve">
+    <value>Chỉnh Sửa Kiểu Không Thành Công</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>Tiếng Anh</value>
+  </data>
+  <data name="enough" xml:space="preserve">
+    <value>Đủ</value>
+  </data>
+  <data name="entries" xml:space="preserve">
+    <value>Mục</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Lỗi!</value>
+  </data>
+  <data name="exceltemplate" xml:space="preserve">
+    <value>Mẫu Excel</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Xuất</value>
+  </data>
+  <data name="failurestyle" xml:space="preserve">
+    <value>Tạo Phong Cách Thất Bại</value>
+  </data>
+  <data name="false" xml:space="preserve">
+    <value>Sai!</value>
+  </data>
+  <data name="filelist" xml:space="preserve">
+    <value>Danh Sách Tệp</value>
+  </data>
+  <data name="fixfaultyaccount" xml:space="preserve">
+    <value>Sửa Tài Khoản Lỗi</value>
+  </data>
+  <data name="fixproducterror" xml:space="preserve">
+    <value>Sửa Lỗi Sản Phẩm</value>
+  </data>
+  <data name="getEPCerror" xml:space="preserve">
+    <value>Nhận Lỗi EPC</value>
+  </data>
+  <data name="goods" xml:space="preserve">
+    <value>Các Mặt Hàng</value>
+  </data>
+  <data name="goodslist" xml:space="preserve">
+    <value>Danh Mục Hàng Hóa</value>
+  </data>
+  <data name="havenotenteredthecode" xml:space="preserve">
+    <value>Chưa Nhập Mã</value>
+  </data>
+  <data name="hi" xml:space="preserve">
+    <value>Chào</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>Mã</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Nhập</value>
+  </data>
+  <data name="incorrectpassword" xml:space="preserve">
+    <value>Mật Khẩu Không Đúng</value>
+  </data>
+  <data name="inputepcdata" xml:space="preserve">
+    <value>Nhập Dữ Liệu EPC</value>
+  </data>
+  <data name="insufficient" xml:space="preserve">
+    <value>Không Đủ</value>
+  </data>
+  <data name="internetconnection" xml:space="preserve">
+    <value>Kết Nối Internet</value>
+  </data>
+  <data name="internetdisconnect" xml:space="preserve">
+    <value>Ngắt Kết Nối Internet</value>
+  </data>
+  <data name="inthesystem" xml:space="preserve">
+    <value>Trong Hệ Thống</value>
+  </data>
+  <data name="listofaccounts" xml:space="preserve">
+    <value>Danh Sách Tài Khoản</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Đăng Xuất</value>
+  </data>
+  <data name="maincategory" xml:space="preserve">
+    <value>Danh Mục Chính</value>
+  </data>
+  <data name="manage" xml:space="preserve">
+    <value>Quản Lý</value>
+  </data>
+  <data name="moreaccount" xml:space="preserve">
+    <value>Thêm Tài Khoản</value>
+  </data>
+  <data name="moregoods" xml:space="preserve">
+    <value>Thêm Hàng Hóa</value>
+  </data>
+  <data name="moresize" xml:space="preserve">
+    <value>Thêm Kích Thước</value>
+  </data>
+  <data name="morestylish" xml:space="preserve">
+    <value>Thêm Phong Cách</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="newpasswordmustbegreaterthan6characters" xml:space="preserve">
+    <value>Mật Khẩu Mới Phải Lớn Hơn 6 Ký Tự</value>
+  </data>
+  <data name="nocodeselected" xml:space="preserve">
+    <value>Không Có Mã Nào Được Chọn</value>
+  </data>
+  <data name="nofilechosen" xml:space="preserve">
+    <value>Không Có Tập Tin Nào Được Chọn</value>
+  </data>
+  <data name="nonamesentered" xml:space="preserve">
+    <value>Chưa Nhập Tên</value>
+  </data>
+  <data name="noproductcodeentered" xml:space="preserve">
+    <value>Chưa Nhập Mã Sản Phẩm</value>
+  </data>
+  <data name="noproductcodeselected" xml:space="preserve">
+    <value>Chưa Chọn Mã Sản Phẩm</value>
+  </data>
+  <data name="noscannumberentered" xml:space="preserve">
+    <value>Chưa Nhập Số Lượng Quét</value>
+  </data>
+  <data name="nostyleselected" xml:space="preserve">
+    <value>Không Có Phong Cách Nào Được Chọn</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>Của</value>
+  </data>
+  <data name="oldpassword" xml:space="preserve">
+    <value>Mật Khẩu Cũ</value>
+  </data>
+  <data name="operationstatus" xml:space="preserve">
+    <value>Tình Trạng Hoạt Động</value>
+  </data>
+  <data name="packinglist" xml:space="preserve">
+    <value>Bảng Kê Hàng Hóa</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Mật Khẩu</value>
+  </data>
+  <data name="passwordfixfailed" xml:space="preserve">
+    <value>Sửa Mật Khẩu Không Thành Công</value>
+  </data>
+  <data name="passwordmustbemorethan6characters" xml:space="preserve">
+    <value>Mật Khẩu Phải Nhiều Hơn 6 Kí Tự</value>
+  </data>
+  <data name="pleaseenteralldatacorrectlytoensuresystem" xml:space="preserve">
+    <value>Vui Lòng Nhập Tất Cả Dữ Liệu Chính Xác Để Đảm Bảo Hệ Thống</value>
+  </data>
+  <data name="pleasereconnecttothenetwork" xml:space="preserve">
+    <value>Vui Lòng Kết Nối Lại Với Mạng!</value>
+  </data>
+  <data name="pleaseselectafile" xml:space="preserve">
+    <value>Vui Lòng Chọn Một Tệp</value>
+  </data>
+  <data name="pressthebutton" xml:space="preserve">
+    <value>Nhấn Nút</value>
+  </data>
+  <data name="print" xml:space="preserve">
+    <value>In</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Sản Phẩm</value>
+  </data>
+  <data name="productidentificationbarcode" xml:space="preserve">
+    <value>Mã Vạch Nhận Dạng Sản Phẩm</value>
+  </data>
+  <data name="productnamehasnotbeenentered" xml:space="preserve">
+    <value>Tên Sản Phẩm Chưa Được Nhập</value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Số Lượng</value>
+  </data>
+  <data name="receivedEPCsuccessfully" xml:space="preserve">
+    <value>Nhận EPC Thành Công</value>
+  </data>
+  <data name="reenter" xml:space="preserve">
+    <value>Nhập lại</value>
+  </data>
+  <data name="reenterincorrectpassword" xml:space="preserve">
+    <value>Nhập Lại Mật Khẩu Sai</value>
+  </data>
+  <data name="refreshepc" xml:space="preserve">
+    <value>Làm mới EPC</value>
+  </data>
+  <data name="reload" xml:space="preserve">
+    <value>Tải Lại</value>
+  </data>
+  <data name="repairgoods" xml:space="preserve">
+    <value>Sửa Hàng Hóa</value>
+  </data>
+  <data name="resetpassword" xml:space="preserve">
+    <value>Đặt Lại Mật Khẩu</value>
+  </data>
+  <data name="residual" xml:space="preserve">
+    <value>Dư</value>
+  </data>
+  <data name="resizefailed" xml:space="preserve">
+    <value>Thay Đổi Kích Thước Không Thành Công</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>Kêt Quả</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="savechanges" xml:space="preserve">
+    <value>Lưu Thay Đổi</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Tìm Kiếm</value>
+  </data>
+  <data name="selectfilestoupload" xml:space="preserve">
+    <value>Chọn File Để Tải Lên</value>
+  </data>
+  <data name="selectproductcode" xml:space="preserve">
+    <value>Chọn Mã Sản Phẩm</value>
+  </data>
+  <data name="serial" xml:space="preserve">
+    <value>Số  Xê Ri</value>
+  </data>
+  <data name="show" xml:space="preserve">
+    <value>Trình Diễn</value>
+  </data>
+  <data name="showingto" xml:space="preserve">
+    <value>Hiển Thị 1 Đến</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Kích Cỡ</value>
+  </data>
+  <data name="sizecorrectionsuccessful" xml:space="preserve">
+    <value>Sửa Kích Thước Thành Công</value>
+  </data>
+  <data name="sizelist" xml:space="preserve">
+    <value>Danh Sách Kích Thước</value>
+  </data>
+  <data name="sizenotentered" xml:space="preserve">
+    <value>Kích Thước Không Được Nhập</value>
+  </data>
+  <data name="sizenotselected" xml:space="preserve">
+    <value>Kích Thước Không Được Chọn</value>
+  </data>
+  <data name="sizeremovalsuccessful" xml:space="preserve">
+    <value>Xóa Kich Thước Thành Công</value>
+  </data>
+  <data name="staff" xml:space="preserve">
+    <value>Nhân Viên</value>
+  </data>
+  <data name="startRFIDscanning" xml:space="preserve">
+    <value>Bắt Đầu Quét RFID</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Trạng Thái</value>
+  </data>
+  <data name="statusshowaccountactivitystatus" xml:space="preserve">
+    <value>Trạng Thái Hiển thị Trạng Thái Hoạt Động Tài Khoản</value>
+  </data>
+  <data name="stopRFIDscanning" xml:space="preserve">
+    <value>Dừng Quét RFID</value>
+  </data>
+  <data name="stt" xml:space="preserve">
+    <value>STT</value>
+  </data>
+  <data name="style" xml:space="preserve">
+    <value>Phong Cách</value>
+  </data>
+  <data name="styleediting" xml:space="preserve">
+    <value>Chỉnh Sửa Phong Cách</value>
+  </data>
+  <data name="stylehasnotbeenimported" xml:space="preserve">
+    <value>Phong Cách Chưa Được Nhập</value>
+  </data>
+  <data name="stylelist" xml:space="preserve">
+    <value>Danh Sách Phong Cách</value>
+  </data>
+  <data name="subcategory" xml:space="preserve">
+    <value>Danh Mục Phụ</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>Thành Công!</value>
+  </data>
+  <data name="successfulcolorcreation" xml:space="preserve">
+    <value>Tạo Màu Thành Công</value>
+  </data>
+  <data name="successfulcolorremoval" xml:space="preserve">
+    <value>Xóa Màu Thành Công</value>
+  </data>
+  <data name="successfulproductrepair" xml:space="preserve">
+    <value>Sửa Sản Phẩm Thành Công</value>
+  </data>
+  <data name="successfulstyleediting" xml:space="preserve">
+    <value>Chỉnh Sửa Phong Cách Thành Công</value>
+  </data>
+  <data name="swipetoseedescription" xml:space="preserve">
+    <value>Vuốt Để Xem Mô Tả</value>
+  </data>
+  <data name="theproductbarcodehasnotbeenentered" xml:space="preserve">
+    <value>Chưa Nhập Mã Vạch Sản Phẩm</value>
+  </data>
+  <data name="thereareotheritemcodes" xml:space="preserve">
+    <value>Còn Các Mã Hàng Khác</value>
+  </data>
+  <data name="unavailable" xml:space="preserve">
+    <value>Chưa Có</value>
+  </data>
+  <data name="unchecked" xml:space="preserve">
+    <value>Chưa Kiểm Tra</value>
+  </data>
+  <data name="unsatisfactory" xml:space="preserve">
+    <value>Không Đạt Yêu Cầu</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>Cập Nhật</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Tải Lên</value>
+  </data>
+  <data name="usernamenotentered" xml:space="preserve">
+    <value>Tên Người Dùng Không Được Nhập</value>
+  </data>
+  <data name="vietnames" xml:space="preserve">
+    <value>Việt Nam</value>
+  </data>
+  <data name="wecannotacceptthisfiletypeatthistime" xml:space="preserve">
+    <value>Chúng Tôi Không Thể Chấp Nhận Loại Tệp Này Vào Lúc Này</value>
+  </data>
+</root>

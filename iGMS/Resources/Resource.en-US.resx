@@ -1,0 +1,645 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="accountcreationfailed" xml:space="preserve">
+    <value>Account Creation Failed</value>
+  </data>
+  <data name="accountdeletedsuccessfully" xml:space="preserve">
+    <value>Account Deleted Successfully</value>
+  </data>
+  <data name="accountinformation" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+  <data name="accountmanagement" xml:space="preserve">
+    <value>Account Management</value>
+  </data>
+  <data name="accountname" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="accountnamemustbelongerthan6characters" xml:space="preserve">
+    <value>Account Name Must Be Longer Than 6 Characters</value>
+  </data>
+  <data name="accounts" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="accountsettingsandmore" xml:space="preserve">
+    <value>Account Settings And More</value>
+  </data>
+  <data name="accountsuccessfullycreated" xml:space="preserve">
+    <value>Account Successfully Created</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="addcolor" xml:space="preserve">
+    <value>Add Color</value>
+  </data>
+  <data name="addsizefail" xml:space="preserve">
+    <value>Add Size Fail</value>
+  </data>
+  <data name="addsizesuccessfully" xml:space="preserve">
+    <value>Add Size Successfully</value>
+  </data>
+  <data name="alreadyhavecode" xml:space="preserve">
+    <value>Already Have ID</value>
+  </data>
+  <data name="alreadyhaveEPC" xml:space="preserve">
+    <value>Already Have EPC</value>
+  </data>
+  <data name="amountnotentered" xml:space="preserve">
+    <value>Amount not entered</value>
+  </data>
+  <data name="anewpassword" xml:space="preserve">
+    <value>A New Password</value>
+  </data>
+  <data name="atline" xml:space="preserve">
+    <value>At Line</value>
+  </data>
+  <data name="barcode" xml:space="preserve">
+    <value>Barcode</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="canopenthisfile" xml:space="preserve">
+    <value>Can't Open This File</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="changepasswordsuccessfully" xml:space="preserve">
+    <value>Change Password Successfully</value>
+  </data>
+  <data name="checked" xml:space="preserve">
+    <value>Checked</value>
+  </data>
+  <data name="checkthegoods" xml:space="preserve">
+    <value>Check The Goods</value>
+  </data>
+  <data name="chooseanoption" xml:space="preserve">
+    <value>Choose An Option</value>
+  </data>
+  <data name="choosecolor" xml:space="preserve">
+    <value>Choose Color</value>
+  </data>
+  <data name="choosefile" xml:space="preserve">
+    <value>Choose File</value>
+  </data>
+  <data name="choosesize" xml:space="preserve">
+    <value>ChooseSize</value>
+  </data>
+  <data name="choosestyle" xml:space="preserve">
+    <value>Choose Style</value>
+  </data>
+  <data name="clearthestyleofsuccess" xml:space="preserve">
+    <value>Clear The Style Of Success</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="coincide" xml:space="preserve">
+    <value>Coincide</value>
+  </data>
+  <data name="color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="colorcorrectionfailed" xml:space="preserve">
+    <value>Color Correction Failed</value>
+  </data>
+  <data name="colorcorrectionsuccessful" xml:space="preserve">
+    <value>Color Correction Successful</value>
+  </data>
+  <data name="colorgenerationfailed" xml:space="preserve">
+    <value>Color Generation Failed</value>
+  </data>
+  <data name="colorlist" xml:space="preserve">
+    <value>Color List</value>
+  </data>
+  <data name="colornotselected" xml:space="preserve">
+    <value>Color not selected</value>
+  </data>
+  <data name="colorremovalfailed" xml:space="preserve">
+    <value>Color Removal Failed</value>
+  </data>
+  <data name="colorsarenotimported" xml:space="preserve">
+    <value>Colors Are Not Imported</value>
+  </data>
+  <data name="complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>Confirm!</value>
+  </data>
+  <data name="createasuccessfulstyle" xml:space="preserve">
+    <value>Create A Successful Style</value>
+  </data>
+  <data name="createdefectiveproducts" xml:space="preserve">
+    <value>Create Defective Products</value>
+  </data>
+  <data name="createsuccessfulproducts" xml:space="preserve">
+    <value>Create Successful Products</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="defaultSKUstylecolorsize" xml:space="preserve">
+    <value>Default SKU Style-Color-Size</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="deletedefectiveproduct" xml:space="preserve">
+    <value>Delete Defective Product</value>
+  </data>
+  <data name="deleteproductsuccessfully" xml:space="preserve">
+    <value>Delete Product Successfully</value>
+  </data>
+  <data name="deletesizefailed" xml:space="preserve">
+    <value>Delete Size Failed</value>
+  </data>
+  <data name="deletestylefailed" xml:space="preserve">
+    <value>Delete Style Failed</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="detailsofgoods" xml:space="preserve">
+    <value>Details Of Goods</value>
+  </data>
+  <data name="doestheaccounthavemanagementrights" xml:space="preserve">
+    <value>Does The Account Have Management Rights?</value>
+  </data>
+  <data name="donimportepc" xml:space="preserve">
+    <value>Don't Import EPC</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="editaccountsuccessfully" xml:space="preserve">
+    <value>Edit Account Successfully</value>
+  </data>
+  <data name="editcolor" xml:space="preserve">
+    <value>Edit Color</value>
+  </data>
+  <data name="editsize" xml:space="preserve">
+    <value>Edit Size</value>
+  </data>
+  <data name="editstylefailed" xml:space="preserve">
+    <value>Edit Style Failed</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="enough" xml:space="preserve">
+    <value>Enough</value>
+  </data>
+  <data name="entries" xml:space="preserve">
+    <value>Entries</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="exceltemplate" xml:space="preserve">
+    <value>Excel Template</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="failedaccountdeletion" xml:space="preserve">
+    <value>Failed Account Deletion</value>
+  </data>
+  <data name="failurestyle" xml:space="preserve">
+    <value>Failure Style</value>
+  </data>
+  <data name="false" xml:space="preserve">
+    <value>False!</value>
+  </data>
+  <data name="filelist" xml:space="preserve">
+    <value>File List</value>
+  </data>
+  <data name="fixfaultyaccount" xml:space="preserve">
+    <value>Fix Faulty Account</value>
+  </data>
+  <data name="fixproducterror" xml:space="preserve">
+    <value>Fix Product Error</value>
+  </data>
+  <data name="getEPCerror" xml:space="preserve">
+    <value>Get EPC Error</value>
+  </data>
+  <data name="goods" xml:space="preserve">
+    <value>Goods</value>
+  </data>
+  <data name="goodslist" xml:space="preserve">
+    <value>Goods List</value>
+  </data>
+  <data name="havenotenteredthecode" xml:space="preserve">
+    <value>Have Not Entered The Code</value>
+  </data>
+  <data name="hi" xml:space="preserve">
+    <value>Hi</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="incorrectpassword" xml:space="preserve">
+    <value>Incorrect Password</value>
+  </data>
+  <data name="inputepcdata" xml:space="preserve">
+    <value>Input EPC Data</value>
+  </data>
+  <data name="insufficient" xml:space="preserve">
+    <value>Insufficient</value>
+  </data>
+  <data name="internetconnection" xml:space="preserve">
+    <value>Internet Connection</value>
+  </data>
+  <data name="internetdisconnect" xml:space="preserve">
+    <value>Internet Disconnect</value>
+  </data>
+  <data name="inthesystem" xml:space="preserve">
+    <value>In The System</value>
+  </data>
+  <data name="listofaccounts" xml:space="preserve">
+    <value>List Of Accounts</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="maincategory" xml:space="preserve">
+    <value>Main Category</value>
+  </data>
+  <data name="manage" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="moreaccount" xml:space="preserve">
+    <value>More Account</value>
+  </data>
+  <data name="moregoods" xml:space="preserve">
+    <value>More Goods</value>
+  </data>
+  <data name="moresize" xml:space="preserve">
+    <value>More Size</value>
+  </data>
+  <data name="morestylish" xml:space="preserve">
+    <value>More Stylish</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="newpasswordmustbegreaterthan6characters" xml:space="preserve">
+    <value>New Password Must Be Greater Than 6 Characters</value>
+  </data>
+  <data name="nocodeselected" xml:space="preserve">
+    <value>No Code Selected</value>
+  </data>
+  <data name="nofilechosen" xml:space="preserve">
+    <value>No File Chosen</value>
+  </data>
+  <data name="nonamesentered" xml:space="preserve">
+    <value>No Names Entered</value>
+  </data>
+  <data name="noproductcodeentered" xml:space="preserve">
+    <value>No Product Code Entered</value>
+  </data>
+  <data name="noproductcodeselected" xml:space="preserve">
+    <value>No Product Code Selected</value>
+  </data>
+  <data name="noscannumberentered" xml:space="preserve">
+    <value>No Scan Number Entered</value>
+  </data>
+  <data name="nostyleselected" xml:space="preserve">
+    <value>No Style Selected</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>Of</value>
+  </data>
+  <data name="oldpassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="operationstatus" xml:space="preserve">
+    <value>Operation Status</value>
+  </data>
+  <data name="packinglist" xml:space="preserve">
+    <value>Packing List</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="passwordfixfailed" xml:space="preserve">
+    <value>Password Fix Failed</value>
+  </data>
+  <data name="passwordmustbemorethan6characters" xml:space="preserve">
+    <value>Password Must Be More Than 6 Characters</value>
+  </data>
+  <data name="pleaseenteralldatacorrectlytoensuresystem" xml:space="preserve">
+    <value>Please Enter All Data Correctly To Ensure System</value>
+  </data>
+  <data name="pleasereconnecttothenetwork" xml:space="preserve">
+    <value>Please Reconnect To The Network!</value>
+  </data>
+  <data name="pleaseselectafile" xml:space="preserve">
+    <value>Please Select A File</value>
+  </data>
+  <data name="pressthebutton" xml:space="preserve">
+    <value>Press The Button</value>
+  </data>
+  <data name="print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="productidentificationbarcode" xml:space="preserve">
+    <value>Product Identification Barcode</value>
+  </data>
+  <data name="productnamehasnotbeenentered" xml:space="preserve">
+    <value>Product Name Has Not Been Entered</value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="receivedEPCsuccessfully" xml:space="preserve">
+    <value>Received EPC successfully</value>
+  </data>
+  <data name="reenter" xml:space="preserve">
+    <value>Re-enter</value>
+  </data>
+  <data name="reenterincorrectpassword" xml:space="preserve">
+    <value>Re-enter Incorrect Password</value>
+  </data>
+  <data name="refreshepc" xml:space="preserve">
+    <value>Refresh EPC</value>
+  </data>
+  <data name="reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="repairgoods" xml:space="preserve">
+    <value>Repair Goods</value>
+  </data>
+  <data name="resetpassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="residual" xml:space="preserve">
+    <value>Residual</value>
+  </data>
+  <data name="resizefailed" xml:space="preserve">
+    <value>Resize Failed</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="savechanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="selectfilestoupload" xml:space="preserve">
+    <value>Select A File To Upload</value>
+  </data>
+  <data name="selectproductcode" xml:space="preserve">
+    <value>Select Product Code</value>
+  </data>
+  <data name="serial" xml:space="preserve">
+    <value>Serial</value>
+  </data>
+  <data name="show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="showingto" xml:space="preserve">
+    <value>Showing 1 To</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="sizecorrectionsuccessful" xml:space="preserve">
+    <value>Size Correction Successful</value>
+  </data>
+  <data name="sizelist" xml:space="preserve">
+    <value>Size List</value>
+  </data>
+  <data name="sizenotentered" xml:space="preserve">
+    <value>Size Not Entered</value>
+  </data>
+  <data name="sizenotselected" xml:space="preserve">
+    <value>Size Not Selected</value>
+  </data>
+  <data name="sizeremovalsuccessful" xml:space="preserve">
+    <value>Size Removal Successful</value>
+  </data>
+  <data name="staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
+  <data name="startRFIDscanning" xml:space="preserve">
+    <value>Start RFID Scanning</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="statusshowaccountactivitystatus" xml:space="preserve">
+    <value>Status Show Account Activity Status</value>
+  </data>
+  <data name="stopRFIDscanning" xml:space="preserve">
+    <value>Stop RFID Scanning</value>
+  </data>
+  <data name="stt" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="styleediting" xml:space="preserve">
+    <value>Style Editing</value>
+  </data>
+  <data name="stylehasnotbeenimported" xml:space="preserve">
+    <value>Style Has Not Been Imported</value>
+  </data>
+  <data name="stylelist" xml:space="preserve">
+    <value>Style List</value>
+  </data>
+  <data name="subcategory" xml:space="preserve">
+    <value>Sub-Category</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>Success!</value>
+  </data>
+  <data name="successfulcolorcreation" xml:space="preserve">
+    <value>Successful Color Creation</value>
+  </data>
+  <data name="successfulcolorremoval" xml:space="preserve">
+    <value>Successful Color Removal</value>
+  </data>
+  <data name="successfulproductrepair" xml:space="preserve">
+    <value>Successful Product Repair</value>
+  </data>
+  <data name="successfulstyleediting" xml:space="preserve">
+    <value>Successful Style Editing</value>
+  </data>
+  <data name="swipetoseedescription" xml:space="preserve">
+    <value>Swipe To See Description</value>
+  </data>
+  <data name="theproductbarcodehasnotbeenentered" xml:space="preserve">
+    <value>The Product Barcode Has Not Been Entered</value>
+  </data>
+  <data name="thereareotheritemcodes" xml:space="preserve">
+    <value>There Are Other Item Codes</value>
+  </data>
+  <data name="unavailable" xml:space="preserve">
+    <value>Unavailable</value>
+  </data>
+  <data name="unchecked" xml:space="preserve">
+    <value>Unchecked</value>
+  </data>
+  <data name="unsatisfactory" xml:space="preserve">
+    <value>Unsatisfactory</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="usernamenotentered" xml:space="preserve">
+    <value>Username Not Entered</value>
+  </data>
+  <data name="vietnames" xml:space="preserve">
+    <value>Vietnames</value>
+  </data>
+  <data name="wecannotacceptthisfiletypeatthistime" xml:space="preserve">
+    <value>We Cannot Accept This File Type At This Time</value>
+  </data>
+</root>

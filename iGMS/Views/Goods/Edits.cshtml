@@ -1,0 +1,210 @@
+﻿@model CollTex.Models.Good
+@{
+    ViewBag.Title = @Html.DisplayName(CollTex.Resources.Resource.repairgoods);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input hidden value="@Model.Id" id="id" />
+<div class="card card-custom">
+    <div class="card-header">
+        <h3 class="card-title">
+            @Html.DisplayName(CollTex.Resources.Resource.repairgoods)
+        </h3>
+    </div>
+    <!--begin::Form-->
+    <div class="card-body">
+        <div class="form-group mb-8">
+            <div class="alert alert-custom alert-default" role="alert">
+                <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+                <div class="alert-text">
+                    @Html.DisplayName(CollTex.Resources.Resource.pleaseenteralldatacorrectlytoensuresystem)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label"> @Html.DisplayName(CollTex.Resources.Resource.style)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <select class="form-control" onchange="IdGood()" id="style">
+                </select>
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label"> @Html.DisplayName(CollTex.Resources.Resource.color)</label>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <select class="form-control" onchange="IdGood()" id="color">
+                </select>
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label"> @Html.DisplayName(CollTex.Resources.Resource.size)</label>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <select class="form-control" onchange="IdGood()" id="size">
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label"> @Html.DisplayName(CollTex.Resources.Resource.id)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group-prepend">
+                    <input  class="form-control" value="@Model.IdGood" type="text" id="idgood" placeholder=" @Html.DisplayName(CollTex.Resources.Resource.id)" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label"> @Html.DisplayName(CollTex.Resources.Resource.name)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" value="@Model.Name" type="text" placeholder=" @Html.DisplayName(CollTex.Resources.Resource.name)" id="name" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <button type="submit" class="btn btn-primary mr-2" onclick="Edit()"> @Html.DisplayName(CollTex.Resources.Resource.savechanges)</button>
+                <a href="/Goods/Index" type="reset" class="btn btn-secondary"> @Html.DisplayName(CollTex.Resources.Resource.cancel)</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+       //--------------------Select::Style--------------
+        $(function Style() {
+            try {
+                $.ajax({
+                url: '/goods/Style',
+                type: 'get',
+                success: function (data) {
+                    $('#style').empty();
+                    if (data.code == 200) {
+                        let table = '<option value="@Model.Style.Id">@Model.Style.Name</option>'
+                        $.each(data.c, function (k, v) {
+                            table += '<option value="' + v.id + '">' + v.name + '</option>'
+                        });
+                        $('#style').append(table);
+                    } else (
+                       Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                    )
+                }
+            })
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+        })
+        //--------------------Select::Color--------------
+        $(function Color() {
+            try {
+                  $.ajax({
+                url: '/goods/Color',
+                type: 'get',
+                success: function (data) {
+                    $('#color').empty();
+                    if (data.code == 200) {
+                        let table = '<option value="@Model.Color.Id">@Model.Color.Name</option>'
+                        $.each(data.c, function (k, v) {
+                            table += '<option value="' + v.id + '">' + v.name + '</option>'
+                        });
+                        $('#color').append(table);
+                    } else (
+                        Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                    )
+                }
+            })
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+
+        })
+        //--------------------Select::Size--------------
+        $(function Size() {
+            try {
+                      $.ajax({
+                url: '/goods/Size',
+                type: 'get',
+                success: function (data) {
+                    $('#size').empty();
+                    if (data.code == 200) {
+                        let table = '<option value="@Model.Size.Id">@Model.Size.Name</option>'
+                        $.each(data.c, function (k, v) {
+                            table += '<option value="' + v.id + '">' + v.name + '</option>'
+                        });
+                        $('#size').append(table);
+                    } else (
+                        Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                    )
+                }
+            })
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+        })
+
+                //----------------Edit::Goods---------------------
+        function Edit() {
+            try {
+                  var id = $('#id').val().trim();
+            var idgood = $('#idgood').val().trim();
+            var style = $("#style option:selected").val();
+            var color = $("#color option:selected").val();
+            var size = $("#size option:selected").val();
+            var name = $("#name").val().trim();
+            if (style == -1) {
+                toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.nostyleselected) !!!"); $('#style').css('border-color', "red"); return;
+            } else { $('#style').css('border-color', "green") }
+            if (color == -1) {
+                toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.colornotselected) !!!");$('#color').css('border-color', "red"); return;
+            } else { $('#color').css('border-color', "green") }
+            if (size == -1) {
+                 toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.sizenotselected) !!!");$('#size').css('border-color', "red"); return;
+            } else { $('#size').css('border-color', "green") }
+            if (idgood.length == 0) {
+                toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.noproductcodeentered) !!!");$('#idgood').css('border-color', "red"); return;
+            } else { $('#idgood').css('border-color', "green") }
+            if (name.length <= 0) {
+                toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.productnamehasnotbeenentered) !!!");$('#name').css('border-color', "red"); return;
+                return;
+            } else { $('#name').css('border-color', "green") }
+
+            $.ajax({
+                url: '/goods/Edit',
+                type: 'post',
+                data: {
+                    id, idgood, style, color, size, name
+                },
+                success: function (data) {
+                    if (data.code == 200) {
+                        Swal.fire({
+                            title: data.msg,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: `<a style="color:white" href="/Goods/Index">@Html.DisplayName(CollTex.Resources.Resource.confirm)</a>`,
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                    }
+                },
+            })
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+        }
+        //---------------idgood----------------
+        function IdGood() {
+            try {
+                var style = $("#style option:selected").val();
+                var color = $("#color option:selected").val();
+                var size = $("#size option:selected").val();
+                $('#idgood').val(style + "-" + color + "-" + size)
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+        }
+    </script>
+}
+
+

@@ -1,0 +1,665 @@
+﻿
+@{
+    ViewBag.Title = @Html.DisplayName(CollTex.Resources.Resource.packinglist);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/inputmultiple.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="form-group row">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="card-body" style="display:flex;justify-content:center;text-align:center">
+                <div class="file-uploader">
+                    <div class="file-uploader__message-area">
+                        <p>@Html.DisplayName(CollTex.Resources.Resource.selectfilestoupload)</p>
+                    </div>
+                    <div class="file-chooser file-select">
+                        <input class="file-chooser__input" type="file" multiple>
+                    </div>
+                    <input class="file-uploader__submit-button" type="submit" value="@Html.DisplayName(CollTex.Resources.Resource.upload)">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style=" margin-top: 5%;">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                <div class="form-group">
+
+                    <div class="input-icon input-icon-right">
+                        <input type="search" id="seach" class="form-control" placeholder="@Html.DisplayName(CollTex.Resources.Resource.search)...">
+                        <span>
+                            <i class="flaticon2-search-1 icon-md"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-custom card-stretch gutter-b">
+                <!--begin::Header-->
+                <div class="card-header border-0">
+                    <h3 class="card-title font-weight-bolder text-dark">@Html.DisplayName(CollTex.Resources.Resource.packinglist)</h3>
+                </div>
+                <div class="card-body pt-2" id="tbd">
+                </div>
+                <!--end::Body-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal-->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="max-width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Html.DisplayName(CollTex.Resources.Resource.checkthegoods)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ex"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success mr-2 on" onclick="RFID()">@Html.DisplayName(CollTex.Resources.Resource.startRFIDscanning)</button>
+                <button type="submit" class="btn btn-secondary mr-2 off" style="display:none" onclick=" Stop()">@Html.DisplayName(CollTex.Resources.Resource.stopRFIDscanning)</button>
+                <button type="submit" class="btn btn-primary mr-2" id="complete">@Html.DisplayName(CollTex.Resources.Resource.complete)</button>
+                <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">@Html.DisplayName(CollTex.Resources.Resource.close)</button>
+            </div>
+            <div class="form-group  row">
+                <label for="example-search-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.thereareotheritemcodes)<span style="color:red"> (*) </span></label> <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                    <textarea class="form-control" id="idorder"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+</button>
+@section scripts{
+    <script>
+        var nofilechosenVar = "@Html.DisplayName(CollTex.Resources.Resource.nofilechosen)"
+        var filelistVar = "@Html.DisplayName(CollTex.Resources.Resource.filelist)"
+        var canopenthisfileVar = "@Html.DisplayName(CollTex.Resources.Resource.canopenthisfile)"
+        var wecannotacceptthisfiletypeatthistimeVar = "@Html.DisplayName(CollTex.Resources.Resource.wecannotacceptthisfiletypeatthistime)"
+        var pleaseselectafileVar = "@Html.DisplayName(CollTex.Resources.Resource.pleaseselectafile)"
+    </script>
+    <script src="~/Scripts/inputmultiple.js"></script>
+    <script>
+        let dataIDTable;
+
+        let seach = "";
+        table(seach)
+        $('#seach').keyup(function () {
+            seach = $('#seach').val().trim()
+            table(seach)
+        })
+        $('.file-uploader__submit-button').click(function () {
+            var fileUpload = document.getElementsByClassName('file-list__name')
+            for (let i = 0; i < fileUpload.length; i++) {
+                var name = fileUpload[i].innerText
+                Add(name)
+            }
+        })
+        function Add(name) {
+            $.ajax({
+                url: '/FunctionOrder/Add',
+                type: 'post',
+                data: { name },
+                success: function (data) {
+                    if (data.code == 200) {
+                        table(seach);
+                    }
+                },
+            })
+        }
+
+        function table(seach) {
+            $.ajax({
+                url: '/FunctionOrder/List',
+                type: 'get',
+                data: { seach },
+                success: function (data) {
+                    if (data.code == 200) {
+                        $('#tbd').empty()
+                        $.each(data.pkl, function (k, v) {
+                            let tbd = `                    <div class="d-flex align-items-center mb-10">
+                        <div class="symbol symbol-40 symbol-light-success mr-5">
+                            <span class="symbol-label">
+                                <img src="/assets/media/svg/files/csv.svg" class="h-75 align-self-end" alt="">
+                            </span>
+                        </div>
+                        <div class="d-flex flex-column flex-grow-1 font-weight-bold" id="${v.id}">
+                            <a data-href="/Images/${v.link}" name="show" class="text-dark text-hover-primary mb-1 font-size-lg">${v.po}</a>
+                        </div>
+                        <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="" data-placement="left" data-original-title="@Html.DisplayName(CollTex.Resources.Resource.action)">
+                            <a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ki ki-bold-more-hor"></i>
+                            </a>
+                            <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
+                                <ul class="navi navi-hover">
+                                    <li class="navi-header font-weight-bold py-4">
+                                        <span class="font-size-lg">@Html.DisplayName(CollTex.Resources.Resource.status)</span>
+                                        <img data-placement="right" name="delete" data-id="${v.id}" src="/Images/icons8-remove-38.png" />
+                                    </li>
+                                    <li class="navi-separator mb-3 opacity-70"></li>
+                                    <li class="navi-item">
+                                        <a href="#" class="navi-link">
+                                            <span class="navi-text">
+                                                <span class="label label-xl label-inline label-light-success">${v.date}</span>
+                                                <span class="label label-xl label-inline label-light-${v.status.substring(v.status.indexOf("-")+1)}">${v.status.substring(0, v.status.indexOf("-"))}</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>`
+                            $('#tbd').append(tbd)
+                        })
+                    }
+                },
+            })
+        }
+
+        $(document).on('click', 'a[name="show"]', function () {
+
+            $('#ex').empty()
+            $('#idorder').val('')
+            var id = $(this).closest('div').attr('id')
+            var link = $(this).attr('data-href')
+            $.ajax({
+                url: '/FunctionOrder/Status',
+                type: 'post',
+                data: { id },
+                success: function (data) {
+                    if (data.code == 200) {
+                        table(seach)
+                        dataIDTable = id
+                        $('button[data-target="#exampleModalScrollable"]').click()
+                        $.ajax({
+                            url: link,
+                            dataType: 'text',
+                        }).done(successFunction);
+
+                    }
+                },
+            })
+        })
+        $(document).on('click', 'img[name="delete"]', function () {  
+            try {
+                var id = $(this).attr('data-id')
+            Swal.fire({
+                title:"@Html.DisplayName(CollTex.Resources.Resource.confirm)",
+                icon: "warning",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "@Html.DisplayName(CollTex.Resources.Resource.confirm)",
+                denyButtonText: "@Html.DisplayName(CollTex.Resources.Resource.close)",
+                cancelButtonText: "@Html.DisplayName(CollTex.Resources.Resource.cancel)"
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Delete(id)
+                } else if (result.isDenied) {
+
+                }
+            })
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+        })
+         
+        $(document).on('click', '#complete', function () {
+            Delete(dataIDTable)
+            $('button[data-dismiss="modal"]').click()
+        })
+
+        function Delete(id) {
+            $.ajax({
+                url: '/FunctionOrder/Delete',
+                type: 'post',
+                data: { id },
+                success: function (data) {
+                    if (data.code == 200) {
+                        table(seach)
+                    }
+                },
+            })
+        }
+    </script>
+    <script>
+        var customer
+        var style;
+        var color;
+        var start;
+        var end;
+        var arraySizes = [];
+        var arrayTotals = [];
+        const tbody = (prm) => {
+            return $('#tbdscaner')[0].childNodes[prm]
+        }
+        //success set table
+        function successFunction(data) {
+            arraySizes = []
+            arrayTotals = []
+            var allRows = data.split(/\r?\n|\r/);
+            var table = '<table data-table="' + dataIDTable+'">';
+            for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+                var idTr = allRows[singleRow].split(",")
+                if (singleRow === 0) {
+                    table += '<thead id="thscaner">';
+                    table += '<tr>';
+                } else {
+                    table += `<tr data-row="${idTr[0].replace(" ", "-")}">`;
+                }
+                var rowCells = allRows[singleRow].split(',');
+                for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+                    var idTd = rowCells[rowCell].replace(" ", "-")
+                    if (singleRow === 0) {
+                        table += '<th>';
+                        table += rowCells[rowCell];
+                        table += '</th>';
+                    } else {
+                        table += `<td data-cell="${idTd}">`;
+                        table += rowCells[rowCell];
+                        table += '</td>';
+                    }
+                }
+                if (singleRow === 0) {
+                    table += '</tr>';
+                    table += '</thead>';
+                    table += '<tbody id="tbdscaner">';
+                } else {
+                    table += '</tr>';
+                }
+            }
+            table += '</tbody>';
+            table += '</table>';
+            $('#ex').append(table);
+
+            for (var i = 0; i < $('#thscaner')[0].childNodes[0].childNodes.length; i++) {
+                if ($('#thscaner')[0].childNodes[0].childNodes[i].innerText != "") {
+                    customer = "1";
+                    break;
+                } else {
+                    customer = "2"
+                }
+            }
+            if (customer == "1") { //file ex tyle 1
+                style = seachCode($(`tr[data-row="Style-No"]`), "1")
+                var DescriptionofGoods = seachLocation($(`tr[data-row="Carton-No"]`), "Description-of Goods")
+                var QTY = seachLocation($(`tr[data-row="Carton-No"]`), "QTY")
+                seachArraySizes(DescriptionofGoods, QTY)
+                locationScaner()
+                colorRequiredData(DescriptionofGoods)
+                setIdLocationScaner(DescriptionofGoods, QTY)
+            } else { //file ex tyle 2
+                //set attribute
+                $('td[data-cell="Material:"]').closest('tr').attr('data-row', 'Material')
+                $('td[data-cell="Plant:"]').closest('tr').attr('data-row', 'Plant')
+                $('td[data-cell="Type"]').closest('tr').attr('data-row', 'Type')
+                $('td[data-cell="Total:"]').closest('tr').attr('data-row', 'Total')
+                style = seachStyleAndColor().substring(0, seachStyleAndColor().indexOf("-"))
+                color = seachStyleAndColor().substring(seachStyleAndColor().indexOf("-") + 1)
+                arraySize()
+                arrayTotal()
+                arrayTotals = arrayTotals.slice(-arraySizes.length)
+                setAgainDataCell(arrayTotals)
+                setIdTotalScaner(style, color, arrayTotals)
+            }
+        }
+
+
+
+        //begin::customer 1
+
+        //seach code necessary
+        function seachCode(param, loca) {
+            try {
+                var arrayCellsNotNull = [];
+                $.each($(param)[0].cells, function (k, v) {
+                    if (v.dataset.cell != "") {
+                        arrayCellsNotNull.push(v.dataset.cell)
+                    }
+                })
+                switch (loca) {
+                    case "1":
+                        return arrayCellsNotNull[1]
+                        break;
+                    case "2":
+                        return arrayCellsNotNull[2]
+                        break;
+                    case "length":
+                        return arrayCellsNotNull[arrayCellsNotNull.length - 1]
+                        break;
+                    default:
+                        return loca
+                }
+            } catch (error) {
+                swal.fire(error.message,"","error")
+            }
+        }
+
+        //seach Location necessary
+        function seachLocation(param, data) {
+            try {
+                var result;
+                $.each($(param)[0].cells, function (k, v) {
+                    if (v.dataset.cell == "Description-of Goods" && data == "Description-of Goods") {
+                        result = k
+                    } else if (v.dataset.cell == "QTY" && data == "QTY") {
+                        result = k
+                    }
+                })
+                return result
+            } catch (error){
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+
+        //identify location scaner
+        function locationScaner() {
+            try {
+                $.each($('#tbdscaner')[0].childNodes, function (k, v) {
+                    if (v.dataset.row == "Carton-No") {
+                        start = k
+                    }
+                    if (v.dataset.row == "Processing") {
+                        end = k
+                    }
+                })
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+        }
+
+        //set id location scaner
+        function setIdLocationScaner(DescriptionofGoods, QTY) {
+            try {
+                for (var i = start + 1; i < end - 1; i += 2) {
+                    var quantity = tbody(i + 1).childNodes[QTY].innerText //get QTY
+                    color = tbody(i).childNodes[DescriptionofGoods].innerText.substring(0, 3) //get code color
+                    for (var j = DescriptionofGoods + 1; j < QTY; j++) {
+                        if (tbody(i).childNodes[j].innerText != "") {
+                            tbody(i).setAttribute("name", `${style}-${color}-${getSize(arraySizes, j)}`) // append attribute name
+                            tbody(i).setAttribute("data-quantity", `${quantity}`)//append attribute data
+                            tbody(i).setAttribute("data-sumQuantity", `${quantity}`)//append attribute data
+                            tbody(i).setAttribute("data-quantityScaner", `0`)//append attribute quantity - scanner to scaner
+                        }
+                    }
+                }
+                compareNameTr()
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //get 2 coincide elements and add attribute sum-quantity
+        function compareNameTr() {
+            try {
+                var arrayNameTrs = $('tr[name]')
+                for (var i = 0; i < arrayNameTrs.length - 1; i++) {
+                    for (var j = i + 1; j < arrayNameTrs.length; j++) {
+                        if (arrayNameTrs[i].attributes.name.nodeValue === arrayNameTrs[j].attributes.name.nodeValue) {
+                            $(`tr[name="${arrayNameTrs[i].attributes.name.nodeValue}"]`).attr("data-sumQuantity", Number(arrayNameTrs[i].dataset.quantity) + Number(arrayNameTrs[j].dataset.quantity))
+                        }
+                    }
+                }
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //get size to arrat size
+        function getSize(arraySizes, loca) {
+            try {
+                var size;
+                for (var i = 0; i < arraySizes.length; i++) {
+                    if (arraySizes[i].includes(loca)) {
+                        size = arraySizes[i].substring(arraySizes[i].indexOf("-") + 1)//get code size
+                    }
+                }
+                return size
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //color the required data
+        function colorRequiredData() {
+            try {
+                $(`td[data-cell="${style}"]`).css('color', 'blue')
+                $(`td[data-cell="${seachCode($(`tr[data-row="PO#"]`), "1")}"]`).css('color', 'blue')
+                $(`td[data-cell="${seachCode($(`tr[data-row="Description"]`), "length")}"]`).css('color', 'blue')
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //seach all size
+        function seachArraySizes(DescriptionofGoods, QTY) {
+            try {
+                for (var i = DescriptionofGoods + 1; i < QTY; i++) {
+                    if ($(`tr[data-row="Carton-No"]`)[0].cells[i].dataset.cell != "") {
+                        arraySizes.push(i + "-" + $(`tr[data-row="Carton-No"]`)[0].cells[i].dataset.cell)
+                    }
+                }
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+
+
+        //begin::customer 2
+
+
+        //return style and color
+        function seachStyleAndColor() {
+            try {
+                var s, e, rsl;
+                $.each($('tr[data-row="Material"]')[0].childNodes, function (k, v) {
+                    if (v.dataset.cell == "Material:") {
+                        s = k
+                    }
+                    if (v.dataset.cell == "Total-Gross Kgs:") {
+                        e = k
+                    }
+                })
+                for (var i = s + 1; i < e; i++) {
+                    if ($('tr[data-row="Material"]')[0].childNodes[i].dataset.cell != "") {
+                        rsl = $('tr[data-row="Material"]')[0].childNodes[i].dataset.cell
+                    }
+                }
+                return rsl;
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+          
+        }
+
+        //seach all size
+        function arraySize() {
+            try {
+                var s;
+                $.each($('tr[data-row="Type"]')[0].childNodes, function (k, v) {
+                    if (v.dataset.cell == "Type") {
+                        s = k
+                    }
+                })
+                for (var i = s + 1; i < $('tr[data-row="Type"]')[0].childNodes.length; i++) {
+                    if ($('tr[data-row="Type"]')[0].childNodes[i].dataset.cell != "") {
+                        arraySizes.push($('tr[data-row="Type"]')[0].childNodes[i].dataset.cell)
+                    }
+                }
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+
+
+        //seach all total
+        function arrayTotal() {
+            try {
+                var s;
+                $.each($('tr[data-row="Total"]')[0].childNodes, function (k, v) {
+                    if (v.dataset.cell == "Total:") {
+                        s = k
+                    }
+                })
+                for (var i = s + 1; i < $('tr[data-row="Total"]')[0].childNodes.length; i++) {
+                    if ($('tr[data-row="Total"]')[0].childNodes[i].dataset.cell != "") {
+                        arrayTotals.push($('tr[data-row="Total"]')[0].childNodes[i].dataset.cell)
+                    }
+                }
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //set again data-cell
+
+        function setAgainDataCell(arrayTotals) {
+            try {
+                for (var i = 0; i < arrayTotals.length; i++) {
+                    $(`tr[data-row="Total"] td[data-cell="${arrayTotals[i]}"]`)[0].setAttribute('data-cell', `${arrayTotals[i]}-${arraySizes[i]}`)
+                }
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //set id location scaner
+        function setIdTotalScaner(style, color, arrayTotals) {
+            try {
+                for (var i = 0; i < arrayTotals.length; i++) {
+                    $(`tr[data-row="Total"] td[data-cell="${arrayTotals[i]}-${arraySizes[i]}"]`)[0].setAttribute('name', `${style}-${color}-${arraySizes[i]}`) // append attribute name
+                    $(`tr[data-row="Total"] td[data-cell="${arrayTotals[i]}-${arraySizes[i]}"]`)[0].setAttribute("data-quantity", `${arrayTotals[i]}`)//append attribute data
+                    $(`tr[data-row="Total"] td[data-cell="${arrayTotals[i]}-${arraySizes[i]}"]`)[0].setAttribute("data-sumQuantity", `${arrayTotals[i]}`)//append attribute data
+                    $(`tr[data-row="Total"] td[data-cell="${arrayTotals[i]}-${arraySizes[i]}"]`)[0].setAttribute("data-quantityScaner", `0`)//append attribute quantity - scanner to scaner
+                }
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //change color to scaner
+        const changeColor = (id) => {
+            try {
+                var tt;
+                if (customer == "1") {
+                    tt = "tr"
+                } else { tt = "td" }
+                var sumQuantity = $('' + tt + '[name="' + id + '"]').attr("data-sumQuantity")
+                if ($('' + tt + '[name="' + id + '"]').length == 0) {
+                    var text = $('#idorder').val()
+                    var textSum = text + " ," + id
+                    $('#idorder').val(textSum)
+                }//ma hang khac
+                else {
+                    var quantityscaner = $(`${tt}[name="${id}"]`)[0]
+                    var get = quantityscaner.dataset.quantityscaner
+                    var result = Number(get) + 1
+                    $(`${tt}[name="${id}"]`)[0].dataset.quantityscaner = result
+                    if (result == Number(sumQuantity)) {
+                        $('' + tt + '[name="' + id + '"]').css("background", "green")
+                    } else if (result > Number(sumQuantity)) {
+                        $('' + tt + '[name="' + id + '"]').css("background", "yellow")
+                    }
+                    else if (result < Number(sumQuantity)) {
+                        $('' + tt + '[name="' + id + '"]').css("background", "red")
+                    }
+                }
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+
+
+        var startInterval;
+
+
+        //start scanner
+        function RFID() {
+            try {
+                $('tr[name]').css('background', '')
+                $('tr[name]').attr("data-quantityScaner", "0")
+                DeleteEPC()
+                $('.on').css('display', 'none')
+                $('.off').css('display', 'block')
+                startInterval = setInterval(function () { AllShowEPC() }, 200);
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //stop scanner
+        function Stop() {
+            try {
+                $('.on').css('display', 'block')
+                $('.off').css('display', 'none')
+                clearInterval(startInterval);
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+
+        //call epc from db
+        function AllShowEPC() {
+            try {
+                $.ajax({
+                    url: '/rfid/AllShowEPC',
+                    type: 'get',
+                    success: function (data) {
+                        if (data.code == 200) {
+                            $.each(data.a, function (k, v) {
+                                convert(v.epc)
+                            })
+                        }
+                    },
+                })
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+
+        //epc => id
+        function convert(epc) {
+            try {
+                $.ajax({
+                    url: '/CollTex/Convert',
+                    type: 'get',
+                    data: {
+                        epc
+                    },
+                    success: function (data) {
+                        if (data.code == 200) {
+                            changeColor(data.item) //sum and discoloration
+                        }
+                    },
+                })
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+    </script>
+}
