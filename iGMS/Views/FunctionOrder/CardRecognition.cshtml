@@ -103,7 +103,7 @@
                     data: formdata,
                     success: function (data) {
                         if (data.code == 200) {
-                            Swal.fire(data.msg.join("\n"), "@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)!", "warning");
+                            Swal.fire(data.msg.join("\n"), "@Html.DisplayName(CollTex.Resources.Resource.confirm)!", "success");
                         }
 
                     }
@@ -272,8 +272,8 @@
             }
             EmptyTable()
             Stop()
-            if ($(window).width() < 1200) {
-                $('.card-header.flex-wrap.py-5 .card-toolbar').css("display", "none")
+            if ($(window).width() < 800) {
+                $('.flex-wrap.py-5 .card-toolbar').css("display", "none")
                 $('.btn.btn-success.mr-2.on').css("display", "none")
             } else {
 
@@ -312,8 +312,8 @@
             }, 1000);
         }
 
-        if ($(window).width() < 1200) {
-            $('.card-header.flex-wrap.py-5 .card-toolbar').css("display", "none")
+        if ($(window).width() < 800) {
+            $('.flex-wrap.py-5 .card-toolbar').css("display", "none")
             $('.btn.btn-success.mr-2.on').css("display", "none")
         } else {
 
