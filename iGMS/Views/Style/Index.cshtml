@@ -6,15 +6,10 @@
 
 <!--begin::Card-->
 <div class="card card-custom" id="a">
-    <div class="row flex-wrap py-5">
-        <div class="card-title col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
-            <h3 class="card-label">
-                @Html.DisplayName(CollTex.Resources.Resource.stylelist)
-            </h3>
-        </div>
-        <div class="card-toolbar col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+    <div class="row flex-wrap py-5 m-5">
+        <div class="card-toolbar col-sm-7 col-md-7 col-lg-7 col-xl-7 col-xxl-7">
             <form class="row" enctype="multipart/form-data">
-                <button type="submit" name="submit" value="" class="btn btn-light-primary font-weight-bolder col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <button type="submit" name="submit" value="" class="btn btn-light-primary font-weight-bolder col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3 my-2">
                     <span class="svg-icon svg-icon-md">
 
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
@@ -28,14 +23,14 @@
                         <!--end::Svg Icon-->
                     </span><a href="~/Images/Style.xlsx" download="">@Html.DisplayName(CollTex.Resources.Resource.exceltemplate)</a>
                 </button>
-                <div class="file-upload col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div class="file-upload col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-2">
                     <div class="file-select">
                         <div class="file-select-button" id="fileName">@Html.DisplayName(CollTex.Resources.Resource.choosefile)</div>
                         <div class="file-select-name" id="noFile">@Html.DisplayName(CollTex.Resources.Resource.nofilechosen)...</div>
                         <input type="file" name="UploadedFile" id="chooseFile">
                     </div>
                 </div>
-                <button type="button" onclick="Import()" name="submit" value="" class="btn btn-light-primary font-weight-bolder col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <button type="button" onclick="Import()" name="submit" value="" class="btn btn-light-primary font-weight-bolder col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3 my-2">
                     <span class="svg-icon svg-icon-md">
 
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
@@ -51,9 +46,10 @@
                 </button>
             </form>
         </div>
-            <div class="card-toolbar col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+        <div class="card-toolbar col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5">
+            <div class="row">
                 <!--begin::Dropdown-->
-                <div class="dropdown dropdown-inline mr-2">
+                <div class="dropdown dropdown-inline col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-2">
                     <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="svg-icon svg-icon-md">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
@@ -111,7 +107,7 @@
                 </div>
                 <!--end::Dropdown-->
                 <!--begin::Button-->
-                <a href="/Style/Adds" class="btn btn-primary font-weight-bolder">
+                <a href="/Style/Adds" class="btn btn-primary font-weight-bolder col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-2">
                     <span class="svg-icon svg-icon-md">
                         <span class="svg-icon svg-icon-primary svg-icon-2x">
                             <i class="icon-xl fas fa-user-plus"></i>
@@ -119,8 +115,10 @@
                         <!--end::Svg Icon-->
                     </span>@Html.DisplayName(CollTex.Resources.Resource.morestylish)
                 </a>
-                <!--end::Button-->
             </div>
+
+            <!--end::Button-->
+        </div>
         </div>
         <div class="card-body">
             <!--begin: Datatable-->

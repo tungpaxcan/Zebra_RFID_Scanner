@@ -519,6 +519,9 @@
   <data name="result" xml:space="preserve">
     <value>Result</value>
   </data>
+  <data name="review" xml:space="preserve">
+    <value>Review</value>
+  </data>
   <data name="save" xml:space="preserve">
     <value>Save</value>
   </data>

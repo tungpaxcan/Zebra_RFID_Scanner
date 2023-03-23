@@ -60,6 +60,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success mr-2 on" onclick="RFID()">@Html.DisplayName(CollTex.Resources.Resource.startRFIDscanning)</button>
+                <button type="submit" class="btn btn-warning mr-2" onclick="error()">@Html.DisplayName(CollTex.Resources.Resource.review)</button>
                 <button type="submit" class="btn btn-secondary mr-2 off" style="display:none" onclick=" Stop()">@Html.DisplayName(CollTex.Resources.Resource.stopRFIDscanning)</button>
                 <button type="submit" class="btn btn-primary mr-2" id="complete">@Html.DisplayName(CollTex.Resources.Resource.complete)</button>
                 <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">@Html.DisplayName(CollTex.Resources.Resource.close)</button>
@@ -481,7 +482,7 @@
             } catch (error) {
                 swal.fire(error.message, "", "error")
             }
-          
+
         }
 
         //seach all size
@@ -554,9 +555,16 @@
 
         }
 
+        var rslError = []
+
         //change color to scaner
         const changeColor = (id) => {
             try {
+                for (let i = 0; i < rslError.length; i++) {
+                    if (rslError[i].indexOf(id) !== -1) {
+                        rslError.splice(i,1)
+                    }
+                }
                 var tt;
                 if (customer == "1") {
                     tt = "tr"
@@ -574,11 +582,14 @@
                     $(`${tt}[name="${id}"]`)[0].dataset.quantityscaner = result
                     if (result == Number(sumQuantity)) {
                         $('' + tt + '[name="' + id + '"]').css("background", "green")
+                        rslError.push(id + " Đủ")
                     } else if (result > Number(sumQuantity)) {
                         $('' + tt + '[name="' + id + '"]').css("background", "yellow")
+                        rslError.push(id + " Dư " + (Number(sumQuantity) - result) )
                     }
                     else if (result < Number(sumQuantity)) {
                         $('' + tt + '[name="' + id + '"]').css("background", "red")
+                        rslError.push(id + " Thiếu " + (result-Number(sumQuantity)))
                     }
                 }
             } catch (error) {
@@ -587,8 +598,29 @@
 
         }
 
+        function error() {
+            var msg = ""
+            for (let i = 0; i < rslError.length; i++) {
+                msg += rslError[i] +"\n"
+            }
+            Swal.fire({
+                title: msg,
+                icon: "warning",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "@Html.DisplayName(CollTex.Resources.Resource.confirm)",
+                denyButtonText: "@Html.DisplayName(CollTex.Resources.Resource.close)",
+                cancelButtonText: "@Html.DisplayName(CollTex.Resources.Resource.cancel)"
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Delete(dataIDTable)
+                    $('button[data-dismiss="modal"]').click()
+                } else if (result.isDenied) {
 
-
+                }
+            })
+        }
         var startInterval;
 
 

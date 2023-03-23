@@ -513,6 +513,9 @@
   <data name="result" xml:space="preserve">
     <value>Kêt Quả</value>
   </data>
+  <data name="review" xml:space="preserve">
+    <value>Duyệt Lại</value>
+  </data>
   <data name="save" xml:space="preserve">
     <value>Lưu</value>
   </data>

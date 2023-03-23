@@ -1258,6 +1258,15 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duyệt Lại.
+        /// </summary>
+        public static string review {
+            get {
+                return ResourceManager.GetString("review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lưu.
         /// </summary>
         public static string save {
