@@ -277,7 +277,7 @@
             $('#ex').append(table);
 
             for (var i = 0; i < $('#thscaner')[0].childNodes[0].childNodes.length; i++) {
-                if ($('#thscaner')[0].childNodes[0].childNodes[i].innerText == "PACKING / WEIGHT LIST") {
+                if ($('#thscaner')[0].childNodes[0].childNodes[i].innerText != "") {
                     customer = "1";
                     break;
                 } else {
@@ -418,7 +418,7 @@
             try {
                 var size;
                 for (var i = 0; i < arraySizes.length; i++) {
-                    if (arraySizes[i].substring(0, arraySizes[i].indexOf("-")).includes(loca)) {
+                    if (arraySizes[i].includes(loca)) {
                         size = arraySizes[i].substring(arraySizes[i].indexOf("-") + 1)//get code size
                     }
                 }
@@ -478,7 +478,6 @@
                     }
                 }
                 return rsl;
-               
             } catch (error) {
                 swal.fire(error.message, "", "error")
             }
@@ -499,7 +498,6 @@
                         arraySizes.push($('tr[data-row="Type"]')[0].childNodes[i].dataset.cell)
                     }
                 }
-
             } catch (error) {
                 swal.fire(error.message, "", "error")
             }
@@ -522,7 +520,6 @@
                         arrayTotals.push($('tr[data-row="Total"]')[0].childNodes[i].dataset.cell)
                     }
                 }
-                
             } catch (error) {
                 swal.fire(error.message, "", "error")
             }
