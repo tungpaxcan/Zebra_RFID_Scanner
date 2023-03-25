@@ -4,16 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ecc4e44fa864cd18cc3e7750c52d645" Name="Diagram1">
+      <Diagram DiagramId="a5a84bfd39524ad7bff0fd08bd5d5244" Name="Diagram1">
         <EntityTypeShape EntityType="ColltexModel.Color" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ColltexModel.DetailEPC" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ColltexModel.EPC" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColltexModel.DetailEPC" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColltexModel.EPC" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColltexModel.FXconnect" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ColltexModel.Good" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ColltexModel.PKL" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColltexModel.PKL" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ColltexModel.Size" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ColltexModel.Style" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ColltexModel.User" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColltexModel.User" Width="1.5" PointX="8" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="ColltexModel.FK_Goods_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="ColltexModel.FK_DetailEPC_FXconnect" ManuallyRouted="false" />
+        <AssociationConnector Association="ColltexModel.FK_Users_FXconnect" ManuallyRouted="false" />
         <AssociationConnector Association="ColltexModel.FK_Goods_Size" ManuallyRouted="false" />
         <AssociationConnector Association="ColltexModel.FK_Goods_Style" ManuallyRouted="false" />
       </Diagram>

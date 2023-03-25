@@ -133,7 +133,7 @@
     <value>Account Name</value>
   </data>
   <data name="accountnamemustbelongerthan6characters" xml:space="preserve">
-    <value>Account Name Must Be Longer Than 6 Characters</value>
+    <value>Account Name Must Be Longer Than 5 Characters</value>
   </data>
   <data name="accounts" xml:space="preserve">
     <value>Accounts</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="addcolor" xml:space="preserve">
     <value>Add Color</value>
+  </data>
+  <data name="addfxfailed" xml:space="preserve">
+    <value>Add FX Failed</value>
   </data>
   <data name="addsizefail" xml:space="preserve">
     <value>Add Size Fail</value>
@@ -206,6 +209,9 @@
   </data>
   <data name="choosefile" xml:space="preserve">
     <value>Choose File</value>
+  </data>
+  <data name="choosefx" xml:space="preserve">
+    <value>Choose FX</value>
   </data>
   <data name="choosesize" xml:space="preserve">
     <value>ChooseSize</value>
@@ -272,6 +278,15 @@
   </data>
   <data name="deletedefectiveproduct" xml:space="preserve">
     <value>Delete Defective Product</value>
+  </data>
+  <data name="deleteentireaccountlinkedwiththisfx" xml:space="preserve">
+    <value>Delete Entire Account Linked With This FX</value>
+  </data>
+  <data name="deletefxfailed" xml:space="preserve">
+    <value>Delete FX Failed</value>
+  </data>
+  <data name="deletefxsuccessfully" xml:space="preserve">
+    <value>Delete FX Successfully</value>
   </data>
   <data name="deleteproductsuccessfully" xml:space="preserve">
     <value>Delete Product Successfully</value>
@@ -345,8 +360,14 @@
   <data name="fixfaultyaccount" xml:space="preserve">
     <value>Fix Faulty Account</value>
   </data>
+  <data name="fixfxsuccessfully" xml:space="preserve">
+    <value>Fix FX Successfully</value>
+  </data>
   <data name="fixproducterror" xml:space="preserve">
     <value>Fix Product Error</value>
+  </data>
+  <data name="fxfixfailed" xml:space="preserve">
+    <value>FX Fix Failed</value>
   </data>
   <data name="getEPCerror" xml:space="preserve">
     <value>Get EPC Error</value>
@@ -359,6 +380,9 @@
   </data>
   <data name="havenotenteredthecode" xml:space="preserve">
     <value>Have Not Entered The Code</value>
+  </data>
+  <data name="haventselectedfx" xml:space="preserve">
+    <value>Haven't Selected FX</value>
   </data>
   <data name="hi" xml:space="preserve">
     <value>Hi</value>
@@ -605,6 +629,9 @@
   </data>
   <data name="successfulcolorremoval" xml:space="preserve">
     <value>Successful Color Removal</value>
+  </data>
+  <data name="successfullyaddfx" xml:space="preserve">
+    <value>Successfully Add FX</value>
   </data>
   <data name="successfulproductrepair" xml:space="preserve">
     <value>Successful Product Repair</value>

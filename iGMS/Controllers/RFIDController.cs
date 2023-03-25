@@ -25,7 +25,9 @@ namespace CollTex.Controllers
         {
             try
             {
-                var a = (from b in db.DetailEPCs.Where(x => x.Status==true)
+                var session = (User)Session["user"];
+                var FX = session.FXconnect.Id;
+                var a = (from b in db.DetailEPCs.Where(x => x.Status==true&&x.IdFX==FX)
                          select new
                          {
                              epc = b.IdEPC,
@@ -113,7 +115,9 @@ namespace CollTex.Controllers
         {
             try
             {
-                Dele.DeleteDetailEPCs();
+                var session = (User)Session["user"];
+                var FX = session.FXconnect.Id;
+                Dele.DeleteDetailEPCs(FX);
                 return Json(new { code = 200, msg = rm.GetString("success").ToString() }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
@@ -129,6 +133,7 @@ namespace CollTex.Controllers
                     DetailEPC t = new DetailEPC
                     {
                         IdEPC = tag.data.idHex,
+                        IdFX = tag.data.userDefined,
                         Status = true,
                         Amount = 1,
                     };

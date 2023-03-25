@@ -15,10 +15,12 @@ namespace CollTex.Models
     public partial class DetailEPC
     {
         public string IdEPC { get; set; }
-        public string IdStall { get; set; }
+        public string IdFX { get; set; }
         public string Idstore { get; set; }
         public string IdSerial { get; set; }
         public Nullable<int> Amount { get; set; }
         public Nullable<bool> Status { get; set; }
+    
+        public virtual FXconnect FXconnect { get; set; }
     }
 }

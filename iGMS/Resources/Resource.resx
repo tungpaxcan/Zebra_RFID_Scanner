@@ -133,7 +133,7 @@
     <value>Tên Tài Khoản</value>
   </data>
   <data name="accountnamemustbelongerthan6characters" xml:space="preserve">
-    <value>Tên Tài Khoản Phải Dài Hơn 6 Kí Tự</value>
+    <value>Tên Tài Khoản Phải Dài Hơn 5 Kí Tự</value>
   </data>
   <data name="accounts" xml:space="preserve">
     <value>Tài Khoản</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="addcolor" xml:space="preserve">
     <value>Thêm Màu Sắc</value>
+  </data>
+  <data name="addfxfailed" xml:space="preserve">
+    <value>Thêm FX Không Thành Công</value>
   </data>
   <data name="addsizefail" xml:space="preserve">
     <value>Thêm Kích Thước Thất Bại</value>
@@ -206,6 +209,9 @@
   </data>
   <data name="choosefile" xml:space="preserve">
     <value>Chọn File</value>
+  </data>
+  <data name="choosefx" xml:space="preserve">
+    <value>Chọn FX</value>
   </data>
   <data name="choosesize" xml:space="preserve">
     <value>Chọn Kích Thước</value>
@@ -272,6 +278,15 @@
   </data>
   <data name="deletedefectiveproduct" xml:space="preserve">
     <value>Xóa Sản Phẩm Bị Lỗi</value>
+  </data>
+  <data name="deleteentireaccountlinkedwiththisfx" xml:space="preserve">
+    <value>Xóa Toàn Bộ Tài Khoản Liên Kết Với FX Này</value>
+  </data>
+  <data name="deletefxfailed" xml:space="preserve">
+    <value>Xóa FX Thất Bại</value>
+  </data>
+  <data name="deletefxsuccessfully" xml:space="preserve">
+    <value>Xóa FX Thành Công</value>
   </data>
   <data name="deleteproductsuccessfully" xml:space="preserve">
     <value>Xóa Sản Phẩm Thành Công</value>
@@ -342,8 +357,14 @@
   <data name="fixfaultyaccount" xml:space="preserve">
     <value>Sửa Tài Khoản Lỗi</value>
   </data>
+  <data name="fixfxsuccessfully" xml:space="preserve">
+    <value>Sửa FX Thành Công</value>
+  </data>
   <data name="fixproducterror" xml:space="preserve">
     <value>Sửa Lỗi Sản Phẩm</value>
+  </data>
+  <data name="fxfixfailed" xml:space="preserve">
+    <value>Sửa FX Thất Bại</value>
   </data>
   <data name="getEPCerror" xml:space="preserve">
     <value>Nhận Lỗi EPC</value>
@@ -356,6 +377,9 @@
   </data>
   <data name="havenotenteredthecode" xml:space="preserve">
     <value>Chưa Nhập Mã</value>
+  </data>
+  <data name="haventselectedfx" xml:space="preserve">
+    <value>Chưa Chọn FX</value>
   </data>
   <data name="hi" xml:space="preserve">
     <value>Chào</value>
@@ -599,6 +623,9 @@
   </data>
   <data name="successfulcolorremoval" xml:space="preserve">
     <value>Xóa Màu Thành Công</value>
+  </data>
+  <data name="successfullyaddfx" xml:space="preserve">
+    <value>Đã Thêm FX Thành Công</value>
   </data>
   <data name="successfulproductrepair" xml:space="preserve">
     <value>Sửa Sản Phẩm Thành Công</value>

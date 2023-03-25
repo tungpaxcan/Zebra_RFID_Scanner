@@ -49,6 +49,7 @@ namespace CollTex.Controllers
                          {
                              id = b.Id,
                              name = b.Name,
+                             fx = b.FXconnect.Name,
                              admin=b.Admin
                          }).ToList().Where(x=>x.name.ToLower().Contains(seach)
                          ||x.name.Contains(seach));
@@ -63,12 +64,13 @@ namespace CollTex.Controllers
             }
         }
         [HttpPost]
-        public JsonResult Add(string name, string userName, string password, string des, bool status, bool authorities)
+        public JsonResult Add(string name, string userName, string password,string fx, string des, bool status, bool authorities)
         {
             try
             {
                 User user = new User();
                 user.Name = name;
+                user.IdFX = fx;
                 user.User1 = userName;
                 user.Pass = Encode.ToMD5(password);
                 user.Description = des;

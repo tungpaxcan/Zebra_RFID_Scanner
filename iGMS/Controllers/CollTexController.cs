@@ -39,7 +39,9 @@ namespace CollTex.Controllers
         {
             try
             {
-                Dele.DeleteDetailEPCs();
+                var session = (User)Session["user"];
+                var FX = session.FXconnect.Id;
+                Dele.DeleteDetailEPCs(FX);
                 var epcItem = new EPC();
                 var epcCheck = db.EPCs.SingleOrDefault(x => x.IdEPC == epc);               
                 if (epcCheck == null)

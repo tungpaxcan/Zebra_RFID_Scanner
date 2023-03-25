@@ -39,7 +39,9 @@ namespace CollTex.Controllers
         {
             try
             {
-                Dele.DeleteDetailEPCs();
+                var session = (User)Session["user"];
+                var FX = session.FXconnect.Id;
+                Dele.DeleteDetailEPCs(FX);
                 return Json(new { code = 200, msg = rm.GetString("success").ToString()}, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)

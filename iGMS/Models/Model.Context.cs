@@ -28,6 +28,7 @@ namespace CollTex.Models
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<DetailEPC> DetailEPCs { get; set; }
         public virtual DbSet<EPC> EPCs { get; set; }
+        public virtual DbSet<FXconnect> FXconnects { get; set; }
         public virtual DbSet<Good> Goods { get; set; }
         public virtual DbSet<PKL> PKLs { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }

@@ -15,6 +15,7 @@ namespace CollTex.Models
     public partial class User
     {
         public int Id { get; set; }
+        public string IdFX { get; set; }
         public string User1 { get; set; }
         public string Pass { get; set; }
         public string Name { get; set; }
@@ -30,5 +31,7 @@ namespace CollTex.Models
         public string ModifyBy { get; set; }
         public Nullable<bool> Admin { get; set; }
         public Nullable<bool> Status { get; set; }
+    
+        public virtual FXconnect FXconnect { get; set; }
     }
 }

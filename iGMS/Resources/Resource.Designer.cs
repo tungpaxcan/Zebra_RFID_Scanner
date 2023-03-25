@@ -133,7 +133,7 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tên Tài Khoản Phải Dài Hơn 6 Kí Tự.
+        ///   Looks up a localized string similar to Tên Tài Khoản Phải Dài Hơn 5 Kí Tự.
         /// </summary>
         public static string accountnamemustbelongerthan6characters {
             get {
@@ -192,6 +192,15 @@ namespace CollTex.Resources {
         public static string addcolor {
             get {
                 return ResourceManager.GetString("addcolor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thêm FX Không Thành Công.
+        /// </summary>
+        public static string addfxfailed {
+            get {
+                return ResourceManager.GetString("addfxfailed", resourceCulture);
             }
         }
         
@@ -345,6 +354,15 @@ namespace CollTex.Resources {
         public static string choosefile {
             get {
                 return ResourceManager.GetString("choosefile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chọn FX.
+        /// </summary>
+        public static string choosefx {
+            get {
+                return ResourceManager.GetString("choosefx", resourceCulture);
             }
         }
         
@@ -547,6 +565,33 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xóa Toàn Bộ Tài Khoản Liên Kết Với FX Này.
+        /// </summary>
+        public static string deleteentireaccountlinkedwiththisfx {
+            get {
+                return ResourceManager.GetString("deleteentireaccountlinkedwiththisfx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa FX Thất Bại.
+        /// </summary>
+        public static string deletefxfailed {
+            get {
+                return ResourceManager.GetString("deletefxfailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa FX Thành Công.
+        /// </summary>
+        public static string deletefxsuccessfully {
+            get {
+                return ResourceManager.GetString("deletefxsuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xóa Sản Phẩm Thành Công.
         /// </summary>
         public static string deleteproductsuccessfully {
@@ -745,11 +790,29 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sửa FX Thành Công.
+        /// </summary>
+        public static string fixfxsuccessfully {
+            get {
+                return ResourceManager.GetString("fixfxsuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sửa Lỗi Sản Phẩm.
         /// </summary>
         public static string fixproducterror {
             get {
                 return ResourceManager.GetString("fixproducterror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sửa FX Thất Bại.
+        /// </summary>
+        public static string fxfixfailed {
+            get {
+                return ResourceManager.GetString("fxfixfailed", resourceCulture);
             }
         }
         
@@ -786,6 +849,15 @@ namespace CollTex.Resources {
         public static string havenotenteredthecode {
             get {
                 return ResourceManager.GetString("havenotenteredthecode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chưa Chọn FX.
+        /// </summary>
+        public static string haventselectedfx {
+            get {
+                return ResourceManager.GetString("haventselectedfx", resourceCulture);
             }
         }
         
@@ -1515,6 +1587,15 @@ namespace CollTex.Resources {
         public static string successfulcolorremoval {
             get {
                 return ResourceManager.GetString("successfulcolorremoval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đã Thêm FX Thành Công.
+        /// </summary>
+        public static string successfullyaddfx {
+            get {
+                return ResourceManager.GetString("successfullyaddfx", resourceCulture);
             }
         }
         

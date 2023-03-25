@@ -22,7 +22,7 @@
             <PropertyRef Name="IdEPC" />
           </Key>
           <Property Name="IdEPC" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="IdStall" Type="varchar" MaxLength="20" />
+          <Property Name="IdFX" Type="varchar" MaxLength="50" />
           <Property Name="Idstore" Type="varchar" MaxLength="20" />
           <Property Name="IdSerial" Type="varchar" MaxLength="250" />
           <Property Name="Amount" Type="int" />
@@ -36,6 +36,13 @@
           <Property Name="IdGoods" Type="varchar" MaxLength="50" />
           <Property Name="IdEPC" Type="varchar" MaxLength="100" />
           <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="FXconnect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Goods">
           <Key>
@@ -98,6 +105,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFX" Type="varchar" MaxLength="50" />
           <Property Name="User" Type="varchar" MaxLength="100" />
           <Property Name="Pass" Type="varchar" MaxLength="100" />
           <Property Name="Name" Type="nvarchar" MaxLength="250" />
@@ -114,6 +122,18 @@
           <Property Name="Admin" Type="bit" />
           <Property Name="Status" Type="bit" />
         </EntityType>
+        <Association Name="FK_DetailEPC_FXconnect">
+          <End Role="FXconnect" Type="Self.FXconnect" Multiplicity="0..1" />
+          <End Role="DetailEPC" Type="Self.DetailEPC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FXconnect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetailEPC">
+              <PropertyRef Name="IdFX" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Goods_Color">
           <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
           <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
@@ -150,15 +170,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_FXconnect">
+          <End Role="FXconnect" Type="Self.FXconnect" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FXconnect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdFX" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ColltexModelStoreContainer">
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailEPC" EntityType="Self.DetailEPC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EPC" EntityType="Self.EPC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FXconnect" EntityType="Self.FXconnect" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PKL" EntityType="Self.PKL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Style" EntityType="Self.Style" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetailEPC_FXconnect" Association="Self.FK_DetailEPC_FXconnect">
+            <End Role="FXconnect" EntitySet="FXconnect" />
+            <End Role="DetailEPC" EntitySet="DetailEPC" />
+          </AssociationSet>
           <AssociationSet Name="FK_Goods_Color" Association="Self.FK_Goods_Color">
             <End Role="Color" EntitySet="Color" />
             <End Role="Goods" EntitySet="Goods" />
@@ -170,6 +207,10 @@
           <AssociationSet Name="FK_Goods_Style" Association="Self.FK_Goods_Style">
             <End Role="Style" EntitySet="Style" />
             <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_FXconnect" Association="Self.FK_Users_FXconnect">
+            <End Role="FXconnect" EntitySet="FXconnect" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -195,11 +236,12 @@
             <PropertyRef Name="IdEPC" />
           </Key>
           <Property Name="IdEPC" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdStall" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdFX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Idstore" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IdSerial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Amount" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="FXconnect" Relationship="Self.FK_DetailEPC_FXconnect" FromRole="DetailEPC" ToRole="FXconnect" />
         </EntityType>
         <EntityType Name="EPC">
           <Key>
@@ -209,6 +251,15 @@
           <Property Name="IdGoods" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IdEPC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FXconnect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DetailEPCs" Relationship="Self.FK_DetailEPC_FXconnect" FromRole="FXconnect" ToRole="DetailEPC" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_FXconnect" FromRole="FXconnect" ToRole="Users" />
         </EntityType>
         <EntityType Name="Good">
           <Key>
@@ -276,6 +327,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="User1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -291,6 +343,7 @@
           <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Admin" Type="Boolean" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="FXconnect" Relationship="Self.FK_Users_FXconnect" FromRole="Users" ToRole="FXconnect" />
         </EntityType>
         <Association Name="FK_Goods_Color">
           <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
@@ -301,6 +354,30 @@
             </Principal>
             <Dependent Role="Goods">
               <PropertyRef Name="IdColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailEPC_FXconnect">
+          <End Role="FXconnect" Type="Self.FXconnect" Multiplicity="0..1" />
+          <End Role="DetailEPC" Type="Self.DetailEPC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FXconnect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetailEPC">
+              <PropertyRef Name="IdFX" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_FXconnect">
+          <End Role="FXconnect" Type="Self.FXconnect" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FXconnect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdFX" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -332,6 +409,7 @@
           <EntitySet Name="Colors" EntityType="Self.Color" />
           <EntitySet Name="DetailEPCs" EntityType="Self.DetailEPC" />
           <EntitySet Name="EPCs" EntityType="Self.EPC" />
+          <EntitySet Name="FXconnects" EntityType="Self.FXconnect" />
           <EntitySet Name="Goods" EntityType="Self.Good" />
           <EntitySet Name="PKLs" EntityType="Self.PKL" />
           <EntitySet Name="Sizes" EntityType="Self.Size" />
@@ -340,6 +418,14 @@
           <AssociationSet Name="FK_Goods_Color" Association="Self.FK_Goods_Color">
             <End Role="Color" EntitySet="Colors" />
             <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailEPC_FXconnect" Association="Self.FK_DetailEPC_FXconnect">
+            <End Role="FXconnect" EntitySet="FXconnects" />
+            <End Role="DetailEPC" EntitySet="DetailEPCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_FXconnect" Association="Self.FK_Users_FXconnect">
+            <End Role="FXconnect" EntitySet="FXconnects" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Goods_Size" Association="Self.FK_Goods_Size">
             <End Role="Size" EntitySet="Sizes" />
@@ -373,7 +459,7 @@
             <EntityTypeMapping TypeName="ColltexModel.DetailEPC">
               <MappingFragment StoreEntitySet="DetailEPC">
                 <ScalarProperty Name="IdEPC" ColumnName="IdEPC" />
-                <ScalarProperty Name="IdStall" ColumnName="IdStall" />
+                <ScalarProperty Name="IdFX" ColumnName="IdFX" />
                 <ScalarProperty Name="Idstore" ColumnName="Idstore" />
                 <ScalarProperty Name="IdSerial" ColumnName="IdSerial" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
@@ -388,6 +474,14 @@
                 <ScalarProperty Name="IdGoods" ColumnName="IdGoods" />
                 <ScalarProperty Name="IdEPC" ColumnName="IdEPC" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FXconnects">
+            <EntityTypeMapping TypeName="ColltexModel.FXconnect">
+              <MappingFragment StoreEntitySet="FXconnect">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -455,6 +549,7 @@
             <EntityTypeMapping TypeName="ColltexModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdFX" ColumnName="IdFX" />
                 <ScalarProperty Name="User1" ColumnName="User" />
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

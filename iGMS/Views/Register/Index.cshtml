@@ -21,57 +21,58 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
-                <div class="form-group row">
-                    <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.name)<span style="color:red"> (*) </span></label>
-                    <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
-                        <div class="input-group ">
-                            <input class="form-control" type="text" placeholder="@Html.DisplayName(CollTex.Resources.Resource.name)" id="name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.accountname)<span style="color:red"> (*) </span></label>
-                    <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
-                        <div class="input-group ">
-                            <input class="form-control" type="text" placeholder="@Html.DisplayName(CollTex.Resources.Resource.accountname)" id="userName" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.password)<span style="color:red"> (*) </span></label>
-                    <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
-                        <div class="input-group ">
-                            <input class="form-control" type="password" placeholder="@Html.DisplayName(CollTex.Resources.Resource.password)" id="password" />
-                        </div>
-                    </div>
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.name)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="text" placeholder="@Html.DisplayName(CollTex.Resources.Resource.name)" id="name" />
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-                <div class="form-group row">
-                    <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.manage)</label>
-                    <label type="button" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" data-toggle="tooltip" title="@Html.DisplayName(CollTex.Resources.Resource.doestheaccounthavemanagementrights)">
-                        <i class="flaticon-warning text-primary"></i>
-                    </label>
-                    <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
-                        <label class="checkbox checkbox-success">
-                            <input type="checkbox" name="Checkboxes5" id="authorities" checked="">
-                            <span></span>@Html.DisplayName(CollTex.Resources.Resource.status)
-                        </label>
-                    </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.accountname)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="text" placeholder="@Html.DisplayName(CollTex.Resources.Resource.accountname)" id="userName" />
                 </div>
-                <div class="form-group row">
-                    <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.operationstatus)</label>
-                    <label type="button" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" data-toggle="tooltip" title="@Html.DisplayName(CollTex.Resources.Resource.statusshowaccountactivitystatus)">
-                        <i class="flaticon-warning text-primary"></i>
-                    </label>
-                    <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
-                        <label class="checkbox checkbox-success">
-                            <input type="checkbox" name="Checkboxes5" id="status" checked="checked">
-                            <span></span>@Html.DisplayName(CollTex.Resources.Resource.status)
-                        </label>
-                    </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.password)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="password" placeholder="@Html.DisplayName(CollTex.Resources.Resource.password)" id="password" />
                 </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">FX<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <select class="form-control" id="fx">
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.manage)</label>
+            <label type="button" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" data-toggle="tooltip" title="@Html.DisplayName(CollTex.Resources.Resource.doestheaccounthavemanagementrights)">
+                <i class="flaticon-warning text-primary"></i>
+            </label>
+            <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
+                <label class="checkbox checkbox-success">
+                    <input type="checkbox" name="Checkboxes5" id="authorities" checked="">
+                    <span></span>@Html.DisplayName(CollTex.Resources.Resource.status)
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(CollTex.Resources.Resource.operationstatus)</label>
+            <label type="button" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" data-toggle="tooltip" title="@Html.DisplayName(CollTex.Resources.Resource.statusshowaccountactivitystatus)">
+                <i class="flaticon-warning text-primary"></i>
+            </label>
+            <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
+                <label class="checkbox checkbox-success">
+                    <input type="checkbox" name="Checkboxes5" id="status" checked="checked">
+                    <span></span>@Html.DisplayName(CollTex.Resources.Resource.status)
+                </label>
             </div>
         </div>
         <div class="form-group row">
@@ -82,6 +83,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
     </div>
     <div class="card-footer">
         <div class="row">
@@ -97,8 +100,32 @@
 @section scripts{
     <script>
 
+        $(function FX() {
+            try {
+            $.ajax({
+                url: '/FXconnect/FX',
+                type: 'get',
+                success: function (data) {
+                    $('#fx').empty()
+                    if (data.code == 200) {
+                        let table = '<option value="-1">@Html.DisplayName(CollTex.Resources.Resource.choosefx)</option>'
+                        $.each(data.a, function (k, v) {
+                            table += '<option value="' + v.id + '">' + v.name + '</option>'
+                        });
+                        $('#fx').append(table);
+                    } else {
+                        Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                    }
+                },
+            })
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+        })
+
         function Add() {
             var name = $('#name').val().trim();
+            var fx = $('#fx').val()
             var userName = $('#userName').val();
             var password = $('#password').val().trim();
             let des = $('#des').val().trim();
@@ -113,11 +140,14 @@
             if (password.length < 6) {
                    toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.passwordmustbemorethan6characters) !!!"); $('#password').css('border-color', "red"); return;
             } else { $('#password').css('border-color', "green") }
+             if (fx == -1) {
+                toastr.warning("", "@Html.DisplayName(CollTex.Resources.Resource.haventselectedfx) !!!"); $('#fx').css('border-color', "red"); return;
+            } else { $('#fx').css('border-color', "green") }
             $.ajax({
                 url: '/Register/Add',
                 type: 'post',
                 data: {
-                    name, userName, password, des, status, authorities
+                    name, userName, password,fx, des, status, authorities
                 },
                 success: function (data) {
                     if (data.code == 200) {

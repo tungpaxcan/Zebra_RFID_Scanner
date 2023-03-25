@@ -8,7 +8,7 @@ using CollTex.Models;
 
 namespace CollTex
 {
-    public class Dele
+    public class Dele 
     {
         public static void DeleteGoods(string idGoods)
         {   
@@ -147,14 +147,45 @@ namespace CollTex
                 }
 
             } while (saveFailed);
-        } 
-        public static void DeleteDetailEPCs()
+        }
+        
+        public static void DeleteFXconnects(string idFXconnects)
         {
             ColltexEntities db = new ColltexEntities();
-            var countDeEpc = db.DetailEPCs.Where(x => x.IdEPC.Length>0).Count();
+            var countUser = db.Users.Where(x => x.IdFX == idFXconnects).Count();
+            for (int i = 0; i < countUser; i++)
+            {
+                var idUser = db.Users.OrderBy(x => x.IdFX == idFXconnects).ToList().LastOrDefault().Id;
+                DeleteUsers(idUser);
+            }
+            var fXconnect = db.FXconnects.Find(idFXconnects);
+            db.FXconnects.Remove(fXconnect);
+            bool saveFailed;
+            do
+            {
+                saveFailed = false;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    saveFailed = true;
+
+                    // Update the values of the entity that failed to save from the store
+                    ex.Entries.Single().Reload();
+                }
+
+            } while (saveFailed);
+        } 
+        public static void DeleteDetailEPCs(string FX)
+        {
+            ColltexEntities db = new ColltexEntities();
+            var countDeEpc = db.DetailEPCs.Where(x => x.IdEPC.Length>0 && x.IdFX==FX).Count();
             for (int i = 0; i < countDeEpc; i++)
             {
-                var idDeEpc = db.DetailEPCs.OrderBy(x => x.IdEPC.Length > 0).ToList().LastOrDefault().IdEPC;
+                var idDeEpc = db.DetailEPCs.OrderBy(x => x.IdEPC.Length > 0 && x.IdFX == FX).ToList().LastOrDefault().IdEPC;
                 var DeEpc = db.DetailEPCs.Find(idDeEpc);
                 db.DetailEPCs.Remove(DeEpc);
                 db.SaveChanges();
@@ -179,6 +210,7 @@ namespace CollTex
             }
 
         }
+
 
     }
 }

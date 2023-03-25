@@ -110,6 +110,7 @@
                         <thead>
                             <tr role="row">
                                 <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">@Html.DisplayName(CollTex.Resources.Resource.name)</th>
+                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">FX</th>
                                 <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">@Html.DisplayName(CollTex.Resources.Resource.manage)</th>
                                 <th class="sorting_disabled" rowspan="1" colspan="1">@Html.DisplayName(CollTex.Resources.Resource.action)</th>
                             </tr>
@@ -200,6 +201,7 @@
                         $.each(data.c, function (k, v) {
                             let table = '<tr id="' + v.id + '" role="row" class="odd">';
                             table += '<td>' + v.name + '</td>'
+                            table += '<td>' + v.fx + '</td>'
                             table += '<td>' + v.admin + '</td>'
                             table += '<td class="action" nowrap="nowrap">';
                             table += '<div class="dropdown dropdown-inline">';
