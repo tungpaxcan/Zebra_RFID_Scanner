@@ -1,0 +1,139 @@
+﻿@model Zebra_RFID_Scanner.Models.User
+@{
+    ViewBag.Title = "Edits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input id="id" value="@Model.Id" hidden />
+<div class="card card-custom">
+    <div class="card-header">
+        <h3 class="card-title">
+            @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.accountinformation) @Model.Name
+        </h3>
+    </div>
+    <!--begin::Form-->
+    <div class="card-body">
+        <div class="form-group mb-8">
+            <div class="alert alert-custom alert-default" role="alert">
+                <div class="alert-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.pleaseenteralldatacorrectlytoensuresystem) </div>
+                <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+                <div class="alert-text">
+                    @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.swipetoseedescription)
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.name)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="text" placeholder="@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.name)" id="name" value="@Model.Name" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.accountname)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="text" placeholder="@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.accountname)" id="userName" value="@Model.User1" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">new @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.password)<span style="color:red"> (*) </span></label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <input class="form-control" type="password" placeholder="new @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.password)" id="password" value="" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.manage)</label>
+            <label type="button" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" data-toggle="tooltip" title="@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.doestheaccounthavemanagementrights)">
+                <i class="flaticon-warning text-primary"></i>
+            </label>
+            <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
+                <label class="checkbox checkbox-success">
+                    <input type="checkbox" name="Checkboxes5" id="authorities" checked="@Model.Admin">
+                    <span></span>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.status)
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.operationstatus)</label>
+            <label type="button" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" data-toggle="tooltip" title="@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.statusshowaccountactivitystatus)">
+                <i class="flaticon-warning text-primary"></i>
+            </label>
+            <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
+                <label class="checkbox checkbox-success">
+                    <input type="checkbox" name="Checkboxes5" id="status" checked="@Model.Status">
+                    <span></span>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.status)
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-password-input" class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-form-label">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.description)</label>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="input-group ">
+                    <textarea class="form-control" type="text" placeholder="@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.description)" id="des">@Model.Description</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <button type="submit" class="btn btn-primary mr-2" onclick="Edit()">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.savechanges)</button>
+                <a href="/FunctionOrder/Index" type="reset" class="btn btn-secondary">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.cancel)</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function Edit() {
+            let id = $('#id').val().trim();
+            var name = $('#name').val().trim();
+            var userName = $('#userName').val();
+            var password = $('#password').val();
+            let des = $('#des').val().trim();
+            let status = $('#status').is(":checked");
+            let authorities = $('#authorities').is(":checked");
+            if (password.length <= 5) {
+                toastr.warning("", "New password must be more than 5 characters !!!"); $('#password').css('border-color', "red"); return;
+
+            }
+            if (name.length == 0) {
+                 toastr.warning("", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.usernamenotentered) !!!"); $('#name').css('border-color', "red"); return;
+            } else { $('#name').css('border-color', "green") }
+            if (userName.length < 5) {
+                toastr.warning("", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.accountnamemustbelongerthan6characters) !!!"); $('#userName').css('border-color', "red"); return;
+            } else { $('#name').css('border-color', "green") }
+            $.ajax({
+                url: '/Register/Edit',
+                type: 'post',
+                data: {
+                    id, name, userName, des, status, authorities, password
+                },
+                success: function (data) {
+                    if (data.code == 200) {
+                        Swal.fire({
+                            title: data.msg,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: `<a style="color:white" href="/Register/Info">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)</a>`,
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    } else {
+                         Swal.fire(data.msg,"@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.pressthebutton)","error")
+                    }
+                },
+            })
+        }
+    </script>
+
+}
+

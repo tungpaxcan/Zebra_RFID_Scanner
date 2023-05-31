@@ -4,11 +4,11 @@ using System.Linq;
 using System.Resources;
 using System.Web;
 
-namespace CollTex.Controllers
+namespace Zebra_RFID_Scanner.Controllers
 {
     public class ImportError
     {
-        ResourceManager rm = new ResourceManager("CollTex.Resources.Resource", typeof(Resources.Resource).Assembly);
+        ResourceManager rm = new ResourceManager("Zebra_RFID_Scanner.Resources.Resource", typeof(Resources.Resource).Assembly);
         private string errorMessage = "";
         private int line = 0;
 

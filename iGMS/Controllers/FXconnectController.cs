@@ -7,16 +7,16 @@ using System.Resources;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
-using CollTex.Models;
+using Zebra_RFID_Scanner.Models;
 using OfficeOpenXml;
 
-namespace CollTex.Controllers
+namespace Zebra_RFID_Scanner.Controllers
 {
     public class FXconnectController : BaseController
     {
-        private ColltexEntities db = new ColltexEntities();
+        private Entities db = new Entities();
         // GET: FXconnect
-        ResourceManager rm = new ResourceManager("CollTex.Resources.Resource", typeof(Resources.Resource).Assembly);
+        ResourceManager rm = new ResourceManager("Zebra_RFID_Scanner.Resources.Resource", typeof(Resources.Resource).Assembly);
         // GET: Size
         public ActionResult Index()
         {

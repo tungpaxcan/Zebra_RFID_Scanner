@@ -13,7 +13,7 @@ function RefreshEPC() {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url: '/home/RefreshEPC',
+                url: '/FunctionOrder/DeleteEPC',
                 type: 'post',
                 success: function (data) {
                     if (data.code == 200) {
@@ -41,17 +41,6 @@ function SignOut() {
                 }
             }
         })
-}
-
-function DeleteEPC() {
-    $.ajax({
-        url: '/rfid/DeleteEPC',
-        type: 'post',
-        success: function (data) {
-            if (data.code == 200) {
-            }
-        }
-    })
 }
 
 

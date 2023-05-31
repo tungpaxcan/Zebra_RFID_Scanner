@@ -1,0 +1,256 @@
+﻿
+@{
+    ViewBag.Title = "Advanced";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Card-->
+            <div class="card card-custom card-sticky" id="kt_page_sticky_card">
+                <div class="card-header" style="">
+                    <div class="card-title">
+                        <h3 class="card-label">
+                            Edit
+                            <i class="mr-2"></i>
+                            <small class="">change the formula</small>
+                        </h3>
+                    </div>
+                    <div class="card-toolbar">
+                        <a href="/123-rfid-scanner/Index" class="btn btn-light-primary font-weight-bolder mr-2">
+                            <i class="ki ki-long-arrow-back icon-xs"></i>Back
+                        </a>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary font-weight-bolder">
+                                <i class="ki ki-check icon-xs"></i>Save Form
+                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                <ul class="nav nav-hover flex-column">
+                                    <li onclick="Edit()" class="nav-item">
+                                        <a class="nav-link">
+                                            <i class="nav-icon flaticon2-reload"></i>
+                                            <span class="nav-text">Save &amp; continue</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!--begin::Form-->
+                    <form class="form" id="kt_form">
+                            <div class="col-xl-2"></div>
+                            <div class="col-xl-8">
+                                <div class="my-5">
+                                    <h3 class="text-dark font-weight-bold mb-10">Customer Info:</h3>
+                                    <div class="form-group row">
+                                        <label class="col-3">GetBitEnd</label>
+                                        <div class="col-9">
+                                            <input class="form-control" id="GetBitEnd" value="@Session["GetBitEnd"]" type="number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-3">GetBitGTIN</label>
+                                        <div class="col-9">
+                                            <input class="form-control" id="GetBitSGTIN" value="@Session["GetBitSGTIN"]" type="number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-3">GetBitItemRef</label>
+                                        <div class="col-9">
+                                            <input class="form-control" id="GetBitItemRef" value="@Session["GetBitItemRef"]" type="number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-3">QuantityToAddCharacter</label>
+                                        <div class="col-9">
+                                            <input class="form-control "id="AddCharacter"value="@Session["AddCharacter"]" type="number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-3">TakeAbsoluteValue</label>
+                                        <div class="col-9">
+                                            <input class="form-control" id="TakeAbsoluteValue" value="@Session["TakeAbsoluteValue"]" type="number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-3">CheckDigit</label>
+                                        <div class="col-9">
+                                            <input class="form-control" id="CheckDigit"value="@Session["CheckDigit"]" type="number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2"></div>
+                            </div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+            <!--end::Card-->
+            <!--begin: Code-->
+            <div class="example example-compact my-5">
+                <div class="example-tools justify-content-center">
+                    <span class="example-toggle" data-toggle="tooltip" title="" data-original-title="View code"></span>
+                    <span class="example-copy" data-toggle="tooltip" title="" data-original-title="Copy code"></span>
+                </div>
+                <div class="example-code">
+                    <ul class="example-nav nav nav-tabs nav-bold nav-tabs-line nav-tabs-line-2x">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#example_code_c">C#</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#example_code_js">JS</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="example_code_c" role="tabpanel">
+                            <div class="example-highlight">
+                                <pre style="height:400px" class="language-js"><code class=" language-js">
+    string EPC = "123456789123456789123456";
+    string EPCIN = "";
+    string SGTIN = "";
+    string ItemRef = "";
+    string Result = "";
+    string UPC = "";
+    int i, SGTINResult, ItemRefResult, CheckDigit = 0;
+
+    for (i = 0; i < EPC.Length; i++)
+    {
+    EPCIN += Convert.ToString(Convert.ToInt32(EPC.Substring(i, 1), 16), 2).PadLeft(4, '0');
+    }
+
+    EPCIN = EPCIN.Substring(EPCIN.Length - @Session["GetBitEnd"]);
+    SGTIN = EPCIN.Substring(0, @Session["GetBitSGTIN"]);
+    ItemRef = EPCIN.Substring(@Session["GetBitSGTIN"], @Session["GetBitItemRef"]);
+
+    SGTINResult = 0;
+    for (i = 1; i < SGTIN.Length; i++)
+    {
+    SGTINResult += Convert.ToInt32(SGTIN.Substring(i, 1)) * (int)Math.Pow(2, SGTIN.Length - i - 1);
+    }
+
+    ItemRefResult = 0;
+    for (i = 1; i < ItemRef.Length; i++)
+    {
+    ItemRefResult += Convert.ToInt32(ItemRef.Substring(i, 1)) * (int)Math.Pow(2, ItemRef.Length - i - 1);
+    }
+
+    Result = SGTINResult.ToString() + ("@Session["AddCharacterstring"]" + ItemRefResult).Substring(Math.Max(0, ("@Session["AddCharacterstring"]" + ItemRefResult).Length - @Session["AddCharacter"]));
+
+    CheckDigit = 0;
+    for (i = 1; i <= @Session["TakeAbsoluteValue"]; i++)
+    {
+    if (Result.Length > Math.Abs(i - @Session["TakeAbsoluteValue"]))
+    {
+    if (i % 2 != 0)
+    {
+    CheckDigit += 3 * Convert.ToInt32(Result.Substring(Result.Length - Math.Abs(i - @Session["TakeAbsoluteValue"]) - 1, 1));
+    }
+    else
+    {
+    CheckDigit += Convert.ToInt32(Result.Substring(Result.Length - Math.Abs(i - @Session["TakeAbsoluteValue"]) - 1, 1));
+    }
+    }
+    }
+
+    CheckDigit = Convert.ToInt32(Math.Ceiling((double)CheckDigit / @Session["CheckDigit"]) * @Session["CheckDigit"]) - CheckDigit;
+    UPC = Result + CheckDigit;
+
+    Console.WriteLine(UPC);
+</code>
+                                </pre>
+                            </div>
+                            </div>
+                            <div class="tab-pane" id="example_code_js">
+                                <div class="example-highlight">
+                                    <pre style="height:400px" class="language-js"><code class=" language-js">
+    let EPC = "123456789123456789123456";
+    let EPCIN = "";
+    let SGTIN = "";
+    let ItemRef = "";
+    let Result = "";
+    let UPC = "";
+    let i, SGTINResult, ItemRefResult, CheckDigit = 0;
+    //chuyển đổi các ký tự hexa trong chuỗi EPC thành dạng nhị phân 4 bit tương ứng, và nối chúng thành một chuỗi nhị phân duy nhất EPCIN.
+    for (i = 0; i < EPC.length; i++) {
+    EPCIN += parseInt(EPC.substring(i, i + 1), 16).toString(2).padStart(4, '0');
+    }
+    //lấy @Session["GetBitEnd"] bit cuối
+    EPCIN = EPCIN.substring(EPCIN.length - @Session["GetBitEnd"]);
+    //lấy @Session["GetBitSGTIN"] bit đầu
+    SGTIN = EPCIN.substring(0, @Session["GetBitSGTIN"]);
+    //lấy @Session["GetBitItemRef"] bit tiếp theo
+    ItemRef = EPCIN.substring(@Session["GetBitSGTIN"], @Session["GetBitItemRefcount"]);
+    //tính tổng theo công thức (i*2^(length-1-(i--)))
+    SGTINResult = 0;
+    for (i = 1; i < SGTIN.length; i++) {
+    SGTINResult += parseInt(SGTIN[i]) * Math.pow(2, SGTIN.length - i - 1);
+    }
+
+    //tính tổng theo công thức (i*2^(length-1-(i--)))
+    ItemRefResult = 0;
+    for (i = 1; i < ItemRef.length; i++) {
+    ItemRefResult += parseInt(ItemRef[i]) * Math.pow(2, ItemRef.length - i - 1);
+    }
+    //them 0 trước nếu itemrs không đủ @Session["AddCharacter"] kí tư
+    Result = SGTINResult.toString() + ("@Session["AddCharacterstring"]" + ItemRefResult).substring(Math.max(0, ("@Session["AddCharacterstring"]" + ItemRefResult).length - @Session["AddCharacter"]));
+    CheckDigit = 0;
+    for (i = 1; i <= @Session["TakeAbsoluteValue"]; i++) {
+    if (Result.length > Math.abs(i - @Session["TakeAbsoluteValue"])) {
+    if (i % 2 != 0) {
+    CheckDigit += 3 * parseInt(Result.substring(Result.length - Math.abs(i - @Session["TakeAbsoluteValue"]) - 1, Result.length - Math.abs(i - @Session["TakeAbsoluteValue"])), 10);
+    } else {
+    CheckDigit += parseInt(Result.substring(Result.length - Math.abs(i - @Session["TakeAbsoluteValue"]) - 1, Result.length - Math.abs(i - @Session["TakeAbsoluteValue"])), 10);
+    }
+    }
+    }
+    CheckDigit = parseInt(Math.ceil(CheckDigit / @Session["CheckDigit"]) * @Session["CheckDigit"], 10) - CheckDigit;
+    UPC = Result + CheckDigit.toString();
+    console.log(UPC)
+
+</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!--end: Code-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+
+@section scripts{
+    <script>
+        function Edit() {
+            var fromData = {
+                 GetBitEnd : $('#GetBitEnd').val(),
+                 GetBitGTIN : $('#GetBitSGTIN').val(),
+                 GetBitItemRef : $('#GetBitItemRef').val(),
+                 AddCharacter : $('#AddCharacter').val(),
+                 TakeAbsoluteValue : $('#TakeAbsoluteValue').val(),
+                 CheckDigit : $('#CheckDigit').val(),
+            }
+            $.ajax({
+                url: '/Home/EditFormula',
+                type: 'post',
+                contentType:"application/json",
+                data: JSON.stringify(fromData),
+                success: function (data) {
+                    if (data.code == 200) {
+                        window.location.href = "/Login/Login"
+                        Swal.fire(
+                            'success!',
+                            'Updated.',
+                            'success'
+                        )
+                    }
+                }
+            })
+        }
+    </script>
+    }

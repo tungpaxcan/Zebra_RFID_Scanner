@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = @Html.DisplayName(CollTex.Resources.Resource.listofaccounts);
+    ViewBag.Title = @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.listofaccounts);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
     <div class="card-header flex-wrap py-5">
         <div class="card-title">
             <h3 class="card-label">
-                @Html.DisplayName(CollTex.Resources.Resource.listofaccounts)
+                @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.listofaccounts)
             </h3>
         </div>
         <div class="card-toolbar">
@@ -38,7 +38,7 @@
                                 <span class="navi-icon">
                                     <i class="la la-print"></i>
                                 </span>
-                                <span class="navi-text">  @Html.DisplayName(CollTex.Resources.Resource.print)</span>
+                                <span class="navi-text">  @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.print)</span>
                             </a>
                         </li>
                         <li class="navi-item">
@@ -78,7 +78,7 @@
                         <i class="icon-xl fas fa-user-plus"></i>
                     </span>
                     <!--end::Svg Icon-->
-                </span>  @Html.DisplayName(CollTex.Resources.Resource.moreaccount)
+                </span>  @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.moreaccount)
             </a>
             <!--end::Button-->
         </div>
@@ -90,18 +90,18 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="dataTables_length" id="kt_datatable_length">
                         <label>
-                            @Html.DisplayName(CollTex.Resources.Resource.show) <select id="pagenum" name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">
+                            @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.show) <select id="pagenum" name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">
                                 <option value="10">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                             </select>
-                            @Html.DisplayName(CollTex.Resources.Resource.entries)
+                            @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.entries)
                         </label>
                     </div>
                 </div><div class="col-sm-12 col-md-6">
                     <div id="kt_datatable_filter" class="dataTables_filter">
-                        <label>@Html.DisplayName(CollTex.Resources.Resource.search):<input id="seach" type="search" class="form-control form-control-sm" placeholder="@Html.DisplayName(CollTex.Resources.Resource.search)" aria-controls="kt_datatable"></label>
+                        <label>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.search):<input id="seach" type="search" class="form-control form-control-sm" placeholder="@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.search)" aria-controls="kt_datatable"></label>
                     </div>
                 </div>
             </div><div class="row">
@@ -109,10 +109,10 @@
                     <table class="table table-separate table-head-custom table-checkable dataTable no-footer dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info" style="width: 1234px;">
                         <thead>
                             <tr role="row">
-                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">@Html.DisplayName(CollTex.Resources.Resource.name)</th>
-                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">FX</th>
-                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">@Html.DisplayName(CollTex.Resources.Resource.manage)</th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1">@Html.DisplayName(CollTex.Resources.Resource.action)</th>
+                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.stt)</th>
+                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.name)</th>
+                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.manage)</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.action)</th>
                             </tr>
                         </thead>
                         <tbody id="tbd">
@@ -135,45 +135,8 @@
     </div>
 </div>
 
-<!-- Button trigger modal-->
-<!-- Modal-->
-<div class="modal print" tabindex="-1" role="dialog" >
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id="in">
-                <table class="table table-separate table-head-custom table-checkable dataTable no-footer dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info" style="width: 1234px;">
-                    <thead>
-                        <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 259px;" aria-sort="ascending" aria-label="Agent: activate to sort column descending">Id</th>
-                            <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 190px;" aria-label="Company Email: activate to sort column ascending">Tên</th>
-                            <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 127px;" aria-label="Company Agent: activate to sort column ascending">Địa Chỉ</th>
-                            <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 199px;" aria-label="Company Name: activate to sort column ascending">Email</th>
-                            <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 58px;" aria-label="Status: activate to sort column ascending">Chức Vụ</th>
-                            <th class="sorting_disabled action" rowspan="1" colspan="1" style="width: 105px;" aria-label="Actions">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbdmodal">
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button onclick="printDiv('in')" type="button" class="btn btn-primary">In</button>
-                <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end::Card-->
 @section scripts{
-
     <script>
-
         var pagenum = $("#pagenum option:selected").val();
         var page = 1;
         var seach = "";
@@ -184,8 +147,6 @@
             e.preventDefault();
             page = $(this).attr('id');
             ListUser(pagenum, page, seach);
-
-
         });
 
 
@@ -200,8 +161,8 @@
                     if (data.code == 200) {
                         $.each(data.c, function (k, v) {
                             let table = '<tr id="' + v.id + '" role="row" class="odd">';
+                            table += '<td>' + (k+1) + '</td>'
                             table += '<td>' + v.name + '</td>'
-                            table += '<td>' + v.fx + '</td>'
                             table += '<td>' + v.admin + '</td>'
                             table += '<td class="action" nowrap="nowrap">';
                             table += '<div class="dropdown dropdown-inline">';
@@ -210,9 +171,11 @@
                             table += '<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">';
                             table += '<ul class="nav nav-hoverable flex-column">';
                             table += '<li class="nav-item"><a class="nav-link" onclick="printDiv(\'barcodeuser' + v.id + '\')">';
-                            table += '<i class="nav-icon la la-print"></i><span class="nav-text">@Html.DisplayName(CollTex.Resources.Resource.print)</span></a></li>';
+                            table += '<i class="nav-icon la la-print"></i><span class="nav-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.print)</span></a></li>';
                             table += '<li class="nav-item"><a class="nav-link" name="delete">';
-                            table += '<i class="nav-icon la la-trash"></i><span class="nav-text">@Html.DisplayName(CollTex.Resources.Resource.delete)</span></a></li>';
+                            table += '<i class="nav-icon la la-trash"></i><span class="nav-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.delete)</span></a></li>';
+                            table += '<li class="nav-item"><a class="nav-link" href="/Register/Edits/' + v.id + '" name="edit">';
+                            table += '<i class="nav-icon la la-edit"></i><span class="nav-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.edit)</span></a></li>';
                             table += '</ul></div></div>';
                             table += '</td>';
                             table += '</tr>';
@@ -220,7 +183,7 @@
                         });
 
                         //--------------------------------
-                        let kt_datatable_info = '@Html.DisplayName(CollTex.Resources.Resource.showingto) ' + pagenum + ' @Html.DisplayName(CollTex.Resources.Resource.of) ' + data.count + ' @Html.DisplayName(CollTex.Resources.Resource.entries)'
+                        let kt_datatable_info = '@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.showingto) ' + pagenum + ' @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.of) ' + data.count + ' @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.entries)'
                         $('#kt_datatable_info').append(kt_datatable_info);
                         //-----------------------------page---------------------------
                         $('#page').empty();
@@ -279,13 +242,13 @@
         $(document).on('click', "a[name='delete']", function () {
             var id = $(this).closest('tr').attr('id');
               Swal.fire({
-                title:"@Html.DisplayName(CollTex.Resources.Resource.confirm)",
+                title:"@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
                 icon: "warning",
                 showDenyButton: true,
                 showCancelButton: true,
-                confirmButtonText: "@Html.DisplayName(CollTex.Resources.Resource.confirm)",
-                denyButtonText: "@Html.DisplayName(CollTex.Resources.Resource.close)",
-                cancelButtonText: "@Html.DisplayName(CollTex.Resources.Resource.cancel)"
+                confirmButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
+                denyButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.close)",
+                cancelButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.cancel)"
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
@@ -301,7 +264,7 @@
                                     title: data.msg,
                                     icon: "success",
                                     buttonsStyling: false,
-                                    confirmButtonText: "@Html.DisplayName(CollTex.Resources.Resource.confirm)",
+                                    confirmButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
                                     customClass: {
                                         confirmButton: "btn btn-primary"
                                     }
@@ -309,7 +272,7 @@
                                 ListUser(pagenum, page, seach);
                             }
                             else {
-                                Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                                Swal.fire(data.msg,"@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.pressthebutton)","error")
                             }
                         }
                     })
@@ -318,6 +281,7 @@
                 }
             })
         })
+
     </script>
 
 }

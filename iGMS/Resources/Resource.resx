@@ -147,6 +147,9 @@
   <data name="action" xml:space="preserve">
     <value>Hoạt Động</value>
   </data>
+  <data name="activityhistory" xml:space="preserve">
+    <value>Lịch Sử Hoạt Động</value>
+  </data>
   <data name="add" xml:space="preserve">
     <value>Thêm</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="barcode" xml:space="preserve">
     <value>Mã Vạch</value>
+  </data>
+  <data name="Cambodian" xml:space="preserve">
+    <value>Campuchia</value>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>Hủy</value>
@@ -218,6 +224,9 @@
   </data>
   <data name="choosestyle" xml:space="preserve">
     <value>Chọn Phong Cách</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Xóa thẻ</value>
   </data>
   <data name="clearthestyleofsuccess" xml:space="preserve">
     <value>Xóa Phong Cách Thành Công</value>
@@ -354,6 +363,12 @@
   <data name="filelist" xml:space="preserve">
     <value>Danh Sách Tệp</value>
   </data>
+  <data name="filter" xml:space="preserve">
+    <value>Bộ Lọc</value>
+  </data>
+  <data name="finishandsave" xml:space="preserve">
+    <value>Kết thúc và lưu</value>
+  </data>
   <data name="fixfaultyaccount" xml:space="preserve">
     <value>Sửa Tài Khoản Lỗi</value>
   </data>
@@ -362,6 +377,9 @@
   </data>
   <data name="fixproducterror" xml:space="preserve">
     <value>Sửa Lỗi Sản Phẩm</value>
+  </data>
+  <data name="formisnotinthecorrectformat" xml:space="preserve">
+    <value>Biểu Mẫu Không Đúng Định Dạng</value>
   </data>
   <data name="fxfixfailed" xml:space="preserve">
     <value>Sửa FX Thất Bại</value>
@@ -383,6 +401,9 @@
   </data>
   <data name="hi" xml:space="preserve">
     <value>Chào</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Trang Chủ</value>
   </data>
   <data name="id" xml:space="preserve">
     <value>Mã</value>
@@ -408,6 +429,9 @@
   <data name="inthesystem" xml:space="preserve">
     <value>Trong Hệ Thống</value>
   </data>
+  <data name="isnotin" xml:space="preserve">
+    <value>không có trong</value>
+  </data>
   <data name="listofaccounts" xml:space="preserve">
     <value>Danh Sách Tài Khoản</value>
   </data>
@@ -419,6 +443,9 @@
   </data>
   <data name="manage" xml:space="preserve">
     <value>Quản Lý</value>
+  </data>
+  <data name="menu" xml:space="preserve">
+    <value>Mục Lục</value>
   </data>
   <data name="moreaccount" xml:space="preserve">
     <value>Thêm Tài Khoản</value>
@@ -546,8 +573,17 @@
   <data name="savechanges" xml:space="preserve">
     <value>Lưu Thay Đổi</value>
   </data>
+  <data name="scanagain" xml:space="preserve">
+    <value>Quét Lại</value>
+  </data>
+  <data name="seachbyday" xml:space="preserve">
+    <value>Tìm Kiếm Theo Ngày</value>
+  </data>
   <data name="search" xml:space="preserve">
     <value>Tìm Kiếm</value>
+  </data>
+  <data name="searchbyaccount" xml:space="preserve">
+    <value>Tìm Theo Tài Khoản</value>
   </data>
   <data name="selectfilestoupload" xml:space="preserve">
     <value>Chọn File Để Tải Lên</value>
@@ -636,11 +672,17 @@
   <data name="swipetoseedescription" xml:space="preserve">
     <value>Vuốt Để Xem Mô Tả</value>
   </data>
+  <data name="Thefilemusthavetheextensionxlsx" xml:space="preserve">
+    <value>Tệp Phải Có Phần Mở Rộng xlsx</value>
+  </data>
   <data name="theproductbarcodehasnotbeenentered" xml:space="preserve">
     <value>Chưa Nhập Mã Vạch Sản Phẩm</value>
   </data>
   <data name="thereareotheritemcodes" xml:space="preserve">
     <value>Còn Các Mã Hàng Khác</value>
+  </data>
+  <data name="timenotentered" xml:space="preserve">
+    <value>Chưa Nhập Thời Gian</value>
   </data>
   <data name="unavailable" xml:space="preserve">
     <value>Chưa Có</value>

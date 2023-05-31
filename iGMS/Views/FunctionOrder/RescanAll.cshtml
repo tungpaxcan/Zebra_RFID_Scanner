@@ -1,0 +1,757 @@
+﻿
+@{
+    ViewBag.Title = "RescanAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-4" style="height: 500px;overflow-y: scroll;background:#ffffff">
+        <h1 style="text-align:center" onclick="hehe()">READ</h1>
+        <table class="table table-separate table-head-custom table-checkable dataTable no-footer dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info">
+            <thead>
+                <tr role="row">
+                    <th style="width: 300px;">stt</th>
+                    <th style="width: 300px;">EPC ID</th>
+                    <th style="width: 50px;">UPC</th>
+                </tr>
+            </thead>
+            <tbody id="readEPC">
+            </tbody>
+        </table>
+    </div>
+    <div class="col-5" style="height: 500px;overflow-y: scroll;background:#ffffff">
+        <h1 style="text-align:center">Result</h1>
+        <table class="table table-separate table-head-custom table-checkable dataTable no-footer dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info">
+            <thead>
+                <tr role="row">
+                    <th>UPC</th>
+                    <th>Qty</th>
+                    <th>Qty Scan</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="tbdTotal">
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-3" style="height: 500px;overflow-y: scroll;background:#ffffff">
+        <h1 style="text-align:center">Carton</h1>
+        <table class="table table-separate table-head-custom table-checkable dataTable no-footer dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info">
+            <thead>
+                <tr role="row">
+                    <th>Carton</th>
+                    <th>UPC</th>
+                    <th>Qty</th>
+                </tr>
+            </thead>
+            <tbody id="tbdCarton">
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .custom-checkbox {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 30px;
+        height: 30px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+
+        .custom-checkbox:checked {
+            background-color: #333;
+        }
+
+            .custom-checkbox:checked:after {
+                content: "\2713";
+                font-size: 20px;
+                color: #fff;
+                position: absolute;
+                top: 5px;
+                left: 8px;
+            }
+</style>
+<div class="m-5">
+    <button type="submit" class="btn btn-success mr-2 on" onclick="RFID()">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.startRFIDscanning)</button>
+    <button type="submit" class="btn btn-secondary mr-2 off" style="display:none" onclick=" Stop()">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.stopRFIDscanning)</button>
+    <button type="submit" class="btn btn-bg-secondary mr-2" onclick="clearEPC()">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.clear)</button>
+    <button type="submit" class="btn btn-bg-primary mr-2" onclick="finishAndSave()">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.finishandsave)</button>
+</div>
+<textarea id="rsl">Total EPC : </textarea>
+<div id="none"><input placeholder="Total Pallet QTY / SO" id="number" type="number" /><button onclick="addpallet()" class="btn btn-primary">Apply</button></div>
+<div id="pallet"></div>
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="max-width: 850px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Scanning Carton</h5>
+                <div class="form-group">
+                    <label>
+                        So
+                    </label>
+                    <select onchange="changeFilterSO_PO()" class="form-control" id="so">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Po
+                    </label>
+                    <select onchange="changeFilterSO_PO()" class="form-control" id="po">
+                    </select>
+                </div>
+                <p id="SONo"></p>
+                <button onclick="closeModal()" type="button" class="close" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table" data-customer="1">
+                    <thead>
+                        <tr>
+                            <th>So No</th>
+                            <th>PO</th>
+                            <th>SKU</th>
+                            <th>Carton No</th>
+                            <th>UPC</th>
+                            <th>UPC QTY</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scanCT">
+                    </tbody>
+                </table>
+            </div>
+            <input class="form-control" id="bcCTN" type="text" />
+            <div class="modal-footer">
+                <input type="file" onchange="upload(event)" />
+                <div id="result"></div>
+                <button type="submit" class="btn btn-success mr-2 on" onclick="next()">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+<button hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+</button>
+
+<ul id="hex-codes"></ul>
+@section scripts{
+    <script src="~/Scripts/jquery.scannerdetection.js"></script>
+    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.19.2/package/dist/xlsx.full.min.js"></script>
+    <script>
+        function addpallet() {
+            var number = $('#number').val();
+            var table = `<table><thead><tr><th>No</th><th>Qty</th><th></th></tr></thead><tbody>`
+            for (let i = 0; i < number; i++) {
+                table += `<tr><td>#Pallet${i + 1}</td><td id="total${i + 1}">0</td><td><input id="input${i + 1}" type="checkbox" class="custom-checkbox"/></td></tr>`
+            }
+            table += `</tbody></table>`
+            $('#pallet').append(table)
+            $('#none').css("display", "none")
+        }
+        $('#exampleModalScrollable').modal({ backdrop: 'static', keyboard: false })
+        var So = "";
+        var Result = "";
+        var Po = "";
+        var Sku = "";
+        var clear = "";
+        var arrayepc = [];
+        var arrayReportsEpcToUpc = [];
+        var arrayCTN = [];
+        var arrayUPC = []
+        var arrayData = []
+        var arrayErrorCtn = []
+        var arrayInfo = []
+        //lay du lieu tu file khi import qua ss
+        $(function () {
+            try {
+                arrayepc = [];
+                arrayCTN = [];
+                arrayData = [];
+                arrayReportsEpcToUpc = [];
+                arrayErrorCtn = []
+                arrayUPC = []
+                var data = JSON.parse(localStorage.getItem('data'));
+                $('button[data-target="#exampleModalScrollable"]').click()
+                showFile(data)
+
+            } catch (e) {
+                toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        })
+
+        //hien thi du lieu trong file
+        function showFile(data) {
+            try {
+                let tbd = ``
+                for (var i in data) {
+                    if (So.includes(data[i]["SOnumber"])) {
+
+                    } else {
+                        So += data[i]["SOnumber"] + "-"
+                        Result += `<div>${data[i]["SOnumber"]} Scanned <span name="${data[i]["SOnumber"]}">0</span></div>`;
+                    }
+                    if (Po.includes(data[i]["PO"])) {
+
+                    } else {
+                        Po += data[i]["PO"] + "-"
+                    }
+                    if (Sku.includes(data[i]["SKU"])) {
+
+                    } else {
+                        Sku += data[i]["SKU"] + "-"
+                    }
+                    if (!hasUpc(arrayInfo, data[i]["UPC"])) {
+                        arrayInfo.push({
+                            "upc": data[i]["UPC"],
+                            "PO": data[i]["PO"],
+                            "So": data[i]["SOnumber"],
+                            "SKU": data[i]["SKU"]
+                        })
+                    }
+                    var cartontoval = data[i]["Carton to"] == undefined ? data[i]["Carton to "] : data[i]["Carton to"]
+                    arrayCTN.push((cartontoval).toString())
+                    if (data[i]["Status"] == "Matched") {
+                        tbd += tbodyCtn(data[i], cartontoval, "green", "true")
+                    } else {
+                        tbd += tbodyCtn(data[i], cartontoval, "", "")
+                    }
+                }
+                So = So.slice(0, -1)
+                Po = Po.slice(0, -1)
+                Sku = Sku.slice(0, -1)
+                var selectSo = So.split("-")
+                var selectPo = Po.split("-")
+                $('#so').append(option(selectSo))
+                $('#po').append(option(selectPo))
+                $('#SONo').text(So)
+                $('#result').append(Result)
+                $('#scanCT').append(tbd)
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        function changeFilterSO_PO() {
+            var so = $('#so').val()
+            var po = $('#po').val()
+            var tr = $('#scanCT').children()
+            for (let i = 0; i < tr.length; i++) {
+                if (tr.eq(i).children().eq(0).text() == so || tr.eq(i).children().eq(1).text() == po) {
+                    tr.eq(i).removeAttr("hidden")
+                } else {
+                    tr.eq(i).attr("hidden", "")
+                }
+                if (so == "" && po == "") {
+                    tr.eq(i).removeAttr("hidden")
+                }
+            }
+        }
+        //quet du lieu barcode ctn
+        $('#exampleModalScrollable').scannerDetection({
+            timeBeforeScanTest: 200, // wait for the next character for upto 200ms
+            startChar: [120],
+            endChar: [13], // be sure the scan is complete if key 13 (enter) is detected
+            avgTimeByChar: 40, // it's not a barcode if a character takes longer than 40ms
+            ignoreIfFocusOn: 'input', // turn off scanner detection if an input has focus
+            minLength: 0,
+            onComplete: function (barcode, qty) {
+                matchedCTN(barcode)
+            }, // main callback function
+            scanButtonKeyCode: 116, // the hardware scan button acts as key 116 (F5)
+            scanButtonLongPressThreshold: 5, // assume a long press if 5 or more events come in sequence
+            onError: function (string) { alert('Error ' + string); }
+        });
+
+        //danh dau thung hang
+        function matchedCTN(ctn) {
+            try {
+                if (!arrayCTN.includes(ctn)) {
+                     Swal.fire({
+                         title: `Carton ${ctn} @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.isnotin) preASN`,
+                         icon: "error",
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
+                        denyButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.scanagain)",
+                        cancelButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.cancel)"
+                     }).then((result) => {
+                         /* Read more about isConfirmed, isDenied below */
+                         if (result.isConfirmed) {
+                             $.ajax({
+                                 url: '/FunctionOrder/CtnWrong',
+                                 type: 'get',
+                                 data: {
+                                     ctn
+                                 },
+                                 success: function (data) {
+                                     if (data.code == 200) {
+                                         $('#scanCT').append(
+                                             `<tr data-status="false" style="background:red">
+                                                <td>${data.po.So}</td>
+                                                <td>${data.po.Po}</td>
+                                                <td>${data.po.Sku}</td>
+                                                <td data-ctn="${data.po.Ctn}">${data.po.Ctn}</td>
+                                                <td>${data.po.Upc}</td>
+                                                <td>${data.po.Qty}</td>
+                                                <td>Mismatched</td></tr>`
+                                         )
+                                     } else if (data.code == 300) {
+                                         $('#scanCT').append(
+                                             `<tr data-status="false" style="background:red">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td data-ctn="${ctn}">${ctn}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Mismatched</td></tr>`
+                                         )
+                                     }
+                                 }
+                             })
+                         } else if (result.isDenied) {
+                             Swal.fire("@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.scanagain)", "", "error")
+                         }
+                     })
+                }  else {
+                    if ($(`td[data-ctn="${ctn}"]`).closest('tr').attr("data-status") == "") {
+                        $(`td[data-ctn="${ctn}"]`).closest('tr').append(`<td>Matched</td>`).css('background', 'green').attr("data-status", "true")
+                        var dataSo = $(`td[data-ctn="${ctn}"]`).attr("data-so")
+                        console.log(dataSo)
+                        var count = $('span[name="' + dataSo + '"]').text()
+                        console.log(count)
+                        $('span[name="' + dataSo + '"]').text(Number(count) + 1)
+                    } else {
+                        toastr.success(ctn+" Has been scanned ", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                    }
+               }
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        function next() {
+            var tr = $('#scanCT').children()
+            for (let i = 0; i < tr.length;i++) {
+                if (tr.eq(i).css("background-color") == "rgb(0, 128, 0)") {
+                    arrayData.push({
+                        "SOnumber": tr.eq(i).children().eq(0).text(),
+                        "PO": tr.eq(i).children().eq(1).text(),
+                        "Carton to": tr.eq(i).children().eq(3).text(),
+                        "UPC": tr.eq(i).children().eq(4).text(),
+                        "UPC QTY": tr.eq(i).children().eq(5).text()
+                    })
+                } else {
+                    arrayErrorCtn.push({
+                        "SOnumber": tr.eq(i).children().eq(0).text(),
+                        "PO": tr.eq(i).children().eq(1).text(),
+                        "Carton to": tr.eq(i).children().eq(3).text(),
+                        "UPC": tr.eq(i).children().eq(4).text(),
+                        "UPC QTY": tr.eq(i).children().eq(5).text()
+                    })
+                }
+            }
+            var data = arrayData
+            let tbd = ``
+
+            for (let j = 0; j < data.length; j++) {
+
+                var idqty = `${data[j]["UPC"]}-${data[j]["UPC QTY"]}`
+                var id = idqty.substring(0, idqty.indexOf("-"))
+                //them va cong cac upc bang nhau vao mang
+                if (arrayUPC.some(item => item.includes(id))) {
+                    for (var i = 0; i < arrayUPC.length;i++) {
+                        if (arrayUPC[i].includes(id)) {
+                            var qty = arrayUPC[i].substring(idqty.indexOf("-") + 1)
+                            var qtys = Number(qty) + Number(data[j]["UPC QTY"])
+                            arrayUPC[i] = `${id}-${qtys}`
+                        }
+                    }
+                } else {
+                    arrayUPC.push(idqty)
+                }
+                tbd += `<tr name="${idqty}">
+                        <td>${data[j]["Carton to"]}</td>
+                        <td>${id}</td>
+                        <td>${data[j]["UPC QTY"]}</td></tr>`
+            }
+            $('#tbdCarton').append(tbd)
+            $('#exampleModalScrollable').modal('hide')
+
+            let tbdtt = ``
+            for (var i in arrayUPC) {
+                var upc = arrayUPC[i].substring(0, arrayUPC[i].indexOf("-"))
+                var qty = arrayUPC[i].substring(arrayUPC[i].indexOf("-")+1)
+                tbdtt += `<tr>
+                        <td>${upc}</td>
+                        <td id="qty${upc}">${qty}</td>
+                        <td id="total${upc}">0</td>
+                        <td id="status${upc}"></td></tr>
+    `
+            }
+            $('#tbdTotal').append(tbdtt)
+            clear = tbdtt
+
+            var dataEpc = JSON.parse(localStorage.getItem('dataEpc'));
+            for (var i in dataEpc) {
+                var epc = dataEpc[i]["EPC"]
+                var sl = $('#readEPC')[0].children.length + 1
+                if (!arrayepc.includes(epc)) {
+                    arrayepc.push(epc)
+                    var tbdRescan = `<tr>
+                                            <td>${sl}</td>
+                                            <td>${epc}</td>
+                                            <td>${epctoUPC(epc)}</td>
+                                            </tr>`
+                    $('#readEPC').append(tbdRescan)
+                    resultTotal(epctoUPC(epc))
+                    $('#rsl').val("Total EPC : " + sl)
+                }
+            }
+        }
+
+        var arrayGeneral = []
+        function resultTotal(upc) {
+            var totalUpc = $(`#total${upc}`).text()
+            if (totalUpc != "") {
+                if ($(`#total${upc}`).attr('class') == "s") {
+                    var qtyUpc = $(`#qty${upc}`).text() //lay tong sl cua upc
+                    $(`#total${upc}`).text(Number(totalUpc) + 1) //them 1
+                    arrayReportsEpcToUpc = arrayReportsEpcToUpc.filter(function (obj) {
+                        return obj.upc !== upc;
+                    });//xoa các obj trong mang khong khop voi preASN
+                } else {
+                    var qtyUpc = $(`#qty${upc}`).text() //lay tong sl cua upc
+                    $(`#total${upc}`).text(Number(totalUpc) + 1) //them 1
+                    if (Number(totalUpc) + 1 == Number(qtyUpc)) {
+                        if (hasUpc(arrayGeneral, upc)) {
+                            updateStatusTrue(arrayGeneral, upc)
+                        } else {
+                            arrayGeneral.push({ "upc": upc, "qty": qtyUpc, "qtyScan": Number(totalUpc) + 1, "status": false, "ctn": getCtn(arrayData, upc) })
+                        }
+                        $(`#total${upc}`).closest('tr').css('background', 'green')//background xanh neu du sl
+                        $(`#status${upc}`).text('Matched')
+                    } else if (Number(totalUpc) + 1 > Number(qtyUpc)) {
+                        updateStatusFalse(arrayGeneral, upc)
+                        $(`#total${upc}`).closest('tr').css('background', 'yellow')//background vang neu chua du sl
+                        $(`#status${upc}`).text('Mismatched')
+                    } else {
+                        if (hasUpc(arrayGeneral, upc)) {
+                            updateQtyScan(arrayGeneral, upc)
+                        } else {
+                            arrayGeneral.push({ "upc": upc, "qty": qtyUpc, "qtyScan": Number(totalUpc) + 1, "status": false, "ctn": getCtn(arrayData, upc) })
+                        }
+                        $(`#total${upc}`).closest('tr').css('background', 'red')//background do neu vuot qua sl
+                        $(`#status${upc}`).text('Mismatched')
+                    }
+                }
+            } else {
+                $('#tbdTotal').append(`<tr>
+                        <td>${upc}</td>
+                        <td id="qty${upc}"></td>
+                        <td id="total${upc}" class="s">1</td>
+                        <td>Mismatched</td></tr>`)
+                arrayReportsEpcToUpc = arrayReportsEpcToUpc.filter(function (obj) {
+                    return obj.upc !== upc;
+                });//xoa các obj trong mang khong khop voi preASN
+                arrayGeneral = arrayGeneral.filter(function (obj) {
+                    return obj.upc !== upc;
+                });//xoa các obj trong mang khong khop voi preASN
+            }
+        }
+
+
+
+        function finishAndSave() {
+            try {
+
+                Swal.fire({
+                title:"@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
+                icon: "warning",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
+                denyButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.close)",
+                cancelButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.cancel)"
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    getUpcTrue(arrayGeneral, arrayData)
+                    var idReports = localStorage.getItem('id')
+                    var Ctn = JSON.stringify(arrayData)
+                    var ctnError = JSON.stringify(arrayErrorCtn)
+                    var epcToUpc = JSON.stringify(arrayReportsEpcToUpc)
+                    var general = JSON.stringify(arrayGeneral)
+                    var info = JSON.stringify(arrayInfo)
+                    $.ajax({
+                        url: '/Home/EditAll',
+                        type: 'post',
+                        data: {
+                            idReports, Ctn, epcToUpc, Po, So, Sku, general, info
+                        },
+                        success: function (data) {
+                            $('#rsl').empty()
+                            if (data.code == 200) {
+                                $('#rsl').append(data.msg)
+                                window.location.href = "/HOD/Index"
+                            }
+
+                        }
+                    })
+                } else if (result.isDenied) {
+
+                }
+            })
+
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        var startInterval;
+
+
+        //start scanner
+        function RFID() {
+            try {
+                $('.on').css('display', 'none')
+                $('.off').css('display', 'block')
+                DeleteEPC()
+                startInterval = setInterval(function () { AllShowEPC() }, 200);
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        //stop scanner
+        function Stop() {
+            try {
+                $('.on').css('display', 'block')
+                $('.off').css('display', 'none')
+                clearInterval(startInterval);
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+
+        //call epc from db
+        function AllShowEPC() {
+            try {
+                $.ajax({
+                    url: '/rfid/AllShowEPC',
+                    type: 'get',
+                    success: function (data) {
+                        if (data.code == 200) {
+                            $.each(data.a, function (k, v) {
+                                var sl = $('#readEPC')[0].children.length + 1
+                                if (!arrayepc.includes(v.epc)) {
+                                    arrayepc.push(v.epc)
+                                    arrayReportsEpcToUpc.push({ "epc": v.epc, "upc": epctoUPC(v.epc) })
+                                    var tbd = `<tr>
+                                            <td>${sl}</td>
+                                            <td>${v.epc}</td>
+                                            <td>${epctoUPC(v.epc)}</td>
+                                            </tr>`
+                                    $('#readEPC').append(tbd)
+                                    resultTotal(epctoUPC(v.epc))
+                                    $('#rsl').val("Total EPC : " + sl)
+                                    sum()
+                                }
+                            })
+                        }
+                    },
+                })
+            } catch (error) {
+                swal.fire(error.message, "", "error")
+            }
+
+        }
+
+        function sum() {
+            var input = $('input[type="checkbox"]')
+            var count = 0
+            for (let i = 0; i < input.length; i++) {
+                if (input[i].disabled == true) {
+                    count++;
+                }
+            }
+            var number = $(`#total${count + 1}`).text()
+            $(`#total${count + 1}`).text(Number(number) + 1)
+        }
+        $(document).on('click', 'input[type="checkbox"]', function () {
+            $(this).attr("disabled", true)
+        })
+        function closeModal(e) {
+            Swal.fire({
+                title: 'You want to save data?',
+                text: "The system will save and exit, you should click next to continue!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    next()
+                    finishAndSave()
+                    $('.swal2-confirm.swal2-styled').click()
+                    $('#exampleModalScrollable').modal('hide')
+                }
+            })
+        }
+        //kiem tra mang co upc chưa
+        function hasUpc(arr, upc) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].upc === upc) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        //cap nhat lai mảng qtyscan
+        function updateQtyScan(arr, upc) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].upc === upc) {
+                    arr[i].qtyScan += 1;
+                    break;
+                }
+            }
+        }
+
+
+        //cap nhat lai mảng qtyscan & status
+        function updateStatusTrue(arr, upc) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].upc === upc) {
+                    arr[i].qtyScan += 1;
+                    arr[i].status = true;
+                    break;
+                }
+            }
+        }
+        //cap nhat lai mảng qtyscan & status
+        function updateStatusFalse(arr, upc) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].upc === upc) {
+                    arr[i].qtyScan += 1;
+                    arr[i].status = false;
+                    break;
+                }
+            }
+        }
+        //layctn
+        function getCtn(arr, upc) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i]["UPC"] == upc) {
+                    return arr[i]["Carton to"]
+                }
+            }
+        }
+        function getUpcTrue(arr1, arr2) {
+            for (let i = 0; i < arr1.length; i++) {
+                if (arr1[i]["status"] == true) {
+                    var upc = arr1[i]["upc"]
+                    for (let j = 0; j < arr2.length; j++) {
+                        if (arr2[j]["UPC"] == upc) {
+                            arr2[j]["status"] = true
+                        }
+                    }
+                } else {
+                    var upc = arr1[i]["upc"]
+                    for (let j = 0; j < arr2.length; j++) {
+                        if (arr2[j]["UPC"] == upc) {
+                            arr2[j]["status"] = false
+                            arr2[j]["qtyscan"] = arr1[i]["qtyScan"]
+                        }
+                    }
+                }
+            }
+            return arr2;
+        }
+        function option(arr) {
+            let option = `<option value="">none</option>`
+            $.each(arr, function (k, v) {
+                option += `<option value="${v}">${v}</option>`
+            })
+            return option;
+        }
+        function tbodyCtn(arr, cartontoval, str, status) {
+            tbd = `<tr data-status="${status}" style="background:${str}">
+                        <td>${arr["SOnumber"]}</td>
+                        <td>${arr["PO"]}</td>
+                        <td>${arr["SKU"]}</td>
+                        <td data-ctn="${cartontoval}" data-so="${arr["SOnumber"]}">${cartontoval}</td>
+                        <td>${arr["UPC"]}</td>
+                        <td>${arr["UPC QTY"]}</td>`
+            if (status == "true") {
+                tbd += `<td>Matched</td>`
+            }
+            tbd += `</tr>`
+            return tbd;
+        }
+
+        function upload(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var data = new Uint8Array(e.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+                var sheet_name_list = workbook.SheetNames;
+                var sheet_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
+                $.each(sheet_data, function (k, v) {
+                    console.log(v["*Carton ID"])
+                    matchedCTN(v["*Carton ID"].toString())
+                })
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function clearEPC() {
+            arrayReportsEpcToUpc = []
+            arrayepc = []
+            $('#tbdTotal').empty()
+            $('#tbdTotal').append(clear)
+            $('#readEPC').empty()
+        }
+
+        function hehe() {
+            var s = 0;
+            var tr = $('#tbdTotal').eq(0).children()
+            for (let i = 0; i < tr.length; i++) {
+                var upc = tr.eq(i).children().eq(0).text()
+                var qtyUpc = tr.eq(i).children().eq(1).text()
+                if (qtyUpc.length != 0) {
+                    updateHehe(arrayGeneral, upc, qtyUpc)
+                    $(`#total${upc}`).closest('tr').css('background', 'green')//background xanh neu du sl
+                    $(`#status${upc}`).text('Matched')
+                    $(`#total${upc}`).text(qtyUpc)
+                    s += Number(qtyUpc)
+                }
+            }
+            $('#rsl').val("Total EPC : " + s)
+            clearInterval(startInterval);
+        }
+
+
+        function updateHehe(arr, upc, qty) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].upc === upc) {
+                    arr[i].qtyScan = qty;
+                    arr[i].status = true;
+                    break;
+                }
+            }
+        }
+    </script>
+}
+
+

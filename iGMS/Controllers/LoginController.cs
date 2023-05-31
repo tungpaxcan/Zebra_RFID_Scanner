@@ -5,15 +5,15 @@ using System.Net.NetworkInformation;
 using System.Resources;
 using System.Web;
 using System.Web.Mvc;
-using CollTex.Models;
+using Zebra_RFID_Scanner.Models;
 
-namespace CollTex.Controllers
+namespace Zebra_RFID_Scanner.Controllers
 {
     public class LoginController : Controller
     {
         
-        private ColltexEntities db = new ColltexEntities();
-        ResourceManager rm = new ResourceManager("CollTex.Resources.Resource", typeof(Resources.Resource).Assembly);
+        private Entities db = new Entities();
+        ResourceManager rm = new ResourceManager("Zebra_RFID_Scanner.Resources.Resource", typeof(Resources.Resource).Assembly);
         // GET: Login
         public ActionResult Index()
         {
@@ -45,20 +45,20 @@ namespace CollTex.Controllers
                     }
                 }
 
-                    if (Encode.ToMD5(MAC) == Encode.Mac)
-                {
+                //    if (Encode.ToMD5(MAC) == Encode.Mac)
+                //{
                     var a = db.Users.SingleOrDefault(x => x.User1 == user && x.Pass == pass);
                     if (a != null)
                     {
                         Session["user"] = a;
-                        return Json(new { code = 200, Url = "/FunctionOrder/Index" }, JsonRequestBehavior.AllowGet);
+                        return Json(new { code = 200, Url = "/123-rfid-scanner/Index" }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        return Json(new { code = 300, msg = "Tài Khoản Hoặc Mật Khẩu không Đúng !!!" }, JsonRequestBehavior.AllowGet);
+                        return Json(new { code = 300, msg = "Incorrect Account or Password !!!" }, JsonRequestBehavior.AllowGet);
                     }
-                }
-                return Json(new { code = 400, msg="Không Thể Đăng Nhập" }, JsonRequestBehavior.AllowGet);
+                //}
+                //return Json(new { code = 400, msg= "Can not login" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {

@@ -4,20 +4,42 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ColltexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Color">
+      <Schema Namespace="Zebra_RFID_ScannerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Data">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="EPC" />
           </Key>
-          <Property Name="Id" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="EPC" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdReports" Type="nvarchar" MaxLength="250" />
+          <Property Name="So" Type="nvarchar(max)" />
+          <Property Name="Po" Type="nvarchar(max)" />
+          <Property Name="Sku" Type="nvarchar(max)" />
+          <Property Name="UPC" Type="varchar" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
           <Property Name="ModifyDate" Type="datetime" />
           <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
           <Property Name="Status" Type="bit" />
         </EntityType>
-        <EntityType Name="DetailEPC">
+        <EntityType Name="DataScanPhysical">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdReports" Type="nvarchar" MaxLength="250" />
+          <Property Name="Po" Type="nvarchar(max)" />
+          <Property Name="So" Type="nvarchar(max)" />
+          <Property Name="Sku" Type="nvarchar(max)" />
+          <Property Name="CartonTo" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="varchar" MaxLength="50" />
+          <Property Name="UPC" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="DetailEpc">
           <Key>
             <PropertyRef Name="IdEPC" />
           </Key>
@@ -28,13 +50,40 @@
           <Property Name="Amount" Type="int" />
           <Property Name="Status" Type="bit" />
         </EntityType>
-        <EntityType Name="EPC">
+        <EntityType Name="Discrepancy">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdGoods" Type="varchar" MaxLength="50" />
-          <Property Name="IdEPC" Type="varchar" MaxLength="100" />
+          <Property Name="IdReports" Type="nvarchar" MaxLength="250" />
+          <Property Name="So" Type="nvarchar(max)" />
+          <Property Name="Po" Type="nvarchar(max)" />
+          <Property Name="Sku" Type="nvarchar(max)" />
+          <Property Name="CartonTo" Type="varchar" MaxLength="50" />
+          <Property Name="UPC" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="varchar" MaxLength="50" />
+          <Property Name="QtyScan" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="So" Type="nvarchar(max)" />
+          <Property Name="Po" Type="nvarchar(max)" />
+          <Property Name="Sku" Type="nvarchar(max)" />
+          <Property Name="Ctn" Type="nvarchar(max)" />
+          <Property Name="Upc" Type="nvarchar(max)" />
+          <Property Name="Qty" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
           <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="FXconnect">
@@ -44,56 +93,33 @@
           <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Goods">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IdGood" Type="varchar" MaxLength="50" />
-          <Property Name="IdColor" Type="varchar" MaxLength="20" />
-          <Property Name="IdSize" Type="varchar" MaxLength="50" />
-          <Property Name="IdStyle" Type="varchar" MaxLength="50" />
-          <Property Name="StyleColorSize" Type="varchar" MaxLength="100" />
-          <Property Name="Company" Type="nvarchar(max)" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="CreateDate" Type="datetime" />
-          <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
-          <Property Name="ModifyDate" Type="datetime" />
-          <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
-          <Property Name="Status" Type="bit" />
-        </EntityType>
-        <EntityType Name="PKL">
+        <EntityType Name="General">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" />
-          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="IdReports" Type="nvarchar" MaxLength="250" />
+          <Property Name="So" Type="nvarchar(max)" />
+          <Property Name="Po" Type="nvarchar(max)" />
+          <Property Name="Sku" Type="nvarchar(max)" />
+          <Property Name="CartonTo" Type="varchar" MaxLength="50" />
+          <Property Name="UPC" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="varchar" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
           <Property Name="ModifyDate" Type="datetime" />
           <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
           <Property Name="Status" Type="bit" />
         </EntityType>
-        <EntityType Name="Size">
+        <EntityType Name="Reports">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="250" />
-          <Property Name="CreateDate" Type="datetime" />
-          <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
-          <Property Name="ModifyDate" Type="datetime" />
-          <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
-          <Property Name="Status" Type="bit" />
-        </EntityType>
-        <EntityType Name="Style">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Po" Type="nvarchar(max)" />
+          <Property Name="So" Type="nvarchar(max)" />
+          <Property Name="Sku" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
           <Property Name="ModifyDate" Type="datetime" />
@@ -115,6 +141,12 @@
           <Property Name="Phone" Type="int" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="WorkingHour" Type="varchar" MaxLength="50" />
+          <Property Name="GetBitEnd" Type="varchar" MaxLength="5" />
+          <Property Name="GetBitGTIN" Type="varchar" MaxLength="5" />
+          <Property Name="GetBitItemRef" Type="varchar" MaxLength="5" />
+          <Property Name="AddCharacter" Type="varchar" MaxLength="5" />
+          <Property Name="TakeAbsoluteValue" Type="varchar" MaxLength="5" />
+          <Property Name="CheckDigit" Type="varchar" MaxLength="5" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
           <Property Name="ModifyDate" Type="datetime" />
@@ -122,51 +154,54 @@
           <Property Name="Admin" Type="bit" />
           <Property Name="Status" Type="bit" />
         </EntityType>
-        <Association Name="FK_DetailEPC_FXconnect">
-          <End Role="FXconnect" Type="Self.FXconnect" Multiplicity="0..1" />
-          <End Role="DetailEPC" Type="Self.DetailEPC" Multiplicity="*" />
+        <EntityType Name="XMLValidate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="So" Type="nvarchar(max)" />
+          <Property Name="Po" Type="nvarchar(max)" />
+          <Property Name="Sku" Type="nvarchar(max)" />
+          <Property Name="Ctn" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <Association Name="FK_DataScanPhysical_Reports">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="0..1" />
+          <End Role="DataScanPhysical" Type="Self.DataScanPhysical" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="FXconnect">
+            <Principal Role="Reports">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="DetailEPC">
-              <PropertyRef Name="IdFX" />
+            <Dependent Role="DataScanPhysical">
+              <PropertyRef Name="IdReports" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Goods_Color">
-          <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
-          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+        <Association Name="FK_Discrepancy_Reports">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="0..1" />
+          <End Role="Discrepancy" Type="Self.Discrepancy" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Color">
+            <Principal Role="Reports">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Goods">
-              <PropertyRef Name="IdColor" />
+            <Dependent Role="Discrepancy">
+              <PropertyRef Name="IdReports" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Goods_Size">
-          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
-          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+        <Association Name="FK_General_Reports">
+          <End Role="Reports" Type="Self.Reports" Multiplicity="0..1" />
+          <End Role="General" Type="Self.General" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Size">
+            <Principal Role="Reports">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Goods">
-              <PropertyRef Name="IdSize" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Goods_Style">
-          <End Role="Style" Type="Self.Style" Multiplicity="0..1" />
-          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Style">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Goods">
-              <PropertyRef Name="IdStyle" />
+            <Dependent Role="General">
+              <PropertyRef Name="IdReports" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -182,31 +217,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ColltexModelStoreContainer">
-          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DetailEPC" EntityType="Self.DetailEPC" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EPC" EntityType="Self.EPC" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="Zebra_RFID_ScannerModelStoreContainer">
+          <EntitySet Name="Data" EntityType="Self.Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataScanPhysical" EntityType="Self.DataScanPhysical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailEpc" EntityType="Self.DetailEpc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discrepancy" EntityType="Self.Discrepancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FXconnect" EntityType="Self.FXconnect" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PKL" EntityType="Self.PKL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Style" EntityType="Self.Style" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="General" EntityType="Self.General" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_DetailEPC_FXconnect" Association="Self.FK_DetailEPC_FXconnect">
-            <End Role="FXconnect" EntitySet="FXconnect" />
-            <End Role="DetailEPC" EntitySet="DetailEPC" />
+          <EntitySet Name="XMLValidate" EntityType="Self.XMLValidate" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DataScanPhysical_Reports" Association="Self.FK_DataScanPhysical_Reports">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="DataScanPhysical" EntitySet="DataScanPhysical" />
           </AssociationSet>
-          <AssociationSet Name="FK_Goods_Color" Association="Self.FK_Goods_Color">
-            <End Role="Color" EntitySet="Color" />
-            <End Role="Goods" EntitySet="Goods" />
+          <AssociationSet Name="FK_Discrepancy_Reports" Association="Self.FK_Discrepancy_Reports">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Discrepancy" EntitySet="Discrepancy" />
           </AssociationSet>
-          <AssociationSet Name="FK_Goods_Size" Association="Self.FK_Goods_Size">
-            <End Role="Size" EntitySet="Size" />
-            <End Role="Goods" EntitySet="Goods" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Goods_Style" Association="Self.FK_Goods_Style">
-            <End Role="Style" EntitySet="Style" />
-            <End Role="Goods" EntitySet="Goods" />
+          <AssociationSet Name="FK_General_Reports" Association="Self.FK_General_Reports">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="General" EntitySet="General" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_FXconnect" Association="Self.FK_Users_FXconnect">
             <End Role="FXconnect" EntitySet="FXconnect" />
@@ -217,21 +249,43 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ColltexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Color">
+      <Schema Namespace="Zebra_RFID_ScannerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Datum">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="EPC" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EPC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdReports" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="So" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Po" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Color" FromRole="Color" ToRole="Goods" />
         </EntityType>
-        <EntityType Name="DetailEPC">
+        <EntityType Name="DataScanPhysical">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdReports" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Po" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="So" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CartonTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Report" Relationship="Self.FK_DataScanPhysical_Reports" FromRole="DataScanPhysical" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="DetailEpc">
           <Key>
             <PropertyRef Name="IdEPC" />
           </Key>
@@ -241,15 +295,42 @@
           <Property Name="IdSerial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Amount" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="FXconnect" Relationship="Self.FK_DetailEPC_FXconnect" FromRole="DetailEPC" ToRole="FXconnect" />
         </EntityType>
-        <EntityType Name="EPC">
+        <EntityType Name="Discrepancy">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdGoods" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IdEPC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdReports" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="So" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Po" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CartonTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QtyScan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Report" Relationship="Self.FK_Discrepancy_Reports" FromRole="Discrepancy" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="So" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Po" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ctn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Upc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="FXconnect">
@@ -258,69 +339,44 @@
           </Key>
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DetailEPCs" Relationship="Self.FK_DetailEPC_FXconnect" FromRole="FXconnect" ToRole="DetailEPC" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_FXconnect" FromRole="FXconnect" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Good">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdGood" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IdColor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IdSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IdStyle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="StyleColorSize" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Color" Relationship="Self.FK_Goods_Color" FromRole="Goods" ToRole="Color" />
-          <NavigationProperty Name="Size" Relationship="Self.FK_Goods_Size" FromRole="Goods" ToRole="Size" />
-          <NavigationProperty Name="Style" Relationship="Self.FK_Goods_Style" FromRole="Goods" ToRole="Style" />
-        </EntityType>
-        <EntityType Name="PKL">
+        <EntityType Name="General">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdReports" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="So" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Po" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CartonTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Report" Relationship="Self.FK_General_Reports" FromRole="General" ToRole="Reports" />
         </EntityType>
-        <EntityType Name="Size">
+        <EntityType Name="Report">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Po" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="So" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Size" FromRole="Size" ToRole="Goods" />
-        </EntityType>
-        <EntityType Name="Style">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Style" FromRole="Style" ToRole="Goods" />
+          <NavigationProperty Name="DataScanPhysicals" Relationship="Self.FK_DataScanPhysical_Reports" FromRole="Reports" ToRole="DataScanPhysical" />
+          <NavigationProperty Name="Discrepancies" Relationship="Self.FK_Discrepancy_Reports" FromRole="Reports" ToRole="Discrepancy" />
+          <NavigationProperty Name="Generals" Relationship="Self.FK_General_Reports" FromRole="Reports" ToRole="General" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -337,6 +393,12 @@
           <Property Name="Phone" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="WorkingHour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GetBitEnd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="GetBitGTIN" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="GetBitItemRef" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AddCharacter" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="TakeAbsoluteValue" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CheckDigit" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
@@ -345,27 +407,42 @@
           <Property Name="Status" Type="Boolean" />
           <NavigationProperty Name="FXconnect" Relationship="Self.FK_Users_FXconnect" FromRole="Users" ToRole="FXconnect" />
         </EntityType>
-        <Association Name="FK_Goods_Color">
-          <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
-          <End Role="Goods" Type="Self.Good" Multiplicity="*" />
+        <EntityType Name="XMLValidate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="So" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Po" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ctn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_DataScanPhysical_Reports">
+          <End Role="Reports" Type="Self.Report" Multiplicity="0..1" />
+          <End Role="DataScanPhysical" Type="Self.DataScanPhysical" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Color">
+            <Principal Role="Reports">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Goods">
-              <PropertyRef Name="IdColor" />
+            <Dependent Role="DataScanPhysical">
+              <PropertyRef Name="IdReports" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DetailEPC_FXconnect">
-          <End Role="FXconnect" Type="Self.FXconnect" Multiplicity="0..1" />
-          <End Role="DetailEPC" Type="Self.DetailEPC" Multiplicity="*" />
+        <Association Name="FK_Discrepancy_Reports">
+          <End Role="Reports" Type="Self.Report" Multiplicity="0..1" />
+          <End Role="Discrepancy" Type="Self.Discrepancy" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="FXconnect">
+            <Principal Role="Reports">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="DetailEPC">
-              <PropertyRef Name="IdFX" />
+            <Dependent Role="Discrepancy">
+              <PropertyRef Name="IdReports" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -381,59 +458,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Goods_Size">
-          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
-          <End Role="Goods" Type="Self.Good" Multiplicity="*" />
+        <Association Name="FK_General_Reports">
+          <End Role="Reports" Type="Self.Report" Multiplicity="0..1" />
+          <End Role="General" Type="Self.General" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Size">
+            <Principal Role="Reports">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Goods">
-              <PropertyRef Name="IdSize" />
+            <Dependent Role="General">
+              <PropertyRef Name="IdReports" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Goods_Style">
-          <End Role="Style" Type="Self.Style" Multiplicity="0..1" />
-          <End Role="Goods" Type="Self.Good" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Style">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Goods">
-              <PropertyRef Name="IdStyle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ColltexEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Colors" EntityType="Self.Color" />
-          <EntitySet Name="DetailEPCs" EntityType="Self.DetailEPC" />
-          <EntitySet Name="EPCs" EntityType="Self.EPC" />
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Data" EntityType="Self.Datum" />
+          <EntitySet Name="DataScanPhysicals" EntityType="Self.DataScanPhysical" />
+          <EntitySet Name="DetailEpcs" EntityType="Self.DetailEpc" />
+          <EntitySet Name="Discrepancies" EntityType="Self.Discrepancy" />
+          <EntitySet Name="Files" EntityType="Self.File" />
           <EntitySet Name="FXconnects" EntityType="Self.FXconnect" />
-          <EntitySet Name="Goods" EntityType="Self.Good" />
-          <EntitySet Name="PKLs" EntityType="Self.PKL" />
-          <EntitySet Name="Sizes" EntityType="Self.Size" />
-          <EntitySet Name="Styles" EntityType="Self.Style" />
+          <EntitySet Name="Generals" EntityType="Self.General" />
+          <EntitySet Name="Reports" EntityType="Self.Report" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Goods_Color" Association="Self.FK_Goods_Color">
-            <End Role="Color" EntitySet="Colors" />
-            <End Role="Goods" EntitySet="Goods" />
+          <EntitySet Name="XMLValidates" EntityType="Self.XMLValidate" />
+          <AssociationSet Name="FK_DataScanPhysical_Reports" Association="Self.FK_DataScanPhysical_Reports">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="DataScanPhysical" EntitySet="DataScanPhysicals" />
           </AssociationSet>
-          <AssociationSet Name="FK_DetailEPC_FXconnect" Association="Self.FK_DetailEPC_FXconnect">
-            <End Role="FXconnect" EntitySet="FXconnects" />
-            <End Role="DetailEPC" EntitySet="DetailEPCs" />
+          <AssociationSet Name="FK_Discrepancy_Reports" Association="Self.FK_Discrepancy_Reports">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="Discrepancy" EntitySet="Discrepancies" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_FXconnect" Association="Self.FK_Users_FXconnect">
             <End Role="FXconnect" EntitySet="FXconnects" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Goods_Size" Association="Self.FK_Goods_Size">
-            <End Role="Size" EntitySet="Sizes" />
-            <End Role="Goods" EntitySet="Goods" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Goods_Style" Association="Self.FK_Goods_Style">
-            <End Role="Style" EntitySet="Styles" />
-            <End Role="Goods" EntitySet="Goods" />
+          <AssociationSet Name="FK_General_Reports" Association="Self.FK_General_Reports">
+            <End Role="Reports" EntitySet="Reports" />
+            <End Role="General" EntitySet="Generals" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -441,12 +503,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ColltexModelStoreContainer" CdmEntityContainer="ColltexEntities">
-          <EntitySetMapping Name="Colors">
-            <EntityTypeMapping TypeName="ColltexModel.Color">
-              <MappingFragment StoreEntitySet="Color">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+        <EntityContainerMapping StorageEntityContainer="Zebra_RFID_ScannerModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Data">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.Datum">
+              <MappingFragment StoreEntitySet="Data">
+                <ScalarProperty Name="EPC" ColumnName="EPC" />
+                <ScalarProperty Name="IdReports" ColumnName="IdReports" />
+                <ScalarProperty Name="So" ColumnName="So" />
+                <ScalarProperty Name="Po" ColumnName="Po" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="UPC" ColumnName="UPC" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
@@ -455,9 +521,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DetailEPCs">
-            <EntityTypeMapping TypeName="ColltexModel.DetailEPC">
-              <MappingFragment StoreEntitySet="DetailEPC">
+          <EntitySetMapping Name="DataScanPhysicals">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.DataScanPhysical">
+              <MappingFragment StoreEntitySet="DataScanPhysical">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdReports" ColumnName="IdReports" />
+                <ScalarProperty Name="Po" ColumnName="Po" />
+                <ScalarProperty Name="So" ColumnName="So" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="CartonTo" ColumnName="CartonTo" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="UPC" ColumnName="UPC" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailEpcs">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.DetailEpc">
+              <MappingFragment StoreEntitySet="DetailEpc">
                 <ScalarProperty Name="IdEPC" ColumnName="IdEPC" />
                 <ScalarProperty Name="IdFX" ColumnName="IdFX" />
                 <ScalarProperty Name="Idstore" ColumnName="Idstore" />
@@ -467,36 +552,63 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EPCs">
-            <EntityTypeMapping TypeName="ColltexModel.EPC">
-              <MappingFragment StoreEntitySet="EPC">
+          <EntitySetMapping Name="Discrepancies">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.Discrepancy">
+              <MappingFragment StoreEntitySet="Discrepancy">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdGoods" ColumnName="IdGoods" />
-                <ScalarProperty Name="IdEPC" ColumnName="IdEPC" />
+                <ScalarProperty Name="IdReports" ColumnName="IdReports" />
+                <ScalarProperty Name="So" ColumnName="So" />
+                <ScalarProperty Name="Po" ColumnName="Po" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="CartonTo" ColumnName="CartonTo" />
+                <ScalarProperty Name="UPC" ColumnName="UPC" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="QtyScan" ColumnName="QtyScan" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.File">
+              <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="So" ColumnName="So" />
+                <ScalarProperty Name="Po" ColumnName="Po" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="Ctn" ColumnName="Ctn" />
+                <ScalarProperty Name="Upc" ColumnName="Upc" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FXconnects">
-            <EntityTypeMapping TypeName="ColltexModel.FXconnect">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.FXconnect">
               <MappingFragment StoreEntitySet="FXconnect">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Goods">
-            <EntityTypeMapping TypeName="ColltexModel.Good">
-              <MappingFragment StoreEntitySet="Goods">
+          <EntitySetMapping Name="Generals">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.General">
+              <MappingFragment StoreEntitySet="General">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdGood" ColumnName="IdGood" />
-                <ScalarProperty Name="IdColor" ColumnName="IdColor" />
-                <ScalarProperty Name="IdSize" ColumnName="IdSize" />
-                <ScalarProperty Name="IdStyle" ColumnName="IdStyle" />
-                <ScalarProperty Name="StyleColorSize" ColumnName="StyleColorSize" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdReports" ColumnName="IdReports" />
+                <ScalarProperty Name="So" ColumnName="So" />
+                <ScalarProperty Name="Po" ColumnName="Po" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="CartonTo" ColumnName="CartonTo" />
+                <ScalarProperty Name="UPC" ColumnName="UPC" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
@@ -505,38 +617,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PKLs">
-            <EntityTypeMapping TypeName="ColltexModel.PKL">
-              <MappingFragment StoreEntitySet="PKL">
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.Report">
+              <MappingFragment StoreEntitySet="Reports">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sizes">
-            <EntityTypeMapping TypeName="ColltexModel.Size">
-              <MappingFragment StoreEntitySet="Size">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Styles">
-            <EntityTypeMapping TypeName="ColltexModel.Style">
-              <MappingFragment StoreEntitySet="Style">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Po" ColumnName="Po" />
+                <ScalarProperty Name="So" ColumnName="So" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
@@ -546,7 +634,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="ColltexModel.User">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdFX" ColumnName="IdFX" />
@@ -559,11 +647,33 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="WorkingHour" ColumnName="WorkingHour" />
+                <ScalarProperty Name="GetBitEnd" ColumnName="GetBitEnd" />
+                <ScalarProperty Name="GetBitGTIN" ColumnName="GetBitGTIN" />
+                <ScalarProperty Name="GetBitItemRef" ColumnName="GetBitItemRef" />
+                <ScalarProperty Name="AddCharacter" ColumnName="AddCharacter" />
+                <ScalarProperty Name="TakeAbsoluteValue" ColumnName="TakeAbsoluteValue" />
+                <ScalarProperty Name="CheckDigit" ColumnName="CheckDigit" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XMLValidates">
+            <EntityTypeMapping TypeName="Zebra_RFID_ScannerModel.XMLValidate">
+              <MappingFragment StoreEntitySet="XMLValidate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="So" ColumnName="So" />
+                <ScalarProperty Name="Po" ColumnName="Po" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="Ctn" ColumnName="Ctn" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>

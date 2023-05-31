@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CollTex.Models
+namespace Zebra_RFID_Scanner.Models
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +25,12 @@ namespace CollTex.Models
         public Nullable<int> Phone { get; set; }
         public string Description { get; set; }
         public string WorkingHour { get; set; }
+        public string GetBitEnd { get; set; }
+        public string GetBitGTIN { get; set; }
+        public string GetBitItemRef { get; set; }
+        public string AddCharacter { get; set; }
+        public string TakeAbsoluteValue { get; set; }
+        public string CheckDigit { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }

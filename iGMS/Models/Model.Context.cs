@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CollTex.Models
+namespace Zebra_RFID_Scanner.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ColltexEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public ColltexEntities()
-            : base("name=ColltexEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,14 +25,15 @@ namespace CollTex.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Color> Colors { get; set; }
-        public virtual DbSet<DetailEPC> DetailEPCs { get; set; }
-        public virtual DbSet<EPC> EPCs { get; set; }
+        public virtual DbSet<Datum> Data { get; set; }
+        public virtual DbSet<DataScanPhysical> DataScanPhysicals { get; set; }
+        public virtual DbSet<DetailEpc> DetailEpcs { get; set; }
+        public virtual DbSet<Discrepancy> Discrepancies { get; set; }
+        public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<FXconnect> FXconnects { get; set; }
-        public virtual DbSet<Good> Goods { get; set; }
-        public virtual DbSet<PKL> PKLs { get; set; }
-        public virtual DbSet<Size> Sizes { get; set; }
-        public virtual DbSet<Style> Styles { get; set; }
+        public virtual DbSet<General> Generals { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<XMLValidate> XMLValidates { get; set; }
     }
 }

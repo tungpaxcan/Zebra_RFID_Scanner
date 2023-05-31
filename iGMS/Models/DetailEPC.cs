@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CollTex.Models
+namespace Zebra_RFID_Scanner.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DetailEPC
+    public partial class DetailEpc
     {
         public string IdEPC { get; set; }
         public string IdFX { get; set; }
@@ -20,7 +20,5 @@ namespace CollTex.Models
         public string IdSerial { get; set; }
         public Nullable<int> Amount { get; set; }
         public Nullable<bool> Status { get; set; }
-    
-        public virtual FXconnect FXconnect { get; set; }
     }
 }

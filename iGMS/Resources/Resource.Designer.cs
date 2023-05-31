@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CollTex.Resources {
+namespace Zebra_RFID_Scanner.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CollTex.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CollTex.Resources.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Zebra_RFID_Scanner.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -178,6 +178,15 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lịch Sử Hoạt Động.
+        /// </summary>
+        public static string activityhistory {
+            get {
+                return ResourceManager.GetString("activityhistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thêm.
         /// </summary>
         public static string add {
@@ -273,6 +282,15 @@ namespace CollTex.Resources {
         public static string barcode {
             get {
                 return ResourceManager.GetString("barcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campuchia.
+        /// </summary>
+        public static string Cambodian {
+            get {
+                return ResourceManager.GetString("Cambodian", resourceCulture);
             }
         }
         
@@ -381,6 +399,15 @@ namespace CollTex.Resources {
         public static string choosestyle {
             get {
                 return ResourceManager.GetString("choosestyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa thẻ.
+        /// </summary>
+        public static string clear {
+            get {
+                return ResourceManager.GetString("clear", resourceCulture);
             }
         }
         
@@ -781,6 +808,24 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bộ Lọc.
+        /// </summary>
+        public static string filter {
+            get {
+                return ResourceManager.GetString("filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kết thúc và lưu.
+        /// </summary>
+        public static string finishandsave {
+            get {
+                return ResourceManager.GetString("finishandsave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sửa Tài Khoản Lỗi.
         /// </summary>
         public static string fixfaultyaccount {
@@ -804,6 +849,15 @@ namespace CollTex.Resources {
         public static string fixproducterror {
             get {
                 return ResourceManager.GetString("fixproducterror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biểu Mẫu Không Đúng Định Dạng.
+        /// </summary>
+        public static string formisnotinthecorrectformat {
+            get {
+                return ResourceManager.GetString("formisnotinthecorrectformat", resourceCulture);
             }
         }
         
@@ -867,6 +921,15 @@ namespace CollTex.Resources {
         public static string hi {
             get {
                 return ResourceManager.GetString("hi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trang Chủ.
+        /// </summary>
+        public static string home {
+            get {
+                return ResourceManager.GetString("home", resourceCulture);
             }
         }
         
@@ -943,6 +1006,15 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to không có trong.
+        /// </summary>
+        public static string isnotin {
+            get {
+                return ResourceManager.GetString("isnotin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Danh Sách Tài Khoản.
         /// </summary>
         public static string listofaccounts {
@@ -975,6 +1047,15 @@ namespace CollTex.Resources {
         public static string manage {
             get {
                 return ResourceManager.GetString("manage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mục Lục.
+        /// </summary>
+        public static string menu {
+            get {
+                return ResourceManager.GetString("menu", resourceCulture);
             }
         }
         
@@ -1357,11 +1438,38 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quét Lại.
+        /// </summary>
+        public static string scanagain {
+            get {
+                return ResourceManager.GetString("scanagain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tìm Kiếm Theo Ngày.
+        /// </summary>
+        public static string seachbyday {
+            get {
+                return ResourceManager.GetString("seachbyday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tìm Kiếm.
         /// </summary>
         public static string search {
             get {
                 return ResourceManager.GetString("search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tìm Theo Tài Khoản.
+        /// </summary>
+        public static string searchbyaccount {
+            get {
+                return ResourceManager.GetString("searchbyaccount", resourceCulture);
             }
         }
         
@@ -1627,6 +1735,15 @@ namespace CollTex.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tệp Phải Có Phần Mở Rộng xlsx.
+        /// </summary>
+        public static string Thefilemusthavetheextensionxlsx {
+            get {
+                return ResourceManager.GetString("Thefilemusthavetheextensionxlsx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chưa Nhập Mã Vạch Sản Phẩm.
         /// </summary>
         public static string theproductbarcodehasnotbeenentered {
@@ -1641,6 +1758,15 @@ namespace CollTex.Resources {
         public static string thereareotheritemcodes {
             get {
                 return ResourceManager.GetString("thereareotheritemcodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chưa Nhập Thời Gian.
+        /// </summary>
+        public static string timenotentered {
+            get {
+                return ResourceManager.GetString("timenotentered", resourceCulture);
             }
         }
         

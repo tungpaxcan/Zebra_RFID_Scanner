@@ -5,14 +5,14 @@ using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using CollTex.Models;
+using Zebra_RFID_Scanner.Models;
 
-namespace CollTex.Controllers
+namespace Zebra_RFID_Scanner.Controllers
 {
     public class RFIDController : Controller
     {
-        private ColltexEntities db = new ColltexEntities();
-        ResourceManager rm = new ResourceManager("CollTex.Resources.Resource", typeof(Resources.Resource).Assembly);
+        private Entities db = new Entities();
+        ResourceManager rm = new ResourceManager("Zebra_RFID_Scanner.Resources.Resource", typeof(Resources.Resource).Assembly);
         // GET: RFID
         //------------------RFID---------------
         public ActionResult Index()
@@ -27,7 +27,7 @@ namespace CollTex.Controllers
             {
                 var session = (User)Session["user"];
                 var FX = session.FXconnect.Id;
-                var a = (from b in db.DetailEPCs.Where(x => x.Status==true&&x.IdFX==FX)
+                var a = (from b in db.DetailEpcs.Where(x => x.Status == true && x.IdFX == FX)
                          select new
                          {
                              epc = b.IdEPC,
@@ -38,71 +38,15 @@ namespace CollTex.Controllers
             {
                 return Json(new { code = 500, msg = "Sai !!!" + e.Message }, JsonRequestBehavior.AllowGet);
             }
-        }
-        [HttpGet]
-        public JsonResult CompareEPC(string epc)
-        {
-            try
-            {
-                var a = (from b in db.DetailEPCs.Where(x => x.IdEPC == epc&&x.Status==true)
-                         join bb in db.EPCs on b.IdEPC equals bb.IdEPC
-                         join bbb in db.Goods on bb.IdGoods equals bbb.Id 
-                         select new
-                         {
-                             idgood = bbb.IdGood
-                         }).ToList();
-                var c = db.DetailEPCs.SingleOrDefault(x => x.IdEPC == epc && x.Status == true);
-                if (c != null)
-                {
-                    c.Status = false;
-                    db.SaveChanges();
-                }
-                return Json(new { code = 200, a = a }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                return Json(new { code = 500, msg = "Sai !!!" + e.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public JsonResult CompareReceipt(string epc)
-        {
-            try
-            {
-                var a = (from b in db.DetailEPCs.Where(x => x.IdEPC == epc && x.Status == true)
-                         join bb in db.EPCs on b.IdEPC equals bb.IdEPC
-                         select new
-                         {
-                             idgood = bb.IdGoods
-                         }).ToList();
-                var c = db.DetailEPCs.SingleOrDefault(x => x.IdEPC == epc && x.Status == true);
-                if (c != null)
-                {
-                    c.Status = false;
-                    db.SaveChanges();
-                }
-                return Json(new { code = 200, a = a }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                return Json(new { code = 500, msg = "Sai !!!" + e.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        }   
         [HttpPost]
-        public JsonResult StatusEPC(string epc)
+        public JsonResult falseEPC(string epc)
         {
             try
             {
-                var c = db.DetailEPCs.SingleOrDefault(x => x.IdEPC == epc && x.Status == true);
-                if (c != null)
-                {
-                    c.Status = false;
-                    db.SaveChanges();
-                }
-                else
-                {
-
-                }                   
+                var deepc = db.DetailEpcs.Find(epc);
+                    deepc.Status = false;
+                db.SaveChanges();
                 return Json(new { code = 200, }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
@@ -111,40 +55,25 @@ namespace CollTex.Controllers
             }
         }
         [HttpPost]
-        public JsonResult DeleteEPC()
-        {
-            try
-            {
-                var session = (User)Session["user"];
-                var FX = session.FXconnect.Id;
-                Dele.DeleteDetailEPCs(FX);
-                return Json(new { code = 200, msg = rm.GetString("success").ToString() }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                return Json(new { code = 500, msg = rm.GetString("false").ToString() + e.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpPost]
         public string Post(Root[] root)
         {
             foreach (var tag in root)
             {
-                    DetailEPC t = new DetailEPC
-                    {
-                        IdEPC = tag.data.idHex,
-                        IdFX = tag.data.userDefined,
-                        Status = true,
-                        Amount = 1,
-                    };
+                DetailEpc t = new DetailEpc
+                {
+                    IdEPC = tag.data.idHex,
+                    IdFX = tag.data.userDefined,
+                    Status = true,
+                };
 
-                    if (!db.DetailEPCs.Any(x => x.IdEPC.Equals(tag.data.idHex)))
-                        db.DetailEPCs.Add(t);
+                if (!db.DetailEpcs.Any(x => x.IdEPC.Equals(tag.data.idHex)))
+                    db.DetailEpcs.Add(t);
                 db.SaveChanges();
             }
-           
+
             return "";
         }
+
 
     }
 

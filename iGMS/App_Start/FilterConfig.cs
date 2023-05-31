@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace CollTex
+namespace Zebra_RFID_Scanner
 {
     public class FilterConfig
     {

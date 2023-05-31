@@ -20,12 +20,12 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span><a href="~/Images/FXconnect.xlsx" download="">@Html.DisplayName(CollTex.Resources.Resource.exceltemplate)</a>
+                    </span><a href="~/Images/FXconnect.xlsx" download="">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.exceltemplate)</a>
                 </button>
                 <div class="file-upload col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-2">
                     <div class="file-select">
-                        <div class="file-select-button" id="fileName">@Html.DisplayName(CollTex.Resources.Resource.choosefile)</div>
-                        <div class="file-select-name" id="noFile">@Html.DisplayName(CollTex.Resources.Resource.nofilechosen)...</div>
+                        <div class="file-select-button" id="fileName">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.choosefile)</div>
+                        <div class="file-select-name" id="noFile">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.nofilechosen)...</div>
                         <input type="file" name="UploadedFile" id="chooseFile">
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             </g>
                         </svg>
                         <!--end::Svg Icon-->
-                    </span>@Html.DisplayName(CollTex.Resources.Resource.import)
+                    </span>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.import)
                 </button>
             </form>
         </div>
@@ -60,19 +60,19 @@
                                 </g>
                             </svg>
                             <!--end::Svg Icon-->
-                        </span>@Html.DisplayName(CollTex.Resources.Resource.export)
+                        </span>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.export)
                     </button>
                     <!--begin::Dropdown Menu-->
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                         <!--begin::Navigation-->
                         <ul class="navi flex-column navi-hover py-2">
-                            <li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">@Html.DisplayName(CollTex.Resources.Resource.chooseanoption):</li>
+                            <li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.chooseanoption):</li>
                             <li class="navi-item">
                                 <a onclick="printDiv('table')" class="navi-link" id="print" data-target="print">
                                     <span class="navi-icon">
                                         <i class="la la-print"></i>
                                     </span>
-                                    <span class="navi-text">@Html.DisplayName(CollTex.Resources.Resource.print)</span>
+                                    <span class="navi-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.print)</span>
                                 </a>
                             </li>
                             <li class="navi-item">
@@ -112,7 +112,7 @@
                             <i class="icon-xl fas fa-user-plus"></i>
                         </span>
                         <!--end::Svg Icon-->
-                    </span>@Html.DisplayName(CollTex.Resources.Resource.add)
+                    </span>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.add)
                 </a>
                 <!--end::Button-->
             </div>
@@ -126,18 +126,18 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="dataTables_length" id="kt_datatable_length">
                         <label>
-                            @Html.DisplayName(CollTex.Resources.Resource.show) <select id="pagenum" name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">
+                            @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.show) <select id="pagenum" name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">
                                 <option value="10">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                             </select>
-                            @Html.DisplayName(CollTex.Resources.Resource.entries)
+                            @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.entries)
                         </label>
                     </div>
                 </div><div class="col-sm-12 col-md-6">
                     <div id="kt_datatable_filter" class="dataTables_filter">
-                        <label>@Html.DisplayName(CollTex.Resources.Resource.search):<input id="seach" type="search" class="form-control form-control-sm" placeholder="@Html.DisplayName(CollTex.Resources.Resource.search)" aria-controls="kt_datatable"></label>
+                        <label>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.search):<input id="seach" type="search" class="form-control form-control-sm" placeholder="@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.search)" aria-controls="kt_datatable"></label>
                     </div>
                 </div>
             </div><div class="row" id="table">
@@ -145,8 +145,8 @@
                     <table class="table table-separate table-head-custom table-checkable dataTable no-footer dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info" style="width: 1234px;">
                         <thead>
                             <tr role="row">
-                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 190px;" aria-label="Company Email: activate to sort column ascending">@Html.DisplayName(CollTex.Resources.Resource.id)</th>
-                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 190px;" aria-label="Company Email: activate to sort column ascending">@Html.DisplayName(CollTex.Resources.Resource.name)</th>
+                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 190px;" aria-label="Company Email: activate to sort column ascending">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.id)</th>
+                                <th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 190px;" aria-label="Company Email: activate to sort column ascending">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.name)</th>
                                 <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 105px;" aria-label="Actions">Actions</th>
                             </tr>
                         </thead>
@@ -178,14 +178,14 @@
                 var filename = $("#chooseFile").val();
                 if (/^\s*$/.test(filename)) {
                     $(".file-upload").removeClass('active'); $("#noFile").empty()
-                    $("#noFile").append("@Html.DisplayName(CollTex.Resources.Resource.nofilechosen)...");
+                    $("#noFile").append("@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.nofilechosen)...");
                 }
                 else {
                     $(".file-upload").addClass('active');
                     $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
                 }
             } catch (error) {
-                Swal.fire(error.message, "@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)!", "error");
+                Swal.fire(error.message, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.pressthebutton)!", "error");
             }
 
         });
@@ -203,7 +203,7 @@
                     data: formdata,
                     success: function (data) {
                         if (data.code == 200) {
-                            Swal.fire(data.msg.join("\n"), "@Html.DisplayName(CollTex.Resources.Resource.confirm)!", "success");
+                            Swal.fire(data.msg.join("\n"), "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)!", "success");
                             FX(pagenum, page, seach);
                         }
 
@@ -254,11 +254,11 @@
                                 table += ' <li class="nav-item">';
                                 table += '<a class="nav-link" href="/FXconnect/Edits/' + v.id + '">';
                                 table += '<i class="nav-icon la la-edit"></i>';
-                                table += '<span class="nav-text">@Html.DisplayName(CollTex.Resources.Resource.edit) </span></a></li>';
+                                table += '<span class="nav-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.edit) </span></a></li>';
                                 table += '<li class="nav-item"><a class="nav-link" onclick="printDiv(\'' + v.id + '\')">';
-                                table += '<i class="nav-icon la la-print"></i><span class="nav-text">@Html.DisplayName(CollTex.Resources.Resource.print)</span></a></li>';
+                                table += '<i class="nav-icon la la-print"></i><span class="nav-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.print)</span></a></li>';
                                 table += '<li class="nav-item"><a class="nav-link" name="delete">';
-                                table += '<i class="nav-icon la la-trash"></i><span class="nav-text">@Html.DisplayName(CollTex.Resources.Resource.delete)</span></a></li>';
+                                table += '<i class="nav-icon la la-trash"></i><span class="nav-text">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.delete)</span></a></li>';
                                 table += '</ul></div></div>';
                                 table += '</td>';
                                 table += '</tr>';
@@ -266,7 +266,7 @@
                             });
 
                             //--------------------------------
-                            let kt_datatable_info = '@Html.DisplayName(CollTex.Resources.Resource.showingto) ' + pagenum + ' @Html.DisplayName(CollTex.Resources.Resource.of) ' + data.count + ' @Html.DisplayName(CollTex.Resources.Resource.entries)'
+                            let kt_datatable_info = '@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.showingto) ' + pagenum + ' @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.of) ' + data.count + ' @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.entries)'
                             $('#kt_datatable_info').append(kt_datatable_info);
                             //-----------------------------page---------------------------
                             $('#page').empty();
@@ -298,7 +298,7 @@
                             $('#page').append(pagemax);
 
                         } else {
-                            Swal.fire(data.msg, "@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)!", "error");
+                            Swal.fire(data.msg, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.pressthebutton)!", "error");
                         }
                     }
                 })
@@ -338,13 +338,13 @@
             try {
                 var id = $(this).closest('tr').attr('id');
                 Swal.fire({
-                title:"@Html.DisplayName(CollTex.Resources.Resource.deleteentireaccountlinkedwiththisfx)",
+                title:"@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.deleteentireaccountlinkedwiththisfx)",
                 icon: "warning",
                 showDenyButton: true,
                 showCancelButton: true,
-                confirmButtonText: "@Html.DisplayName(CollTex.Resources.Resource.confirm)",
-                denyButtonText: "@Html.DisplayName(CollTex.Resources.Resource.close)",
-                cancelButtonText: "@Html.DisplayName(CollTex.Resources.Resource.cancel)"
+                confirmButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
+                denyButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.close)",
+                cancelButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.cancel)"
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
@@ -360,7 +360,7 @@
                                     title: data.msg,
                                     icon: "success",
                                     buttonsStyling: false,
-                                    confirmButtonText: "@Html.DisplayName(CollTex.Resources.Resource.confirm)",
+                                    confirmButtonText: "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.confirm)",
                                     customClass: {
                                         confirmButton: "btn btn-primary"
                                     }
@@ -368,7 +368,7 @@
                                 FX(pagenum, page, seach);
                             }
                             else {
-                                 Swal.fire(data.msg,"@Html.DisplayName(CollTex.Resources.Resource.pressthebutton)","error")
+                                 Swal.fire(data.msg,"@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.pressthebutton)","error")
                             }
                         }
                     })

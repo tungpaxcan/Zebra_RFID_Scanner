@@ -7,7 +7,8 @@
                 DefaultErrorMessage: HTMLentity(window.parent.canopenthisfileVar)+".",
                 BadTypeErrorMessage: HTMLentity(window.parent.wecannotacceptthisfiletypeatthistimeVar)+".",
                 acceptedFileTypes: [
-                    "csv"
+                    "xlsx",
+                    "xls"
                 ]
             },
             options

@@ -4,20 +4,33 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CollTex.Models;
+using Zebra_RFID_Scanner.Models;
 using System.Data.Entity.ModelConfiguration;
 using System.Resources;
 
-namespace CollTex.Controllers
+namespace Zebra_RFID_Scanner.Controllers
 {
     public class RegisterController : BaseController
     {
-        private ColltexEntities db = new ColltexEntities();
-        ResourceManager rm = new ResourceManager("CollTex.Resources.Resource", typeof(Resources.Resource).Assembly);
+         private Entities db = new Entities();
+        ResourceManager rm = new ResourceManager("Zebra_RFID_Scanner.Resources.Resource", typeof(Resources.Resource).Assembly);
         // GET: Register
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult Edits(int id)
+        {
+            if (id <= 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
         }
         public ActionResult Info()
         {
@@ -64,20 +77,35 @@ namespace CollTex.Controllers
             }
         }
         [HttpPost]
-        public JsonResult Add(string name, string userName, string password,string fx, string des, bool status, bool authorities)
+        public JsonResult Add(string name, string userName, string password, string des, bool status, bool authorities)
         {
             try
             {
-                User user = new User();
-                user.Name = name;
-                user.IdFX = fx;
-                user.User1 = userName;
-                user.Pass = Encode.ToMD5(password);
-                user.Description = des;
-                user.Status = status;
-                user.Admin = authorities;
-                db.Users.Add(user);
-                db.SaveChanges();
+                var checkUser = db.Users.SingleOrDefault(x => x.User1 == userName);
+                if (checkUser == null)
+                {
+                    User user = new User();
+                    user.Name = name;
+                    user.User1 = userName;
+                    user.IdFX = "FX96006D45DE";
+                    user.GetBitEnd = "82";
+                    user.GetBitGTIN = "24";
+                    user.GetBitItemRef = "20";
+                    user.AddCharacter = "5";
+                    user.TakeAbsoluteValue = "17";
+                    user.CheckDigit = "10";
+                    user.Pass = Encode.ToMD5(password);
+                    user.Description = des;
+                    user.Status = status;
+                    user.Admin = authorities;
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return Json(new { code = 300, msg = "Already have an account !!!" }, JsonRequestBehavior.AllowGet);
+                }
+
                 return Json(new { code = 200, msg =rm.GetString("accountsuccessfullycreated").ToString() +" !!!" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
@@ -86,13 +114,14 @@ namespace CollTex.Controllers
             }
         }
         [HttpPost]
-        public JsonResult Edit(int id,string name, string userName, string des, bool status, bool authorities)
+        public JsonResult Edit(int id, string name, string userName, string des, bool status, bool authorities,string password)
         {
             try
             {
                 var user = db.Users.Find(id);
                 user.Name = name;
                 user.User1 = userName;
+                user.Pass = Encode.ToMD5(password);
                 user.Description = des;
                 user.Status = status;
                 user.Admin = authorities;

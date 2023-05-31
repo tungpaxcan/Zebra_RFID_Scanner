@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace CollTex
+namespace Zebra_RFID_Scanner
 {
     public class Encode
     {

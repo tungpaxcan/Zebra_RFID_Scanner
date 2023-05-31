@@ -8,13 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.UI;
-using CollTex.Models;
+using Zebra_RFID_Scanner.Models;
 
-namespace CollTex.Controllers
+namespace Zebra_RFID_Scanner.Controllers
 {
     public class BaseController : Controller
     {
-        private ColltexEntities db = new ColltexEntities();
+        private Entities db = new Entities();
         // GET: Base
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {

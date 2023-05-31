@@ -14,9 +14,9 @@
 .Point {
     cursor: pointer;
 }
-tr:nth-child(even) {
+/*tr:nth-child(even) {
     background-color: #dddddd;
-}
+}*/
 .tooltip1 {
     position: relative;
     display: inline-block;
@@ -2376,7 +2376,9 @@ pre {
     width: 100%;
     margin-bottom: 1rem;
     color: #3f4254;
-    background-color: transparent
+    background-color: transparent;
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 
     .table td, .table th {
@@ -65566,7 +65568,8 @@ code {
 }
 
 .table.table-vertical-center td, .table.table-vertical-center th {
-    vertical-align: middle
+    vertical-align: middle ;
+    border: 1px solid black;
 }
 
 .table:not(.table-bordered) thead td, .table:not(.table-bordered) thead th {
@@ -80991,6 +80994,7 @@ code {
         height: 35px
     }
 
+
         .datepicker tbody tr > td.day {
             color: #7e8299;
             font-weight: 400
@@ -81000,6 +81004,7 @@ code {
                 background: #f3f6f9;
                 color: #3f4254
             }
+
 
             .datepicker tbody tr > td.day.old {
                 color: #7e8299

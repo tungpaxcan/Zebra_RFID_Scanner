@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card card-custom d-flex flex-grow-1">
+    <!--begin::Body-->
+    <div class="card-body flex-grow-1">
+        <!--begin::Accordion-->
+        <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="faq">
+            <!--begin::Card-->
+            <div class="card">
+                <div class="card-header" id="faqHeading1">
+                    <div class="card-title text-dark" data-toggle="collapse" data-target="#faq1" aria-expanded="true" aria-controls="faq1" role="button">
+                        <span class="svg-icon svg-icon-primary">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <div class="card-label text-dark pl-4">How to upload files?</div>
+                    </div>
+                </div>
+                <div id="faq1" class="collapse show" aria-labelledby="faqHeading1" data-parent="#faq">
+                    <div class="card-body text-dark-50 line-height-lg pl-12">
+                        Copy the files you want to add to the <b>C:\PreASN</b> directory.
+                        Restart the software or application you are using.
+                        Reload the page to ensure the newly added files are recognized.
+                        Please note that the files must meet the requirements and have the extension <b>.xlsx</b>.
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+            <div class="card border-top-0">
+                <div class="card-header" id="faqHeading2">
+                    <div class="card-title collapsed text-dark" data-toggle="collapse" data-target="#faq2" aria-expanded="false" aria-controls="faq2" role="button">
+                        <span class="svg-icon svg-icon-primary">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <div class="card-label text-dark pl-4">How to start checkout?</div>
+                    </div>
+                </div>
+                <div id="faq2" class="collapse" aria-labelledby="faqHeading2" data-parent="#faq">
+                    <div class="card-body text-dark-50 line-height-lg pl-12">
+                        1: Click on the <b>Menu</b> option. Select <b>Upload</b>. Search for and click on the desired file name to check.
+                        Alternatively, you can directly import the file for checking by clicking on <b>Choose File</b>.
+                        Select the file you want to check.
+                        You can find a sample file at this location: <a href="~/Images/Sample-preASN.xlsx">Sample</a>.<br /><br />
+                        2: Once you have uploaded the file, the CTN list will be displayed for Bluetooth scanning. If the file contains multiple sales order purchase orders (SO-POs), you can use filters to select specific ones. As you scan, the screen will update, highlighting correctly scanned lines in a finished leaf color with the status <b>Matched</b>, while mismatched lines will appear in red with the status <b>Mismatched</b>. To exit and save, click the <b>x</b> button. To proceed, click <b>Next</b>. Alternatively, you can choose another file by clicking <b>Choose File</b> to import a file that contains predefined CTN bins. A sample file can be found at this location: <a href="~/Images/Sample_CtnCheck.xlsx">Sample</a>.<br /><br />
+                        3: <b>Frame Read</b>: This section includes the EPCs read from the reader and the corresponding UPCs.
+                        <b>Frame Result</b>: This section displays the total number of UPCs from the Bluetooth-scanned CTN.
+                        <b>Frame Carton</b>: This section provides detailed information about the containers of the Bluetooth-scanned CTN.<br /><br />
+                        4: To begin reading tags, press the <b>Start RFID Scanning</b> button. The <b>Frame Result</b> section will display lines categorized by color. Green indicates enough tags, yellow indicates residual tags, red indicates missing tags, and white indicates tags that do not match the preASN.<br /><br />
+                        5: To stop reading tags, click on the <b>Stop RFID Scanning</b> button.<br /><br />
+                        6: Check and save <b>Finish and save</b>
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+            <!--begin::Card-->
+            <div class="card border-top-0">
+                <div class="card-header" id="faqHeading3">
+                    <div class="card-title collapsed text-dark" data-toggle="collapse" data-target="#faq3" aria-expanded="false" aria-controls="faq3" role="button">
+                        <span class="svg-icon svg-icon-primary">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <div class="card-label text-dark pl-4">How to rescan preASN?</div>
+                    </div>
+                </div>
+                <div id="faq3" class="collapse" aria-labelledby="faqHeading3" data-parent="#faq">
+                    <div class="card-body text-dark-50 line-height-lg pl-12">
+                        1: To select the saved pre-ASN, click on the <b>Menu</b> and then choose <b>HOD/Confirm!</b> option. Notice that the unconfirmed entry for pre-ASNs will be displayed. You can apply a filter to select the desired pre-ASN.<br /><br />
+                        2: Please check the data to determine if the desired pre-ASN is present?<br /><br />
+                        3: In the <b>CartonScan</b> section, navigate to the <b>RESCAN</b> option. There, you will find two choices: <b>Rescan Unscanned Ctn</b> (to scan only those cartons that have not been scanned via Bluetooth) and <b>Rescan The Scanned Ctn</b> (to continue scanning pre-ASNs with the current status when you click "Finish and save").
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+            <!--begin::Card-->
+            <div class="card border-top-0">
+                <div class="card-header" id="faqHeading4">
+                    <div class="card-title collapsed text-dark" data-toggle="collapse" data-target="#faq4" aria-expanded="false" aria-controls="faq4" role="button">
+                        <span class="svg-icon svg-icon-primary">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <div class="card-label text-dark pl-4">How can I add the missing EPC?</div>
+                    </div>
+                </div>
+                <div id="faq4" class="collapse" aria-labelledby="faqHeading4" data-parent="#faq">
+                    <div class="card-body text-dark-50 line-height-lg pl-12">
+                        1: To select the saved pre-ASN, click on the <b>Menu</b> and then choose <b>HOD/Confirm!</b> option. Notice that the unconfirmed entry for pre-ASNs will be displayed. You can apply a filter to select the desired pre-ASN.<br /><br />
+                        2: Please check the data to determine if the desired pre-ASN is present?<br /><br />
+                        3: Navigate to the <b>Discrepancy</b> section and click on <b>Choose File</b>. Select the EPC file that you want to output from the handheld device. You can find a sample file at this location: <a href="~/Images/Sample_importEPC.xlsx">Sample</a>. After selecting the file, click on <b>Import</b>. Next, choose the UPCs that you need to add. Make sure to select the UPCs that are included in the sales order (SO) and ensure that you have an adequate quantity. Finally, click on <b>Yes!</b> to confirm the selection.
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+            <!--begin::Card-->
+            <div class="card border-top-0">
+                <div class="card-header" id="faqHeading5">
+                    <div class="card-title collapsed text-dark" data-toggle="collapse" data-target="#faq5" aria-expanded="false" aria-controls="faq5" role="button">
+                        <span class="svg-icon svg-icon-primary">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <div class="card-label text-dark pl-4">How can I report my pre-ASN?</div>
+                    </div>
+                </div>
+                <div id="faq5" class="collapse" aria-labelledby="faqHeading5" data-parent="#faq">
+                    <div class="card-body text-dark-50 line-height-lg pl-12">
+                        The initial step is to ensure that your pre-ASN is confirmed. <a href="" data-toggle="collapse" data-target="#faq6" aria-expanded="false" aria-controls="faq6" role="button">Instruction</a><br /><br />
+                        1: To select the saved pre-ASN, click on the <b>Menu</b> and then choose <b>HOD/Confirm!</b> option. select preASN in PreASN confirm. You can apply a filter to select the desired pre-ASN.<br /><br />
+                        2: Please check the data to determine if the desired pre-ASN is present?<br /><br />
+                        3: Click <b>REPORTS</b>. there are 4 types, <b>General scanning reports</b>, <b>Discrepancy report</b>, <b>EPC-UPC reports</b>,<b>Reports All</b>
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+            <!--begin::Card-->
+            <div class="card border-top-0">
+                <div class="card-header" id="faqHeading6">
+                    <div class="card-title collapsed text-dark" data-toggle="collapse" data-target="#faq6" aria-expanded="false" aria-controls="faq6" role="button">
+                        <span class="svg-icon svg-icon-primary">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <div class="card-label text-dark pl-4">how to confirm HOD preASN?</div>
+                    </div>
+                </div>
+                <div id="faq6" class="collapse" aria-labelledby="faqHeading6" data-parent="#faq">
+                    <div class="card-body text-dark-50 line-height-lg pl-12">
+                        Select the preASN.
+                        Click on <b>Confirm HOD</b>.
+                        Confirm the action by clicking on <b>Yes, Confirm</b>.
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+            <!--begin::Card-->
+            <div class="card border-top-0">
+                <div class="card-header" id="faqHeading7">
+                    <div class="card-title collapsed text-dark" data-toggle="collapse" data-target="#faq7" aria-expanded="false" aria-controls="faq7" role="button">
+                        <span class="svg-icon svg-icon-primary">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <div class="card-label text-dark pl-4">How to delete preASN?</div>
+                    </div>
+                </div>
+                <div id="faq7" class="collapse" aria-labelledby="faqHeading7" data-parent="#faq">
+                    <div class="card-body text-dark-50 line-height-lg pl-12">
+                        Select the preASN.
+                        Click on <b>REMOVE HOD</b>.
+                        Confirm the action by clicking on <b>Yes, delele it!</b>.<br /><br />
+
+                        Or the software will automatically delete all preASNs after 8 weeks.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Accordion-->
+    </div>
+    <!--end::Col-->
+</div>
+<!--end::Row-->

@@ -1,0 +1,1222 @@
+﻿
+@{
+    ViewBag.Title = "HOD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="d-flex">
+                    <!--begin: Pic-->
+                    <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
+                        <div class="symbol symbol-50 symbol-lg-120">
+                            <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#exampleModalSizeXl">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.filter)</button>
+                        </div>
+                    </div>
+                    <!--end: Pic-->
+                    <!--begin: Info-->
+                    <div class="flex-grow-1">
+                        <!--begin: Title-->
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <div class="mr-3">
+                                <!--begin::Name-->
+                                <div class="form-group">
+                                    <label>
+                                        PreASN unconfirmed
+                                    </label>
+                                    <select onchange="Filter(event)" class="form-control select2" data-id="kt_select2_1" name="nameReports" style="width:100%">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mr-3">
+                                <!--begin::Name-->
+                                <div class="form-group">
+                                    <label>
+                                        PreASN confirm
+                                    </label>
+                                    <select onchange="Filter(event)" class="form-control select2" data-id="kt_select2_3" name="hodReports" style="width:100%">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light-success font-weight-bolder text-uppercase mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Reports
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="reportGeneral('General')">General scanning report</a>
+                                    <a class="dropdown-item" onclick="reportDiscrepancy('Discrepancy')">Discrepancy report</a>
+                                    <a class="dropdown-item" onclick="reportEpc('EPC')">EPC- UPC reports</a>
+                                    <a class="dropdown-item" onclick="reportAll('General','Discrepancy','EPC')">Reports All</a>
+                                </div>
+                            </div>
+                            <div class="my-lg-0 my-1">
+                                <a class="btn btn-sm btn-danger font-weight-bolder text-uppercase" onclick="Remove()">Remove Pre</a>
+                            </div>
+                            <div class="my-lg-0 my-1">
+                                <a class="btn btn-sm btn-info font-weight-bolder text-uppercase" onclick="confirmHod()">Confirm HOD</a>
+                            </div>
+                        </div>
+                        <!--end: Title-->
+                        <!--begin: Content-->
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <div class="flex-grow-1 font-weight-bold text-dark-50 py-5 py-lg-2 mr-5">
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center py-2">
+                                <div class="d-flex align-items-center mr-10">
+                                    <div class="mr-6">
+                                        <div class="font-weight-bold mb-2">Start Date</div>
+                                        <span class="btn btn-sm btn-text btn-light-primary text-uppercase font-weight-bold" id="dateReports"></span>
+                                    </div>
+                                    <div class="">
+                                        <div class="font-weight-bold mb-2">HOD</div>
+                                        <span class="btn btn-sm btn-text btn-light-danger text-uppercase font-weight-bold" id="dateHod"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Content-->
+                    </div>
+                    <!--end: Info-->
+                </div>
+                <div class="separator separator-solid my-7"></div>
+                <!--begin: Items-->
+                <div class="d-flex align-items-center flex-wrap">
+                    <!--begin: Item-->
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">
+                                Consignee
+                            </span>
+                            <span class="text-dark-50 font-weight-bold" name="Consignee"></span>
+                        </div>
+                    </div>
+                    <!--end: Item-->
+                    <!--begin: Item-->
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">
+                                SOnumber
+                            </span>
+                            <span class="text-dark-50 font-weight-bold" name="SOnumber" data-so="SOnumber"></span>
+                        </div>
+                    </div>
+                    <!--end: Item-->
+                    <!--begin: Item-->
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                        <div class="d-flex flex-column flex-lg-fill">
+                            <span class="text-dark-75 font-weight-bolder font-size-sm">
+                                PO
+                            </span>
+                            <span class="text-dark-50 font-weight-bold" name="POnumber" data-po="POnumber"></span>
+                        </div>
+                    </div>
+                    <!--end: Item-->
+                    <!--begin: Item-->
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                        <div class="d-flex flex-column">
+                            <span class="text-dark-75 font-weight-bolder font-size-sm">
+                                SKU
+                            </span>
+                            <span class="text-dark-50 font-weight-bold" name="SKU" data-SKU="SKU"></span>
+                        </div>
+                    </div>
+                    <!--end: Item-->
+                    <!--begin: Item-->
+                    <div class="d-flex align-items-center flex-lg-fill my-1">
+                        <span class="mr-4">
+                            <i class="flaticon-network icon-2x text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="symbol-group symbol-hover" id="byReports">
+
+                        </div>
+                    </div>
+                    <!--end: Item-->
+                </div>
+                <!--begin: Items-->
+            </div>
+        </div>
+        <!--end::Card-->
+        <!--begin::Row-->
+        <div class="card card-custom">
+            <div class="card-header card-header-tabs-line">
+                <div class="card-title">
+                    <h3 class="card-label">Scanned data</h3>
+                </div>
+                <div class="card-toolbar">
+                    <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_1_2">General</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_2_2">CartonScan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_3_2">Discrepancy Detail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_5_2">Discrepancy Total</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_4_2">EPC-UPC</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="kt_tab_pane_1_2" role="tabpanel">
+                        <div>
+                            <!--begin::Advance Table Widget 3-->
+                            <div class="card card-custom card-stretch gutter-b">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 py-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">General Scanning</span>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">more</span>
+                                    </h3>
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Body-->
+                                <div class="card-body pt-0 pb-3">
+                                    <!--begin::Table-->
+                                    <div class="table-responsive" style="height: 500px; overflow: scroll;">
+                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center" id="General">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th style="min-width:100px">SO Number</th>
+                                                    <th style="min-width:100px">PO Number</th>
+                                                    <th style="min-width:100px">SKU</th>
+                                                    <th style="min-width:100px">CartonID</th>
+                                                    <th style="min-width:100px">UPC</th>
+                                                    <th style="min-width:100px">Total Units</th>
+                                                    <th style="min-width:100px">Scanning Units</th>
+                                                    <th style="min-width:100px"> Result</th>
+                                                    <th style="min-width:100px"> Scanning Date Time</th>
+                                                    <th style="min-width:100px">Remark</th>
+                                                    <th style="min-width:100px">HOD</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbdGeneral">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Advance Table Widget 3-->
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_tab_pane_2_2" role="tabpanel">
+                        <div>
+                            <div class="card card-custom card-stretch gutter-b">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 py-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">CartonScan</span>
+                                        <div name="editPre" class="dropdown">
+                                            <button class="btn btn-sm btn-warning font-weight-bolder text-uppercase mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Rescan
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" onclick="rescan()">Rescan Unscanned Ctn</a>
+                                                <a class="dropdown-item" onclick="rescanAll()">Rescan The Scanned Ctn</a>
+                                            </div>
+                                        </div>
+
+                                    </h3>
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Body-->
+                                <div class="card-body pt-0 pb-3">
+                                    <!--begin::Table-->
+                                    <div class="table-responsive" style="height: 500px; overflow: scroll;">
+                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th style="min-width:100px">Action</th>
+                                                    <th style="min-width:100px">CartonID</th>
+                                                    <th style="min-width:100px">Result</th>
+                                                    <th style="min-width:100px">UPC</th>
+                                                    <th style="min-width:100px">QTY</th>
+                                                    <th style="min-width:100px">So</th>
+                                                    <th style="min-width:100px">Po</th>
+                                                    <th style="min-width:100px">Sku</th>
+                                                    <th style="min-width:100px">HOD</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbdCtn">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_tab_pane_3_2" role="tabpanel">
+                        <div>
+                            <div class="card card-custom card-stretch gutter-b file-upload ">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 py-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">Discrepancy Detail</span>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">more</span>
+                                    </h3>
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Body-->
+                                <div class="card-body pt-0 pb-3">
+                                    <!--begin::Table-->
+                                    <div class="table-responsive" style="height: 500px; overflow: scroll;">
+                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center" id="Discrepancy">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th style="min-width:100px">SO Number</th>
+                                                    <th style="min-width:100px">PO Number</th>
+                                                    <th style="min-width:100px">SKU</th>
+                                                    <th style="min-width:100px">CartonID</th>
+                                                    <th style="min-width:100px">UPC</th>
+                                                    <th style="min-width:100px">Total Units</th>
+                                                    <th style="min-width:100px">Scanning Units</th>
+                                                    <th style="min-width:100px">Result</th>
+                                                    <th style="min-width:100px">Scanning Date Time</th>
+                                                    <th style="min-width:100px">Remark</th>
+                                                    <th style="min-width:100px">HOD</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbdDiscrepancies">
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_tab_pane_5_2" role="tabpanel">
+                        <div>
+                            <div class="card card-custom card-stretch gutter-b file-upload ">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 py-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">Discrepancy Total</span>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">more</span>
+                                    </h3>
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.choosefile)</div>
+                                        <div class="file-select-name" id="noFile">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.nofilechosen)...</div>
+                                        <input type="file" name="UploadedFile" id="chooseFile">
+                                    </div>
+                                    <button type="button" onclick="Import()" name="editPre" value="" class="btn btn-light-primary font-weight-bolder">
+                                        <span class="svg-icon svg-icon-md">
+
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                                    <path d="M3,16 L5,16 C5.55228475,16 6,15.5522847 6,15 C6,14.4477153 5.55228475,14 5,14 L3,14 L3,12 L5,12 C5.55228475,12 6,11.5522847 6,11 C6,10.4477153 5.55228475,10 5,10 L3,10 L3,8 L5,8 C5.55228475,8 6,7.55228475 6,7 C6,6.44771525 5.55228475,6 5,6 L3,6 L3,4 C3,3.44771525 3.44771525,3 4,3 L10,3 C10.5522847,3 11,3.44771525 11,4 L11,19 C11,19.5522847 10.5522847,20 10,20 L4,20 C3.44771525,20 3,19.5522847 3,19 L3,16 Z" fill="#000000" opacity="0.3"></path>
+                                                    <path d="M16,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,15.2485298 C21,15.7329761 20.8241635,16.200956 20.5051534,16.565539 L17.8762883,19.5699562 C17.6944473,19.7777745 17.378566,19.7988332 17.1707477,19.6169922 C17.1540423,19.602375 17.1383289,19.5866616 17.1237117,19.5699562 L14.4948466,16.565539 C14.1758365,16.200956 14,15.7329761 14,15.2485298 L14,5 C14,3.8954305 14.8954305,3 16,3 Z" fill="#000000"></path>
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.import)
+                                    </button>
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Body-->
+                                <div class="card-body pt-0 pb-3">
+                                    <!--begin::Table-->
+                                    <div class="table-responsive" style="height: 500px; overflow: scroll;">
+                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center" id="DiscrepancyTotal">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th style="min-width:100px">UPC</th>
+                                                    <th style="min-width:100px">Total Units</th>
+                                                    <th style="min-width:100px">Scanning Units</th>
+                                                    <th style="min-width:100px">Carton ID</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbodyDiscrepanciestotal">
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_tab_pane_4_2" role="tabpanel">
+                        <div>
+                            <div class="card card-custom card-stretch gutter-b">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 py-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">EPC-UPC</span>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">more</span>
+                                    </h3>
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Body-->
+                                <div class="card-body pt-0 pb-3">
+                                    <!--begin::Table-->
+                                    <div class="table-responsive" style="height: 500px; overflow: scroll;">
+                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center" id="EPC">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th style="min-width:100px">Consignee</th>
+                                                    <th style="min-width:100px">Operator</th>
+                                                    <th style="min-width:100px">SO</th>
+                                                    <th style="min-width:100px">PO</th>
+                                                    <th style="min-width:100px">SKU</th>
+                                                    <th style="min-width:100px">EPC</th>
+                                                    <th style="min-width:100px">UPC</th>
+                                                    <th style="min-width:100px">Scanning Date Time</th>
+                                                    <th style="min-width:100px">HOD</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbdEpctoUpc">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end::Container-->
+</div>
+<div class="modal fade" id="exampleModalSizeXl" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeXl" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.filter)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>
+                        @Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.searchbyaccount)
+                    </label>
+                    <select class="form-control select2" data-id="kt_select2_2" name="userReports" style="width:100%">
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label text-right col-lg-3 col-sm-12">Success State</label>
+                    <div class="col-lg-4 col-md-9 col-sm-12">
+                        <div class="input-group" id="kt_daterangepicker_1_validate">
+                            <input type="text" class="form-control is-valid" readonly="readonly" id="date" placeholder="Select date range">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="la la-calendar-check-o"></i>
+                                </span>
+                            </div>
+                            <div class="valid-feedback">Success! You've done it.</div>
+                        </div>
+                        <span class="form-text text-muted">Example help text that remains unchanged.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.close)</button>
+                <button type="button" onclick="SaveFilter()" class="btn btn-primary font-weight-bold">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.savechanges)</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js"></script>
+    <script>
+        $('#chooseFile').bind('change', function () {
+            try {
+                var filename = $("#chooseFile").val();
+                if (/^\s*$/.test(filename)) {
+                    $(".file-upload").removeClass('active'); $("#noFile").empty()
+                    $("#noFile").append("@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.nofilechosen)...");
+                }
+                else {
+                    $(".file-upload").addClass('active');
+                    $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+                }
+            } catch (error) {
+                Swal.fire(error.message, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.pressthebutton)!", "error");
+            }
+
+        });
+
+        function Import() {
+            try {
+                var hodReports = $('select[name="nameReports"]').val();
+                if (hodReports == "-1") {
+                    toastr.error("haven't selected PreASN", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                    return;
+                }
+            let fileUpload = $('input[name="UploadedFile"]').get(0);
+            var dataDiscrepancy = JSON.stringify(getArrayReports("Discrepancy"))
+                let files = fileUpload.files;
+                let formdata = new FormData();
+            formdata.append('file', files[0]);
+            formdata.append('dataDiscrepancy', dataDiscrepancy );
+            $.ajax({
+                type: 'post',
+                url: '/Reports/Upload',
+                contentType: false,
+                processData: false,
+                data: formdata,
+                    success: function (data) {
+                        if (data.code == 200) {
+                            var array = []
+                            var table =`<table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+    <thead><tr><th>UPC</th><th>status</th><th>Total</th><th>action</th></tr></thead>
+    <tbody>`
+                            $.each(data.msg, function (k, v) {
+                                if (!array.includes(v.UPC)) {
+                                    table += `<tr><td>${v.UPC}</td><td>${v.Status}</td><td>${v.Qty}</td><td><input data-upc="${v.UPC}" name="status" type="checkbox" checked/></td></tr>`
+                                    array.push(v.UPC)
+                                }
+                            })
+                            table+=`</tbody></table>`
+                            Swal.fire({
+                                title: 'import information',
+                                html: table,
+                                icon: 'warning',
+                                width: 600,
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    var checkBox = $('input[name="status"]')
+                                    for (let i = 0; i < checkBox.length; i++) {
+                                        if (!checkBox[i].checked) {
+                                            for (let j = (data.msg).length - 1; j >= 0; j--) {
+                                                var upc = (data.msg)[j]["UPC"];
+                                                if (upc == checkBox[i].dataset["upc"]) {
+                                                    (data.msg).splice(j, 1);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    save(data.msg, hodReports)
+                                }
+                            })
+                        }
+                    }
+                })
+            } catch (error) {
+                Swal.fire(error.message, "", "error")
+            }
+        }
+
+
+        function save(arr, hodReports) {
+            $.ajax({
+                url: '/Reports/Save',
+                type: 'post',
+                data: { arr: JSON.stringify(arr), hodReports: hodReports },
+                success: function (data) {
+                    if (data.code == 200) {
+                        window.location.href ="/HOD/Index"
+                        Swal.fire(
+                            'success!',
+                            'Updated.',
+                            'success'
+                        )
+                    }
+                }
+            })
+        }
+        var name = "";
+        var date = "";
+        UnconfirmedReports(name, date)
+        confirmedReports(name, date)
+        function UnconfirmedReports(name,date) {
+            $.ajax({
+                url: '/Reports/UnconfirmedReports',
+                type: 'get',
+                data: { name, date },
+                success: function (data) {
+                    $('select[name="nameReports"]').empty()
+                    if (data.code == 200) {
+                        let option = `<option value="-1">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.name)</option>`
+                        $.each(data.reports, function (k, v) {
+                            option += `<option value="${v.id}">${v.id}</option>`
+                        })
+                        $('select[name="nameReports"]').append(option)
+                    }
+                }
+            })
+        }
+        $(function UserReports() {
+            $.ajax({
+                url: '/Reports/UserReports',
+                type: 'get',
+                success: function (data) {
+                    if (data.code == 200) {
+                        let option = `<option value="-1">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.name)</option>`
+                        $.each(data.reports, function (k, v) {
+                            option += `<option value="${v.id}">${v.name}</option>`
+                        })
+                        $('select[name="userReports"]').append(option)
+                    }
+                }
+            })
+        })
+        function confirmedReports(name, date) {
+            $.ajax({
+                url: '/Reports/confirmedReports',
+                type: 'get',
+                data: { name, date},
+                success: function (data) {
+                    $('select[name="hodReports"]').empty()
+                    if (data.code == 200) {
+                        let option = `<option value="-1">@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.name)</option>`
+                        $.each(data.reports, function (k, v) {
+                            option += `<option value="${v.id}">${v.id}</option>`
+                        })
+                        $('select[name="hodReports"]').append(option)
+                    }
+                }
+            })
+        }
+
+        function reportGeneral(id) {
+            try {
+                var hod = $('#dateHod').text();
+                var check = $('select[name="hodReports"]').val()
+                var name = $('span[data-so="SOnumber"]').text()
+                if (hod != "" && check!=-1) {
+                    var data = getArrayReports(id)
+                    $.ajax({
+                        url: '/Reports/reportGeneral',
+                        type: 'post',
+                        data: { data: JSON.stringify(data), name: name, hod: hod },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.code == 200) {
+                                toastr.success("success", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.success) !!!");
+                            }
+                        }
+                    })
+                } else {
+                    toastr.error("Unconfirmed", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                }
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        function reportDiscrepancy(id) {
+            try {
+                var hod = $('#dateHod').text();
+                var check = $('select[name="hodReports"]').val()
+                var name = $('span[data-so="SOnumber"]').text()
+                if (hod != "" && check != -1) {
+                    var data = getArrayReports(id)
+                    $.ajax({
+                        url: '/Reports/reportDiscrepancy',
+                        type: 'post',
+                        data: { data: JSON.stringify(data), name: name, hod: hod },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.code == 200) {
+                              toastr.success("success", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.success) !!!");
+                            }
+                        }
+                    })
+                } else {
+                    toastr.error("Unconfirmed", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                }
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+        function reportEpc(id) {
+            try {
+                var hod = $('#dateHod').text();
+                var check = $('select[name="hodReports"]').val()
+                var name= $('span[data-so="SOnumber"]').text()
+                if (hod != "" && check != -1) {
+                    var data = getArrayReports(id)
+                    $.ajax({
+                        url: '/Reports/reportEPC',
+                        type: 'post',
+                        data: { data: JSON.stringify(data), name: name, hod: hod},
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.code == 200) {
+                                   toastr.success("success", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.success) !!!");
+                            }
+                        }
+                    })
+                } else {
+                    toastr.error("Unconfirmed", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                }
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        function reportAll(General,Discrepancy,Epc) {
+            try {
+                var hod = $('#dateHod').text();
+                var check = $('select[name="hodReports"]').val()
+                var name = $('span[data-so="SOnumber"]').text()
+                if (hod != "" && check != -1) {
+                    var dataGeneral = getArrayReports(General)
+                    var dataDiscrepancy = getArrayReports(Discrepancy)
+                    var dataEpc = getArrayReports(Epc)
+                    $.ajax({
+                        url: '/Reports/reportAll',
+                        type: 'post',
+                        data: { dataGeneral: JSON.stringify(dataGeneral), dataDiscrepancy: JSON.stringify(dataDiscrepancy), dataEpc: JSON.stringify(dataEpc), name: name, hod: hod },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.code == 200) {
+                                   toastr.success("success", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.success) !!!");
+                            }
+                        }
+                    })
+                } else {
+                    toastr.error("Unconfirmed", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                }
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+        function confirmHod() {
+            try {
+                var id = $('select[name="nameReports"]').val();
+                var hod = $('select[name="hodReports"]').val();
+                if (hod != -1) {
+                    toastr.error("Confirmed", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                    return;
+                }
+                if (id == -1) {
+                    toastr.error("@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error)", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                    return;
+            }
+                $('select[name="nameReports"]').val("-1").trigger("change");
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, confirm!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/Reports/confirmHod',
+                            type: 'get',
+                            data: { id },
+                            success: function (data) {
+                                if (data.code == 200) {
+                                    confirmedReports(name, date)
+                                    UnconfirmedReports(name, date)
+                                    //setTimeout($('select[name="hodReports"]').val(data.id).trigger("change"),1000);
+                                    $('#dateHod').text(data.date);
+                                    $('span[name="HOD"]').text(data.date);
+                                    Swal.fire(
+                                        'success!',
+                                        'success.',
+                                        'success'
+                                    )
+                                }
+                            }
+                        })
+                    }
+                })
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        function SaveFilter() {
+            try {
+                var name = $('select[name="userReports"]').val()
+                var date = $('#date').val()
+                if (date == "") {
+                    toastr.error("@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.timenotentered)", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                    return;
+                }
+                UnconfirmedReports(name, date)
+                confirmedReports(name, date)
+                $('button[data-dismiss="modal"]').click()
+            } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        function emptyHOD() {
+            $('#tbodyDiscrepanciestotal').empty()
+            $('#dateReports').empty()
+            $('#tbdCtn').empty()
+            $('#tbdEpctoUpc').empty()
+            $('#tbdGeneral').empty()
+            $('#tbdDiscrepancies').empty()
+            $('#byReports').empty()
+            $('span[name="Consignee"]').empty()
+            $('span[name="SOnumber"]').empty()
+            $('span[name="POnumber"]').empty()
+            $('span[name="SKU"]').empty()
+            $('#dateHod').empty()
+        }
+
+        function Filter(event) {
+            try {
+                var name = event.target.getAttribute('name');
+                var id = event.target.value;
+                var idName = $('select[name="nameReports"]').val();
+                var hod = $('select[name="hodReports"]').val();
+                if (name == "nameReports") {
+                    if (hod != -1) {
+                        $('select[name="hodReports"]').val("-1").trigger("change");
+                    } else {
+                        emptyHOD()
+                    }
+                } else {
+                    if (idName != -1) {
+                        $('select[name="nameReports"]').val("-1").trigger("change");
+                    } else {
+                        emptyHOD()
+                    }
+                }
+                if (id == -1) { return; }
+
+                $.ajax({
+                    url: '/Reports/InfoReports',
+                    type: 'get',
+                    data: {
+                        id
+                    },
+                    success: function (data) {
+                        emptyHOD()
+                        if (data.code == 200) {
+                            var tbody = ``
+                            $.each(data.Ctn, function (k, v) {
+                                tbody += `<tr id="DataScanPhysical${v.id}">
+                                         <td class="pl-0 py-8">
+                                            <div name="editPre"><button class="btn btn-danger" name="deleteDataScanPhysical">Delete</button></div>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.ctn}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.status}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.upc}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.qty}</span>
+                                        </td>
+                                      <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.so}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.po}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.sku}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="HOD">${data.modifyDate}</span>
+                                        </td></tr>
+                                        `
+                            })
+                            var tbodyEpctiUpc = ``
+                            $.each(data.epcToUpc, function (k, v) {
+                                tbodyEpctiUpc += ` <tr>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="Consignee"></span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.createBy}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.so}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.po}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.sku}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.epc}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.upc}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.createDate}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="HOD">${data.modifyDate}</span>
+                                        </td>
+                                    </tr>`
+                            })
+                            var tbodyDiscrepancies = ``
+                            $.each(data.discrepancies, function (k, v) {
+                                tbodyDiscrepancies += `<tr>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.so}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.po}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.sku}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.ctn}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.upc}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.qty}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.qtyScan}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Mismatched</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.createDate}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Null</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="HOD">${data.modifyDate}</span>
+                                        </td>
+                                    </tr>`
+                            })
+                            var checkupctotal = []
+                           
+                            $.each(data.discrepancies, function (k, v) {
+                                if (checkupctotal.includes(v.upc)) {
+                                    var qty = $(`span[name="dataqty${v.upc}"]`).text()
+                                    var ctn = $(`span[name="datactn${v.upc}"]`).text()
+                                    console.log(qty)
+                                    $(`span[name="dataqty${v.upc}"]`).text(Number(qty) + Number(v.qty))
+                                    $(`span[name="datactn${v.upc}"]`).append(", "+v.ctn)
+                                } else {
+                                    checkupctotal.push(v.upc)
+                                    var tbodyDiscrepanciestotal = ``
+                                    tbodyDiscrepanciestotal += `<tr>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.upc}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="dataqty${v.upc}">${v.qty}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="dataqtyscan${v.upc}">${v.qtyScan}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="datactn${v.upc}">${v.ctn}</span>
+                                        </td>
+                                    </tr>`
+                                    $('#tbodyDiscrepanciestotal').append(tbodyDiscrepanciestotal)
+                                }
+                            })
+                            var tbodyGeneral = ``
+                            $.each(data.general, function (k, v) {
+                                tbodyGeneral += ` <tr>
+                                                                   <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.so}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.po}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.sku}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.ctn}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.upc}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.qty}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.qty}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Match</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.createDate}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Null</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="HOD">${data.modifyDate}</span>
+                                        </td>
+                                    </tr>`
+                            })
+                            $('#tbdEpctoUpc').append(tbodyEpctiUpc)
+                            $('#tbdGeneral').append(tbodyGeneral)
+                            $('#tbdDiscrepancies').append(tbodyDiscrepancies)
+                            $('span[name="Consignee"]').append(data.Consignee)
+                            $('span[name="SOnumber"]').append(data.so)
+                            $('span[name="POnumber"]').append(data.po)
+                            $('span[name="SKU"]').append(data.sku)
+                            $('#tbdCtn').append(tbody)
+                           
+                            $('#dateReports').append(data.createDate)
+                            $('#byReports').append(data.createBy)
+                            if (name != "nameReports") { $('#dateHod').text(data.modifyDate); $('button[name="editPre"]').css('display', 'none'); $('div[name="editPre"]').css('display', 'none') } else { $('#dateHod').text(''); $('button[name="editPre"]').css('display', 'block'); $('div[name="editPre"]').css('display', 'block') }
+
+                        }
+                    }
+                })
+                   } catch (e) {
+                 toastr.error(e, "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+            }
+        }
+
+        function Remove() {
+            var id
+            var idName = $('select[name="nameReports"]').val();
+            var hod = $('select[name="hodReports"]').val();
+            if (idName == "-1" && hod == "-1") {
+                toastr.error("error", "@Html.DisplayName(Zebra_RFID_Scanner.Resources.Resource.error) !!!");
+                return;
+            }
+            if (idName == "-1") {
+                id = hod
+            } else {
+                id = idName
+            }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/Reports/Remove',
+                        type: 'post',
+                        data: { id },
+                        success: function (data) {
+                            if (data.code == 200) {
+                                confirmedReports(name, date)
+                                UnconfirmedReports(name, date)
+                                emptyHOD()
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                            }
+                        }
+                    })
+                }
+            })
+        }
+
+        function rescan() {
+            var rescanCtn = [];
+            var tr = $('#tbdCtn').children()
+            var id = $('select[name="nameReports"]').val()
+
+            for (let i = 0; i < tr.length; i++) {
+
+                var mis = tr.eq(i).children().eq(2).text()
+                if (mis.includes("Mismatched")) {
+                    rescanCtn.push({
+                        "Carton to": tr.eq(i).children().eq(1).text().trim(),
+                        "SOnumber": tr.eq(i).children().eq(5).text().trim(),
+                        "PO": tr.eq(i).children().eq(6).text().trim(),
+                        "SKU": tr.eq(i).children().eq(7).text().trim(),
+                        "UPC": tr.eq(i).children().eq(3).text().trim(),
+                        "UPC QTY": tr.eq(i).children().eq(4).text().trim(),
+                        "Status": tr.eq(i).children().eq(2).text().trim(),
+                    })
+                }
+            }
+            localStorage.setItem('data', JSON.stringify(rescanCtn));
+            localStorage.setItem('id', id);
+            window.location.href = "/FunctionOrder/Rescan"
+        }
+
+        function rescanAll() {
+            var rescanCtn = [];
+            var rescanEpc = [];
+            var rescanCount = [];
+            var tr = $('#tbdCtn').children()
+            var trEpc = $('#tbdEpctoUpc').children()
+
+            var id = $('select[name="nameReports"]').val()
+
+            for (let i = 0; i < tr.length; i++) {
+                    rescanCtn.push({
+                        "Carton to": tr.eq(i).children().eq(1).text().trim(),
+                        "SOnumber": tr.eq(i).children().eq(5).text().trim(),
+                        "PO": tr.eq(i).children().eq(6).text().trim(),
+                        "SKU": tr.eq(i).children().eq(7).text().trim(),
+                        "UPC": tr.eq(i).children().eq(3).text().trim(),
+                        "UPC QTY": tr.eq(i).children().eq(4).text().trim(),
+                        "Status": tr.eq(i).children().eq(2).text().trim(),
+                    })
+            }
+
+            for (let i = 0; i < trEpc.length; i++) {
+                var UPC = trEpc.eq(i).children().eq(5).text().trim()
+                rescanEpc.push({
+                    "EPC": trEpc.eq(i).children().eq(4).text().trim(),
+                    "UPC": UPC ,
+                })
+                if (hasUpc(rescanCount, UPC)) {
+                    updateUPC(rescanCount, UPC)
+                } else {
+                    rescanCount.push({
+                        "upc": UPC,
+                        "qtyScan":1
+                    })
+                }
+            }
+            localStorage.setItem('data', JSON.stringify(rescanCtn));
+            localStorage.setItem('dataEpc', JSON.stringify(rescanEpc));
+            localStorage.setItem('dataCount', JSON.stringify(rescanCount));
+            localStorage.setItem('id', id);
+            window.location.href = "/FunctionOrder/RescanAll"
+        }
+
+        function getArrayReports(id) {
+            const table = document.getElementById(id);
+            const rows = table.rows;
+
+            // Tạo một mảng chứa dữ liệu của bảng
+            const data = [];
+
+            // Duyệt qua các hàng của bảng
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].cells;
+                const rowData = [];
+
+                // Duyệt qua các ô trong hàng
+                for (let j = 0; j < cells.length; j++) {
+                    rowData.push(cells[j].textContent.trim());
+                }
+
+                data.push(rowData);
+            }
+            return data;
+        }
+        function updateUPC(arr, upc) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].upc === upc) {
+                    arr[i].qtyScan += 1;
+                    break;
+                }
+            }
+        }
+        function hasUpc(arr, upc) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].upc === upc) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        //xóa CTn
+        $(document).on('click', 'button[name="deleteDataScanPhysical"]', function () {
+            var id = $(this).closest('tr').attr('id')
+            id = id.substring(16)
+            var idName = $('select[name="nameReports"]').val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Irrevocable after confirmation!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/HOD/DeleteCtn',
+                        type: 'post',
+                        data: { id: Number(id), idName: idName },
+                        success: function (data) {
+                            if (data.code == 200) {
+                                $('#tbdCtn').empty()
+                                var tbody = ``
+                                $.each(data.Ctn, function (k, v) {
+                                    tbody += `<tr id="DataScanPhysical${v.id}">
+                                         <td class="pl-0 py-8">
+                                            <div name="editPre"><button class="btn btn-danger" name="deleteDataScanPhysical">Delete</button></div>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.ctn}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.status}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.upc}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.qty}</span>
+                                        </td>
+                                      <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${v.so}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.po}</span>
+                                        </td>
+                                        <td class="pl-0 py-8">
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" >${v.sku}</span>
+                                        </td>
+                                         <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg" name="HOD"></span>
+                                        </td></tr>
+                                        `
+                                })
+                                $('#tbdCtn').append(tbody)
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+    <script src="~/assets/js/pages/crud/forms/widgets/select2.js"></script>
+    <script src="~/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+}

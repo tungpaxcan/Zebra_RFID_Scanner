@@ -1,27 +1,23 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using Zebra_RFID_Scanner.Models;
 
-namespace CollTex.Controllers
+namespace Zebra_RFID_Scanner.Controllers
 {
     public class Data
     {
-        public int antenna { get; set; }
         public int eventNum { get; set; }
         public string format { get; set; }
         public string idHex { get; set; }
-        public int reads { get; set; }
         public string userDefined { get; set; }
     }
 
     public class Root
     {
         public Data data { get; set; }
-        public string timestamp { get; set; }
+        public DateTime timestamp { get; set; }
         public string type { get; set; }
     }
-
-
-
-
 
 }

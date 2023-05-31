@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CollTex.Models
+namespace Zebra_RFID_Scanner.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,15 +17,12 @@ namespace CollTex.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FXconnect()
         {
-            this.DetailEPCs = new HashSet<DetailEPC>();
             this.Users = new HashSet<User>();
         }
     
         public string Id { get; set; }
         public string Name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetailEPC> DetailEPCs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
     }
